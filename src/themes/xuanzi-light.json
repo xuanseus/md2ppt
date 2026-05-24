@@ -1,0 +1,21 @@
+{
+  "name": "xuanzi-light",
+  "label": "玄子亮色",
+  "dark": false,
+  "vars": {
+    "--color-background": "#FFFFFF",
+    "--color-foreground": "#304455",
+    "--color-muted": "#F8F8F8",
+    "--color-muted-foreground": "#6b7280",
+    "--color-border": "#e5e7eb",
+    "--color-accent": "#42D392",
+    "--color-accent-foreground": "#FFFFFF",
+    "--color-card": "#FFFFFF",
+    "--color-code-bg": "#2A2A2A",
+    "--color-code-fg": "#EFEFEF",
+    "--color-blockquote-border": "#42B883",
+    "--color-heading": "#273849",
+    "--color-h1-from": "#42D392",
+    "--color-h1-to": "#647EFF"
+  }
+}

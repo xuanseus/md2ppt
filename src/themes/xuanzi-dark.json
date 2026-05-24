@@ -1,0 +1,21 @@
+{
+  "name": "xuanzi-dark",
+  "label": "玄子暗色",
+  "dark": true,
+  "vars": {
+    "--color-background": "#1a1a1a",
+    "--color-foreground": "rgba(255, 255, 255, 0.75)",
+    "--color-muted": "#242424",
+    "--color-muted-foreground": "#9ca3af",
+    "--color-border": "#2e303a",
+    "--color-accent": "#42B883",
+    "--color-accent-foreground": "#1a1a1a",
+    "--color-card": "#1e1e1e",
+    "--color-code-bg": "#101215",
+    "--color-code-fg": "rgba(255, 255, 255, 0.8)",
+    "--color-blockquote-border": "#42B883",
+    "--color-heading": "rgba(255, 255, 255, 0.85)",
+    "--color-h1-from": "#42D392",
+    "--color-h1-to": "#647EFF"
+  }
+}

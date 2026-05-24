@@ -1,0 +1,21 @@
+{
+  "name": "simple-dark",
+  "label": "简约黑",
+  "dark": true,
+  "vars": {
+    "--color-background": "#0a0a0f",
+    "--color-foreground": "#e4e4e7",
+    "--color-muted": "#18181b",
+    "--color-muted-foreground": "#a1a1aa",
+    "--color-border": "#27272a",
+    "--color-accent": "#6366f1",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#121216",
+    "--color-code-bg": "#18181b",
+    "--color-code-fg": "#e4e4e7",
+    "--color-blockquote-border": "#6366f1",
+    "--color-heading": "#e4e4e7",
+    "--color-h1-from": "#6366f1",
+    "--color-h1-to": "#818cf8"
+  }
+}
