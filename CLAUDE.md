@@ -16,23 +16,33 @@ npm run preview  # 预览构建结果
 ```
 
 ### 打包后使用
-**直接双击打开 `dist/index.html`**
 
-编辑 MD 后更新步骤：
-1. 编辑 `dist/xxx.md` 文件并保存
-2. 在浏览器底部控制栏点击 **🔄 刷新图标**
-3. 选择编辑后的 MD 文件
-4. 立即看到更新！
+**双击 `dist/start.bat`**（PowerShell 零依赖本地服务器）
 
-> 💡 提示：MD 文件已复制到 dist 根目录，方便编辑和重新加载
+```
+dist/
+├── start.bat           ← 双击启动
+├── slides-ppt.md      ← 编辑这个
+└── assets/
+    ├── index.html
+    ├── serve.ps1
+    └── favicon.png
+```
+
+1. 双击 `start.bat` → PowerShell 起本地服务器 + 自动打开浏览器
+2. 编辑 `dist/slides-ppt.md` 并保存 → 500ms 内浏览器自动刷新
+3. 关闭终端窗口 → 服务器自动停止
+4. 再次双击 `start.bat` → 检测到已运行则只打开浏览器，不重复启动
+
+> 💡 原理：页面每 500ms `fetch('./slides-ppt.md')` 检测变化，有改动自动重新渲染。
 
 ## 配置
 
 编辑 `.env` 切换 MD 文件和资源路径：
 
 ```
-VITE_MD_FILE_PATH=test-slides.md
-VITE_ASSETS_PATH=assets
+VITE_MD_FILE_PATH=md/slides-ppt.md
+VITE_ASSETS_PATH=md/assets
 ```
 
 ## 幻灯片拆分规则
