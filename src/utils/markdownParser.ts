@@ -180,7 +180,12 @@ export function splitIntoSlides(rawMd: string): Slide[] {
     }
 
     // Split at # / ## / ### / #### / ##### / ###### headings
+    // 但如果已显式指定 layout，则不拆分，将子标题合并到当前幻灯片中
     if (/^#{1,6}\s/.test(line)) {
+      if (currentLayout) {
+        current.push(line)
+        continue
+      }
       commitSlide(slides, current, currentLayout)
       current = [line]
       currentLayout = undefined

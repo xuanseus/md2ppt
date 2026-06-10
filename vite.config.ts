@@ -41,38 +41,62 @@ export default defineConfig(({ mode }) => {
       name: 'copy-assets-plugin',
       closeBundle() {
         const distRoot = path.resolve(__dirname, 'dist')
-        
-        // 复制所有资源文件到 dist/assets（包括 favicon.png）
         const assetsDir = path.join(distRoot, 'assets')
         if (!fs.existsSync(assetsDir)) {
           fs.mkdirSync(assetsDir, { recursive: true })
         }
-        const sourceAssetsDir = path.resolve(__dirname, env.VITE_ASSETS_PATH || '../assets')
-        const files = fs.readdirSync(sourceAssetsDir)
-        for (const file of files) {
-          const srcFile = path.join(sourceAssetsDir, file)
-          const destFile = path.join(assetsDir, file)
-          if (fs.statSync(srcFile).isFile()) {
-            fs.copyFileSync(srcFile, destFile)
+
+        // 移动 index.html 到 dist/assets/
+        const distHtml = path.join(distRoot, 'index.html')
+        if (fs.existsSync(distHtml)) {
+          fs.renameSync(distHtml, path.join(assetsDir, 'index.html'))
+        }
+
+        // 复制项目资源文件到 dist/assets/
+        const sourceAssetsDir = path.resolve(__dirname, env.VITE_ASSETS_PATH)
+        if (fs.existsSync(sourceAssetsDir)) {
+          const files = fs.readdirSync(sourceAssetsDir)
+          for (const file of files) {
+            const srcFile = path.join(sourceAssetsDir, file)
+            const destFile = path.join(assetsDir, file)
+            if (fs.statSync(srcFile).isFile() && !fs.existsSync(destFile)) {
+              fs.copyFileSync(srcFile, destFile)
+            }
           }
         }
-        
-        // 复制 public/favicon.png 到 dist/assets/
-        const faviconSrc = path.resolve(__dirname, 'public/favicon.png')
-        const faviconDest = path.join(assetsDir, 'favicon.png')
-        if (fs.existsSync(faviconSrc)) {
-          fs.copyFileSync(faviconSrc, faviconDest)
-        }
-        
-        // 复制 Markdown 文件到 dist 根目录（供 File API 重新加载使用）
-        const mdFileName = path.basename(mdFilePath)
-        const destMdFile = path.join(distRoot, mdFileName)
-        fs.copyFileSync(mdFilePath, destMdFile)
 
-        // 删除 Vite 自动复制到 dist 根目录的 favicon.png
-        const rootFavicon = path.join(distRoot, 'favicon.png')
-        if (fs.existsSync(rootFavicon)) {
-          fs.unlinkSync(rootFavicon)
+        // 补充复制 public/ 资源到 dist/assets/（不覆盖已有的）
+        const publicDir = path.resolve(__dirname, 'public')
+        if (fs.existsSync(publicDir)) {
+          const files = fs.readdirSync(publicDir)
+          for (const file of files) {
+            const dest = path.join(assetsDir, file)
+            if (!fs.existsSync(dest)) {
+              fs.copyFileSync(path.join(publicDir, file), dest)
+            }
+          }
+        }
+
+        // 复制 MD 到 dist/ 根目录
+        const mdFileName = path.basename(mdFilePath)
+        fs.copyFileSync(mdFilePath, path.join(distRoot, mdFileName))
+
+        // 清理 Vite 自动复制的 public/favicon.png（已在 assets/ 中）
+        for (const name of ['favicon.png']) {
+          const f = path.join(distRoot, name)
+          if (fs.existsSync(f)) fs.unlinkSync(f)
+        }
+
+        // 复制 serve.ps1 到 dist/assets/
+        const ps1Src = path.resolve(__dirname, 'scripts/serve.ps1')
+        if (fs.existsSync(ps1Src)) {
+          fs.copyFileSync(ps1Src, path.join(assetsDir, 'serve.ps1'))
+        }
+
+        // 复制 start.bat 到 dist/
+        const batSrc = path.resolve(__dirname, 'scripts/start.bat')
+        if (fs.existsSync(batSrc)) {
+          fs.copyFileSync(batSrc, path.join(distRoot, 'start.bat'))
         }
       },
     }
@@ -94,7 +118,25 @@ export default defineConfig(({ mode }) => {
           return `export default ${JSON.stringify(content)}`
         }
       },
-      configureServer(server: ViteDevServer) {
+      transformIndexHtml(html, ctx) {
+          // 构建后 index.html 在 assets/ 子目录，favicon 路径需调整
+          if (ctx.bundle) {
+            html = html.replace('./favicon.png', './assets/favicon.png')
+          }
+          // 标题去掉 .md 后缀
+          return html.replace(
+            /<title>.*?<\/title>/,
+            `<title>${path.basename(mdFilePath, '.md')}</title>`,
+          )
+        },
+        configureServer(server: ViteDevServer) {
+        // 直接提供 MD 原始文件（dev 模式下 polling fetch 需要）
+        const mdFileName = path.basename(mdFilePath)
+        server.middlewares.use(`/${mdFileName}`, (_req, res) => {
+          const content = fs.readFileSync(mdFilePath, 'utf-8')
+          res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+          res.end(content)
+        })
         serveAssetsMiddleware(server)
         server.watcher.add(mdFilePath)
         const reloadModule = () => {
@@ -125,6 +167,7 @@ export default defineConfig(({ mode }) => {
       }),
       Components({
         dts: 'components.d.ts',
+        dirs: ['src/components', 'src/layouts'],
       }),
       mdSlidesPlugin(),
       copyAssetsPlugin(),
