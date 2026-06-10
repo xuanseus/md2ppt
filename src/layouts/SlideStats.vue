@@ -34,10 +34,12 @@ defineProps<{ slide: Slide }>()
   font-size: 5rem;
   font-weight: 700;
   line-height: 1;
+  margin-bottom: 0.75rem;
 }
 
 .prose-stats :deep(p) {
   font-size: 1.25rem;
   color: hsl(var(--muted-foreground));
+  margin-top: 0;
 }
 </style>

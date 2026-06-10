@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import type { Slide } from '../types/slides'
-import SlideCover from './SlideCover.vue'
-import SlideSection from './SlideSection.vue'
-import SlideCode from './SlideCode.vue'
-import SlideMedia from './SlideMedia.vue'
-import SlideContent from './SlideContent.vue'
-import SlideTwoColumn from './SlideTwoColumn.vue'
-import SlideStats from './SlideStats.vue'
-import SlideQuote from './SlideQuote.vue'
+import SlideCover from '../layouts/SlideCover.vue'
+import SlideSection from '../layouts/SlideSection.vue'
+import SlideCode from '../layouts/SlideCode.vue'
+import SlideMedia from '../layouts/SlideMedia.vue'
+import SlideContent from '../layouts/SlideContent.vue'
+import SlideTwoColumn from '../layouts/SlideTwoColumn.vue'
+import SlideStats from '../layouts/SlideStats.vue'
+import SlideQuote from '../layouts/SlideQuote.vue'
+import SlideImageGrid from '../layouts/SlideImageGrid.vue'
+import SlideComparison from '../layouts/SlideComparison.vue'
+import SlideTimeline from '../layouts/SlideTimeline.vue'
+import SlideList from '../layouts/SlideList.vue'
 
 const props = defineProps<{ slide: Slide }>()
 
@@ -28,10 +32,10 @@ const componentMap: Record<string, any> = {
   stats: SlideStats,
   quote: SlideQuote,
   // 其他布局暂时回退到 content
-  'image-grid': SlideContent,
-  comparison: SlideContent,
-  timeline: SlideContent,
-  list: SlideContent,
+  'image-grid': SlideImageGrid,
+  comparison: SlideComparison,
+  timeline: SlideTimeline,
+  list: SlideList,
 }
 </script>
 
