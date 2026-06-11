@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">MD2PPT</h1>
-<p align="center">Markdown → 横向翻页网页 PPT / Horizontal Swipe Web Deck</p>
+<p align="center">Markdown → 横向翻页网页 PPT</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vuedotjs" />
@@ -13,13 +13,58 @@
 
 ---
 
-## 中文
-
-### 这是什么
+## 这是什么
 
 **MD2PPT** 是一个把 Markdown 实时渲染为横向翻页网页 PPT 的工具。写 MD，浏览器里看效果，构建后是单个 HTML 文件，双击就能打开。
 
-### 快速开始
+**核心亮点**：内置 `/md2ppt` skill，把演讲稿扔给 AI，自动生成带布局标记的 PPT。
+
+## AI 生成 PPT（推荐流程）
+
+```
+你（演讲稿） → AI（/md2ppt） → 带标签的 MD → 浏览器实时预览
+```
+
+### 第一步：准备演讲稿
+
+写一份纯文本 Markdown 演讲稿，不需要任何布局标记：
+
+```markdown
+# 我的演讲标题
+
+## 开场
+
+大家好，今天我要介绍...
+
+## 核心数据
+
+用户增长 80%，收入翻倍...
+
+## 技术架构
+
+采用了微服务架构...
+```
+
+### 第二步：AI 自动生成
+
+在 Claude Code 中输入 `/md2ppt`，把演讲稿内容粘贴进去。AI 会自动：
+
+- 🔍 分析内容结构（封面、章节、数据、代码、对比…）
+- 🏷️ 添加 `{layout: xxx}` 布局标记
+- 📝 输出 `xxx-ppt.md` 文件
+
+### 第三步：预览效果
+
+```bash
+# 将生成的 -ppt.md 设为源文件
+# 编辑 .env → VITE_MD_FILE_PATH=../my-speech-ppt.md
+
+npm run dev
+```
+
+浏览器打开 `http://localhost:5173`，用 ← → 键翻页查看效果。
+
+## 快速开始
 
 ```bash
 npm install
@@ -33,18 +78,53 @@ npm run build      # 构建到 dist/
 npm run preview    # 预览构建结果
 ```
 
-构建产物 `dist/index.html` 可以直接双击打开，无需服务器。
+## 打包后使用
 
-### 配置
+构建产物在 `dist/` 目录，根据需求选择使用方式：
+
+### 方式一：需要继续编辑内容 → 用 BAT 启动
+
+**双击 `dist/start.bat`**（PowerShell 零依赖本地服务器）
+
+```
+dist/
+├── start.bat           ← 双击启动
+├── slides-ppt.md       ← 编辑这个
+└── assets/
+    ├── index.html
+    ├── serve.ps1
+    └── favicon.png
+```
+
+1. 双击 `start.bat` → PowerShell 起本地服务器 + 自动打开浏览器
+2. 编辑 `dist/slides-ppt.md` 并保存 → 500ms 内浏览器自动刷新
+3. 关闭终端窗口 → 服务器自动停止
+4. 再次双击 `start.bat` → 检测到已运行则只打开浏览器，不重复启动
+
+> 💡 原理：页面每 500ms `fetch('./slides-ppt.md')` 检测变化，有改动自动重新渲染。
+
+### 方式二：内容已定稿 → 只保留 HTML
+
+HTML 文件内置了打包时的 MD 内容，**无需服务器、无需 MD 文件**。
+
+- **无图片** → 一个 `index.html` 就够
+- **有图片** → `index.html` + 图片文件（保持相对路径）
+
+直接双击 `index.html` 即可全屏演示。
+
+## 配置
 
 编辑 `.env`：
 
 ```env
-VITE_MD_FILE_PATH=../slides.md
-VITE_ASSETS_PATH=../assets
+# MD 文件路径（相对于项目根目录）
+VITE_MD_FILE_PATH=md/slides-ppt.md
+
+# 资源目录路径（相对于项目根目录）
+VITE_ASSETS_PATH=md/assets
 ```
 
-### 幻灯片拆分
+## 幻灯片拆分
 
 | 触发行 | 效果 |
 |--------|------|
@@ -53,7 +133,7 @@ VITE_ASSETS_PATH=../assets
 | `<video>` / `<img>` | 单独抽出全屏页 |
 | ` ``` ` 代码块 | 内部不受分页影响 |
 
-### 布局类型
+## 布局类型
 
 在标题后加 `{layout: xxx}` 指定布局，共 12 种：
 
@@ -82,7 +162,7 @@ VITE_ASSETS_PATH=../assets
 用户增长率，较去年同期翻倍
 ```
 
-### 快捷键
+## 快捷键
 
 | 键 | 功能 |
 |----|------|
@@ -93,11 +173,11 @@ VITE_ASSETS_PATH=../assets
 | 数字键 | 跳转指定页 |
 | 鼠标滚轮 / 触摸滑动 | 翻页 |
 
-### 主题
+## 主题
 
 `src/themes/` 下为 JSON 格式主题文件。新增主题：复制已有 JSON → 修改色值 → 在 `index.ts` 中注册。
 
-### 技术栈
+## 技术栈
 
 - **Vue 3** Composition API `<script setup>`
 - **TypeScript** + **Vite 8**
@@ -106,102 +186,6 @@ VITE_ASSETS_PATH=../assets
 - **自定义 Vite 插件** — `virtual:slides` 虚拟模块 + HMR
 - **unplugin-auto-import / unplugin-vue-components** — 自动导入
 - **vite-plugin-singlefile** — 单文件打包
-
----
-
-## English
-
-### What is this
-
-**MD2PPT** turns Markdown into a horizontal swipe web deck with live preview. Write MD, see the result in browser instantly, and build into a single self-contained HTML file.
-
-### Quick Start
-
-```bash
-npm install
-npm run dev        # Dev server → http://localhost:5173
-```
-
-Edit your MD file — the browser reloads automatically.
-
-```bash
-npm run build      # Build to dist/
-npm run preview    # Preview the build
-```
-
-The output `dist/index.html` works by double-clicking — no server needed.
-
-### Configuration
-
-Edit `.env`:
-
-```env
-VITE_MD_FILE_PATH=../slides.md
-VITE_ASSETS_PATH=../assets
-```
-
-### Slide Splitting Rules
-
-| Trigger | Behavior |
-|---------|----------|
-| `#` / `##` / `###` / `####` | Each heading becomes its own slide |
-| `---` | Slide break |
-| `<video>` / `<img>` | Extracted to fullscreen slide |
-| ` ``` ` fenced code block | Protected from splitting |
-
-### Layout Types
-
-Add `{layout: xxx}` after a heading to specify layout. 12 types available:
-
-| Layout | Use case |
-|--------|----------|
-| `cover` | Title / closing slide |
-| `section` | Chapter divider |
-| `content` | Standard content |
-| `two-column` | Side-by-side columns |
-| `stats` | Big-number highlight |
-| `quote` | Blockquote showcase |
-| `code-full` | Code display |
-| `image-grid` | Image gallery |
-| `media-hero` | Video / hero image |
-| `comparison` | Before / after |
-| `timeline` | Milestone roadmap |
-| `list` | Feature checklist |
-
-Example:
-
-```markdown
-### Key Metrics {layout: stats}
-
-**80%**
-
-Year-over-year user growth rate
-```
-
-### Keyboard Shortcuts
-
-| Key | Action |
-|-----|--------|
-| `←` `→` Space PageUp/Down | Navigate slides |
-| Home / End | First / last slide |
-| ESC | Overview mode |
-| F | Fullscreen |
-| Number keys | Jump to slide |
-| Scroll / touch swipe | Navigate |
-
-### Themes
-
-JSON theme files live in `src/themes/`. To add one: duplicate an existing JSON → tweak colors → register in `index.ts`.
-
-### Tech Stack
-
-- **Vue 3** Composition API `<script setup>`
-- **TypeScript** + **Vite 8**
-- **Tailwind CSS v4** via `@tailwindcss/vite`
-- **marked** + **shiki** — Markdown parsing & syntax highlighting
-- **Custom Vite plugin** — `virtual:slides` virtual module + HMR + asset middleware
-- **unplugin-auto-import / unplugin-vue-components** — auto-imports
-- **vite-plugin-singlefile** — single HTML output
 
 ---
 

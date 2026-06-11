@@ -1,5 +1,17 @@
 # MD 实时渲染 PPT 项目
 
+## AI 生成 PPT（推荐）
+
+使用内置 `/md2ppt` skill，将演讲稿交给 AI 自动生成带布局标记的 PPT：
+
+1. 准备一份纯文本演讲稿（.md）
+2. 在对话中输入 `/md2ppt` 并提供演讲稿
+3. AI 自动分析内容结构 → 添加 `{layout: xxx}` 标记 → 输出 `-ppt.md` 文件
+4. 将生成的 `-ppt.md` 设为 `.env` 中的 `VITE_MD_FILE_PATH`
+5. `npm run dev` 预览效果
+
+> 💡 12 种布局自动匹配：cover / section / content / two-column / stats / quote / code-full / image-grid / media-hero / comparison / timeline / list
+
 ## 使用方式
 
 ### 开发模式（推荐）
@@ -40,8 +52,11 @@ dist/
 
 编辑 `.env` 切换 MD 文件和资源路径：
 
-```
+```env
+# MD 文件路径（相对于项目根目录）
 VITE_MD_FILE_PATH=md/slides-ppt.md
+
+# 资源目录路径（相对于项目根目录）
 VITE_ASSETS_PATH=md/assets
 ```
 
