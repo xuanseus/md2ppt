@@ -1,11 +1,11 @@
 import { ref } from 'vue'
 
-export type TransitionType = 'slide' | 'fade' | 'zoom' | 'flip' | 'none'
+export type TransitionType = 'slide' | 'fade' | 'zoom' | 'flip' | 'pixel' | 'none'
 
 export function useSlideTransition() {
   const currentTransition = ref<TransitionType>('slide')
 
-  const transitions: TransitionType[] = ['slide', 'fade', 'zoom', 'flip', 'none']
+  const transitions: TransitionType[] = ['slide', 'fade', 'zoom', 'flip', 'pixel', 'none']
 
   function setTransition(t: TransitionType) {
     currentTransition.value = t

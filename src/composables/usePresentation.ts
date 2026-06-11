@@ -1,5 +1,5 @@
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
-import { splitIntoSlides, initHighlighter } from '../utils/markdownParser'
+import { splitIntoSlides } from '../utils/markdownParser'
 import { classifyAllSlides } from '../utils/slideClassifier'
 import type { Slide, NavigationDirection } from '../types/slides'
 import rawMdContent from 'virtual:slides'
@@ -15,9 +15,9 @@ export function usePresentation() {
   const reloadError = ref('')
   let pollTimer: ReturnType<typeof setInterval> | null = null
 
-  function reloadSlides() {
+  async function reloadSlides() {
     if (!rawMd.value) return
-    const parsed = splitIntoSlides(rawMd.value)
+    const parsed = await splitIntoSlides(rawMd.value)
     slides.value = classifyAllSlides(parsed)
     if (currentSlideIndex.value >= slides.value.length) {
       currentSlideIndex.value = Math.max(0, slides.value.length - 1)
@@ -75,7 +75,7 @@ export function usePresentation() {
       }
       if (text) {
         rawMd.value = text
-        reloadSlides()
+        await reloadSlides()
       }
     } catch (error) {
       console.error('Failed to reload markdown:', error)
@@ -85,10 +85,8 @@ export function usePresentation() {
     }
   }
 
-  // Initialize highlighter and load slides
+  // Initialize and load slides
   onMounted(async () => {
-    await initHighlighter()
-
     // 优先尝试从同目录加载 MD（HTTP 服务器下可获取最新版本）
     const fetched = await tryFetchMd()
     if (fetched) {
@@ -96,7 +94,7 @@ export function usePresentation() {
     }
     // 失败则使用 baked-in 内容（rawMd.value 已有初始值）
 
-    reloadSlides()
+    await reloadSlides()
 
     // 设置页面标题（去掉 .md 后缀）
     document.title = MD_FILENAME.replace(/\.md$/i, '')
@@ -107,7 +105,7 @@ export function usePresentation() {
         const text = await tryFetchMd()
         if (text && text !== rawMd.value) {
           rawMd.value = text
-          reloadSlides()
+          await reloadSlides()
         }
       }, 500)
     }

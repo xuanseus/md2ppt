@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PresentationDeck from './components/PresentationDeck.vue'
+import PresentationDeck from './layouts/PresentationDeck.vue'
 </script>
 
 <template>

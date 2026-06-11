@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 import type { Slide } from '../types/slides'
 
 const props = defineProps<{
@@ -13,10 +13,35 @@ const emit = defineEmits<{
 }>()
 
 const highlightedIndex = ref(props.currentIndex)
+const cardRefs = ref<Map<number, HTMLElement>>(new Map())
 
 watch(() => props.currentIndex, (v) => {
   highlightedIndex.value = v
 })
+
+function setCardRef(el: HTMLElement | null, index: number) {
+  if (el) cardRefs.value.set(index, el)
+  else cardRefs.value.delete(index)
+}
+
+function handleTiltMove(e: MouseEvent, index: number) {
+  const el = cardRefs.value.get(index)
+  if (!el) return
+  const rect = el.getBoundingClientRect()
+  const x = e.clientX - rect.left
+  const y = e.clientY - rect.top
+  const centerX = rect.width / 2
+  const centerY = rect.height / 2
+  const rotateX = ((y - centerY) / centerY) * -8
+  const rotateY = ((x - centerX) / centerX) * 8
+  el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`
+}
+
+function handleTiltLeave(index: number) {
+  const el = cardRefs.value.get(index)
+  if (!el) return
+  el.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)'
+}
 
 function handleSelect(index: number) {
   emit('select', index)
@@ -72,10 +97,14 @@ onUnmounted(() => {
           @click="handleSelect(index)"
         >
           <div
-            class="aspect-video rounded-lg border-2 overflow-hidden bg-card transition-all duration-200 group-hover:scale-[1.02] group-hover:shadow-lg"
-            :class="index === highlightedIndex ? 'border-accent shadow-lg shadow-accent/20 ring-2 ring-accent/50' : 'border-border'"
+            :ref="(el: any) => setCardRef(el, index)"
+            class="thumb-container aspect-video rounded-xl border-2 overflow-hidden bg-card"
+            style="transition: transform 0.15s ease-out, box-shadow 0.2s, border-color 0.2s;"
+            :class="index === highlightedIndex ? 'border-accent shadow-lg shadow-accent/20 ring-2 ring-accent/50' : 'border-border hover:shadow-lg hover:shadow-accent/10'"
+            @mousemove="handleTiltMove($event, index)"
+            @mouseleave="handleTiltLeave(index)"
           >
-            <div class="thumb-preview w-full h-full overflow-hidden p-1 pointer-events-none" v-html="slide.html" />
+            <div class="thumb-preview w-full h-full pointer-events-none" v-html="slide.html" />
           </div>
           <div class="mt-1.5 text-center text-xs text-muted-foreground">
             {{ index + 1 }}
@@ -85,3 +114,10 @@ onUnmounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.thumb-container {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+</style>

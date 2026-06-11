@@ -57,23 +57,30 @@
 
 @layer components {
   .thumb-preview {
-    font-size: 5px;
+    font-size: 6px;
     line-height: 1.3;
+    padding: 4px;
+    overflow: hidden;
   }
-  .thumb-preview h1 { font-size: 8px !important; margin: 2px 0 !important; }
-  .thumb-preview h2 { font-size: 7px !important; margin: 2px 0 !important; }
-  .thumb-preview h3 { font-size: 6px !important; margin: 1px 0 !important; }
-  .thumb-preview h4 { font-size: 5.5px !important; margin: 1px 0 !important; }
-  .thumb-preview p { margin: 1px 0 !important; }
-  .thumb-preview pre,
-  .thumb-preview .code-block-wrapper { display: none !important; }
-  .thumb-preview video,
-  .thumb-preview img { max-width: 100% !important; max-height: 60% !important; }
+  .thumb-preview h1 { font-size: 9px !important; margin: 3px 0 !important; }
+  .thumb-preview h2 { font-size: 8px !important; margin: 2px 0 !important; }
+  .thumb-preview h3 { font-size: 7px !important; margin: 2px 0 !important; }
+  .thumb-preview h4 { font-size: 6.5px !important; margin: 2px 0 !important; }
+  .thumb-preview p { margin: 2px 0 !important; font-size: 6px !important; }
   .thumb-preview ul,
-  .thumb-preview ol { padding-left: 8px !important; margin: 1px 0 !important; }
-  .thumb-preview blockquote { display: none !important; }
-  .thumb-preview hr { display: none !important; }
+  .thumb-preview ol { padding-left: 10px !important; margin: 2px 0 !important; }
+  .thumb-preview li { margin: 1px 0 !important; font-size: 5.5px !important; }
+  .thumb-preview video,
+  .thumb-preview img { max-width: 100% !important; max-height: 50% !important; margin: 2px auto !important; }
   .thumb-preview a { color: inherit !important; text-decoration: none !important; }
+  /* 代码块缩小但可读 */
+  .thumb-preview pre { font-size: 4px !important; line-height: 1.2 !important; margin: 2px 0 !important; overflow: hidden; max-height: 40px; }
+  .thumb-preview .code-block-wrapper { font-size: 4px !important; line-height: 1.2 !important; }
+  .thumb-preview .code-block-wrapper .flex { padding: 1px 4px !important; gap: 1px !important; }
+  .thumb-preview .code-block-wrapper .w-2\.5 { width: 3px !important; height: 3px !important; }
+  .thumb-preview blockquote { font-size: 5px !important; margin: 2px 0 !important; padding: 2px 4px !important; border-left-width: 2px !important; }
+  .thumb-preview blockquote::before { font-size: 6px !important; display: none; }
+  .thumb-preview hr { margin: 2px 0 !important; }
 
   .slide-overview ::-webkit-scrollbar {
     width: 6px;
@@ -241,6 +248,95 @@
   }
 }
 
+/* ============================================
+   Animation Keyframes — 全局动效基础
+   ============================================ */
+@keyframes float-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -25px) scale(1.05); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(15px, -10px) scale(1.02); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-scale {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 currentColor; }
+  50% { box-shadow: 0 0 0 6px transparent; }
+}
+
+/* ============================================
+   Animation Utilities
+   ============================================ */
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in-scale {
+  animation: fade-in-scale 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+  animation: float-orb 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* 全局入场动画基类 */
+.slide-animate > * {
+  animation: fade-in-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.slide-animate > *:nth-child(1) { animation-delay: 0.1s; }
+.slide-animate > *:nth-child(2) { animation-delay: 0.22s; }
+.slide-animate > *:nth-child(3) { animation-delay: 0.34s; }
+.slide-animate > *:nth-child(4) { animation-delay: 0.46s; }
+.slide-animate > *:nth-child(5) { animation-delay: 0.58s; }
+
+/* 玻璃拟态基类 */
+.glass {
+  background: color-mix(in srgb, var(--color-muted) 50%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  border-radius: 1rem;
+}
+
+/* 装饰渐变线 */
+.accent-line {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-h1-to, #647EFF));
+}
+
+/* ============================================
+   Slide Transitions
+   ============================================ */
 .slide-enter-active,
 .slide-leave-active {
   transition: all 0.4s ease;
@@ -290,6 +386,24 @@
 .flip-leave-to {
   opacity: 0;
   transform: perspective(1000px) rotateY(30deg);
+}
+
+/* Pixel 像素化过渡 */
+.pixel-enter-active {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pixel-leave-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pixel-enter-from {
+  opacity: 0;
+  filter: blur(10px) brightness(2);
+  transform: scale(0.95);
+}
+.pixel-leave-to {
+  opacity: 0;
+  filter: blur(5px);
+  transform: scale(1.02);
 }
 
 ::view-transition-old(root),

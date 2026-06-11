@@ -1,38 +1,40 @@
 import { marked } from 'marked'
-import { createHighlighter, type Highlighter } from 'shiki'
+import { getSingletonHighlighter, type Highlighter } from 'shiki'
 import type { Slide } from '../types/slides'
 
-let highlighter: Highlighter | null = null
-let highlighterPromise: Promise<Highlighter> | null = null
+// 用单例模式同步获取高亮器（首次调用会等待异步初始化完成）
+let _highlighter: Highlighter | null = null
 
 async function getHighlighter(): Promise<Highlighter> {
-  if (highlighter) return highlighter
-  if (!highlighterPromise) {
-    highlighterPromise = createHighlighter({
-      themes: ['github-dark'],
-      langs: ['javascript', 'typescript', 'bash', 'html', 'css', 'json', 'markdown'],
-    }).then(h => {
-      highlighter = h
-      return h
+  if (!_highlighter) {
+    _highlighter = await getSingletonHighlighter({
+      themes: ['dracula-soft'],
+      langs: ['javascript', 'typescript', 'bash', 'html', 'css', 'json', 'markdown', 'python', 'java', 'go', 'rust', 'c', 'cpp', 'csharp', 'swift', 'kotlin', 'ruby', 'php', 'sql', 'yaml', 'xml', 'dockerfile', 'shell', 'powershell', 'makefile', 'diff', 'vue', 'svelte'],
     })
   }
-  return highlighterPromise
+  return _highlighter
 }
 
 let codeCache = new Map<string, string>()
 
-function highlightCodeSync(code: string, lang?: string): string {
-  if (!lang || !highlighter) return code
-  
-  const cacheKey = `${lang}:${code}`
+// 统一 cache key：去掉 \r 并 trim，让预高亮和 marked 渲染器的 key 一致
+function normalizeCodeKey(code: string): string {
+  return code.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim()
+}
+
+async function highlightCode(code: string, lang?: string): Promise<string> {
+  if (!lang) return code
+
+  const cacheKey = `${lang}:${normalizeCodeKey(code)}`
   if (codeCache.has(cacheKey)) {
     return codeCache.get(cacheKey)!
   }
-  
+
   try {
-    const html = highlighter.codeToHtml(code, {
+    const h = await getHighlighter()
+    const html = h.codeToHtml(code, {
       lang,
-      theme: 'github-dark',
+      theme: 'dracula-soft',
     })
     codeCache.set(cacheKey, html)
     return html
@@ -73,7 +75,10 @@ marked.use({
       level: 'block',
       renderer(_token: any) {
         const token = _token
-        const highlighted = highlightCodeSync(token.text, token.lang)
+        const lang = (token.lang || '').trim()
+        // 使用预高亮的结果（由 preHighlightCodeBlocks 提前处理）
+        const cacheKey = `${lang}:${normalizeCodeKey(token.text)}`
+        const highlighted = codeCache.get(cacheKey) || token.text
         const dots = `
       <div class="flex gap-1.5 px-4 py-2">
         <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
@@ -81,8 +86,8 @@ marked.use({
         <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
       </div>
     `
-        const label = token.lang ? `<div class="text-xs text-muted-foreground px-4 pb-1 font-mono">${token.lang}</div>` : ''
-        return `<div class="code-block-wrapper rounded-lg overflow-hidden bg-[#0d1117] border border-gray-700">${dots}${label}<div class="px-4 pb-3 overflow-x-auto">${highlighted}</div></div>`
+        const label = lang ? `<div class="text-xs px-4 pb-2 font-mono" style="color: #6272a4">${lang}</div>` : ''
+        return `<div class="code-block-wrapper rounded-xl overflow-hidden border-2 border-[var(--color-accent)]/20 shadow-lg shadow-[var(--color-accent)]/5" style="background: #282a36">${dots}${label}<div class="px-4 pb-3 overflow-x-auto">${highlighted}</div></div>`
       },
     },
     {
@@ -115,7 +120,21 @@ marked.use({
   ],
 })
 
-export function parseMarkdown(rawMd: string): string {
+// 预高亮：扫描 MD 中所有代码块，提前填充 cache，让 marked 渲染器直接读取
+async function preHighlightCodeBlocks(rawMd: string): Promise<void> {
+  const regex = /^```(\w+)?\r?\n([\s\S]*?)^```/gm
+  let match: RegExpExecArray | null
+  while ((match = regex.exec(rawMd)) !== null) {
+    const lang = (match[1] || '').trim()
+    const code = match[2]
+    if (lang) {
+      await highlightCode(code, lang)
+    }
+  }
+}
+
+export async function parseMarkdown(rawMd: string): Promise<string> {
+  await preHighlightCodeBlocks(rawMd)
   const cleaned = rawMd.replace(/\[TOC\]/gi, '')
   let html = marked.parse(cleaned) as string
   // Auto-add controls to video tags
@@ -145,7 +164,7 @@ function commitSlide(
   }
 }
 
-export function splitIntoSlides(rawMd: string): Slide[] {
+export async function splitIntoSlides(rawMd: string): Promise<Slide[]> {
   const lines = rawMd.split('\n')
   const slides: { rawMd: string; layout?: string }[] = []
 
@@ -227,11 +246,11 @@ export function splitIntoSlides(rawMd: string): Slide[] {
   // Last slide
   commitSlide(slides, current, currentLayout)
 
-  return slides
-    .map((s, i) => {
+  return (await Promise.all(
+    slides.map(async (s, i) => {
       const rawMd = s.rawMd.trim()
       const layout = s.layout as any
-      
+
       // 对于两列布局，需要用 --- 分隔左右两列
       if (layout === 'two-column') {
         const parts = rawMd.split(/^---$/m).map(p => p.trim()).filter(p => p)
@@ -244,35 +263,30 @@ export function splitIntoSlides(rawMd: string): Slide[] {
         return {
           id: i,
           rawMd,
-          html: parseMarkdown(parts[0] || ''),
+          html: await parseMarkdown(parts[0] || ''),
           type: 'content' as const,
           layout,
           title,
           index: i,
-          leftHtml: parseMarkdown(leftContent),
-          rightHtml: parseMarkdown(parts[1] || ''),
+          leftHtml: await parseMarkdown(leftContent),
+          rightHtml: await parseMarkdown(parts[1] || ''),
         }
       }
-      
+
       return {
         id: i,
         rawMd,
-        html: parseMarkdown(rawMd),
+        html: await parseMarkdown(rawMd),
         type: 'content' as const,
         layout,
         title: extractTitle(rawMd),
         index: i,
       }
     })
-    .filter((s) => s.rawMd.length > 0)
+  )).filter((s) => s.rawMd.length > 0)
 }
 
 function extractTitle(rawMd: string): string {
   const match = rawMd.match(/^#{1,6}\s+(.+)$/m)
   return match ? match[1].trim() : ''
-}
-
-// Initialize highlighter asynchronously
-export async function initHighlighter(): Promise<void> {
-  await getHighlighter()
 }
