@@ -20,7 +20,6 @@ const props = withDefaults(defineProps<PixelTransitionProps>(), {
   aspectRatio: '100%'
 });
 
-const containerRef = useTemplateRef<HTMLDivElement>('containerRef');
 const pixelGridRef = useTemplateRef<HTMLDivElement>('pixelGridRef');
 const activeRef = useTemplateRef<HTMLDivElement>('activeRef');
 const isActive = ref(false);
@@ -119,7 +118,6 @@ onUnmounted(() => {
 
 <template>
   <div
-    ref="containerRef"
     :class="[
       props.className,
       'bg-[#222] text-white rounded-[15px] border-2 border-white w-[300px] max-w-full relative overflow-hidden'

@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" class="relative w-full h-full" @click="handleClick">
+  <div class="relative w-full h-full" @click="handleClick">
     <canvas ref="canvasRef" class="absolute inset-0 pointer-events-none" />
 
     <slot />
@@ -36,7 +36,6 @@ const props = withDefaults(defineProps<Props>(), {
   extraScale: 1.0
 });
 
-const containerRef = useTemplateRef<HTMLDivElement>('containerRef');
 const canvasRef = useTemplateRef<HTMLCanvasElement>('canvasRef');
 const sparks = ref<Spark[]>([]);
 const startTimeRef = ref<number | null>(null);

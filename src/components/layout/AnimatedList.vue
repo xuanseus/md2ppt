@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" :class="`relative w-[500px] ${className}`.trim()">
+  <div :class="`relative w-[500px] ${className}`.trim()">
     <div
       ref="listRef"
       :class="`max-h-[400px] overflow-y-auto p-4 ${
@@ -92,7 +92,6 @@ const emit = defineEmits<{
   itemSelected: [item: string, index: number];
 }>();
 
-const containerRef = useTemplateRef<HTMLDivElement>('containerRef');
 const listRef = useTemplateRef<HTMLDivElement>('listRef');
 const selectedIndex = ref(props.initialSelectedIndex);
 const keyboardNav = ref(false);

@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, useAttrs } from 'vue';
+import { computed, useAttrs } from 'vue';
 
 interface StarBorderProps {
   as?: string;
