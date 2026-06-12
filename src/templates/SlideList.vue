@@ -9,6 +9,12 @@ interface ListItem {
   emoji: string
   title: string
   desc: string
+  titleHtml: string
+  descHtml: string
+}
+
+function renderInlineCode(text: string): string {
+  return text.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
 }
 
 const parsed = computed(() => {
@@ -21,10 +27,16 @@ const parsed = computed(() => {
   let hitItems = false
 
   for (const line of body.split('\n')) {
-    const m = line.replace(/\r$/, '').match(/^\s*-\s+(\S+)\s+(.+?)[：:]\s*(.+)$/)
+    const m = line.replace(/\r$/, '').match(/^\s*-\s+(\S+)\s+(.+?)[：:—–]\s*(.+)$/)
     if (m) {
       hitItems = true
-      items.push({ emoji: m[1], title: m[2], desc: m[3] })
+      items.push({
+        emoji: m[1],
+        title: m[2],
+        desc: m[3],
+        titleHtml: renderInlineCode(m[2]),
+        descHtml: renderInlineCode(m[3]),
+      })
       continue
     }
     const trimmed = line.trim()
@@ -60,8 +72,8 @@ const parsed = computed(() => {
           <div class="flex items-center gap-5 p-5 rounded-xl">
             <span class="text-3xl flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-lg bg-accent/10">{{ item.emoji }}</span>
             <div>
-              <div class="text-base font-semibold">{{ item.title }}</div>
-              <div class="text-sm text-muted-foreground mt-0.5">{{ item.desc }}</div>
+              <div class="text-base font-semibold" v-html="item.titleHtml"></div>
+              <div class="text-sm text-muted-foreground mt-0.5" v-html="item.descHtml"></div>
             </div>
           </div>
         </SpotlightCard>
@@ -90,5 +102,17 @@ const parsed = computed(() => {
 .list-card:hover {
   transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+
+.inline-code {
+  display: inline-block;
+  padding: 0.1em 0.4em;
+  font-size: 0.875em;
+  font-weight: 500;
+  font-family: var(--font-mono, 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, monospace);
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  border-radius: 0.3em;
+  vertical-align: baseline;
+  line-height: 1.4;
 }
 </style>
