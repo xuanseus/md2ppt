@@ -130,7 +130,7 @@ VITE_ASSETS_PATH=md/assets
 |---------|----------|
 | `#` / `##` / `###` / `####` | Each heading becomes its own slide |
 | `---` | Slide break |
-| `<video>` / `<img>` | Extracted to fullscreen slide |
+| `<video>` / `<img>` | Extracted to fullscreen slide, add `{layout: media-hero}` at line end |
 | ` ``` ` fenced code block | Protected from splitting |
 
 ## Layout Types
@@ -160,6 +160,16 @@ Example:
 **80%**
 
 Year-over-year user growth rate
+```
+
+Media example (title + media separated by `---`, tag on media line):
+
+```markdown
+## Demo Video
+
+---
+
+<video src="./assets/demo.mp4" controls></video> {layout: media-hero}
 ```
 
 ## Keyboard Shortcuts

@@ -125,16 +125,16 @@ function optimize() {
 
 ### 9. 媒体大图 {layout: media-hero}
 - **使用场景**：视频演示、全屏图片展示
-- **内容要求**：`<video>` 或 `<img>` 标签
+- **内容要求**：`<video>` 或 `<img>` 标签，**行末尾加 `{layout: media-hero}`**
 - **分页规则**：用 `---` 强制分隔标题和媒体，标题一页 + 媒体一页
-- **标题级别**：视频/图片标题使用二级标题 `##`
+- **标题级别**：标题使用二级标题 `##`，**不要加布局标记**（标题自动归为 section 页）
 - **示例**：
 ```markdown
 ## 演示视频
 
 ---
 
-<video src="./assets/demo.mp4" controls></video>
+<video src="./assets/demo.mp4" controls></video> {layout: media-hero}
 ```
 
 或者：
@@ -143,7 +143,7 @@ function optimize() {
 
 ---
 
-<img src="./assets/architecture.png" alt="系统架构" />
+<img src="./assets/architecture.png" alt="系统架构" /> {layout: media-hero}
 ```
 
 ### 10. 对比页 {layout: comparison}
@@ -200,14 +200,15 @@ function optimize() {
 ### 2. 媒体分页规则
 - **用 `---` 强制分页**
 - 视频和图片必须单独成页，前面加标题页
-- 视频/图片标题使用二级标题 `##`，不要加布局标记
+- 标题使用二级标题 `##`，**不要加布局标记**（标题自动归为 section 页）
+- 视频/图片行末尾添加 `{layout: media-hero}`
 - 示例：
   ```markdown
   ## 视频标题
 
   ---
 
-  <video src="./assets/video.mp4" controls></video>
+  <video src="./assets/video.mp4" controls></video> {layout: media-hero}
   ```
 
 ### 3. 视觉层次
@@ -217,7 +218,7 @@ function optimize() {
 
 ### 4. 图文搭配
 - 适当插入图片或视频增强表现力
-- **图片和视频用 `---` 分页**，前面加标题页
+- **图片和视频用 `---` 分页**，前面加标题页，媒体行末尾加 `{layout: media-hero}`
 - 图片要有明确的说明文字
 - 避免纯文字页面过多
 
@@ -248,6 +249,7 @@ function optimize() {
 
 确保：
 1. 每个幻灯片之间用 `---` 分隔
-2. 布局标记紧跟在标题后面：`{layout: xxx}`
+2. 布局标记紧跟标题：`{layout: xxx}`；媒体标签末尾：`<video ...></video> {layout: media-hero}`
 3. 图片路径使用 `./assets/` 前缀
 4. 代码块指定语言以获得更好的高亮效果
+5. 视频/图片必须独立成页，标题用 `##`（不加布局标记），媒体行末尾加 `{layout: media-hero}`

@@ -130,7 +130,7 @@ VITE_ASSETS_PATH=md/assets
 |--------|------|
 | `#` / `##` / `###` / `####` | 每个标题独立成页 |
 | `---` | 分页点 |
-| `<video>` / `<img>` | 单独抽出全屏页 |
+| `<video>` / `<img>` | 单独抽出全屏页，行末加 `{layout: media-hero}` |
 | ` ``` ` 代码块 | 内部不受分页影响 |
 
 ## 布局类型
@@ -160,6 +160,16 @@ VITE_ASSETS_PATH=md/assets
 **80%**
 
 用户增长率，较去年同期翻倍
+```
+
+媒体示例（标题 + `---` 分隔 + 媒体行末尾标签）：
+
+```markdown
+## 演示视频
+
+---
+
+<video src="./assets/demo.mp4" controls></video> {layout: media-hero}
 ```
 
 ## 快捷键

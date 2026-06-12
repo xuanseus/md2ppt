@@ -105,7 +105,8 @@ marked.use({
       name: 'blockquote',
       level: 'block',
       renderer(this: any, token: any) {
-        const text = this.parser.parseInline(token.tokens)
+        // parse 处理块级 token（支持多段 blockquote），parseInline 只认行内 token
+        const text = this.parser.parse(token.tokens)
         return `<blockquote class="border-l-4 border-l-accent pl-5 py-3 italic text-muted-foreground">${text}</blockquote>`
       },
     },
@@ -227,14 +228,22 @@ export async function splitIntoSlides(rawMd: string): Promise<Slide[]> {
 
     // Isolate standalone <video> / <img>
     if (/^\s*<(video|img)\b/i.test(line)) {
+      // 支持媒体行末尾的 {layout: media-hero} 标记
+      const mediaLayoutMatch = line.match(/\{layout:\s*([\w-]+)\}\s*$/i)
+      const mediaLayout = mediaLayoutMatch ? mediaLayoutMatch[1] : undefined
+      const cleanLine = mediaLayoutMatch
+        ? line.replace(/\s*\{layout:\s*[\w-]+\}\s*$/i, '').trimEnd()
+        : line
+
       const nonEmptyLines = current.filter(l => l.trim())
       const hasOnlyHeading = nonEmptyLines.length === 1 && /^#{1,6}\s/.test(nonEmptyLines[0])
-      if (hasOnlyHeading) {
-        current.push(line)
+      // 仅当 heading-only 且媒体行无显式 layout 时才合并（兼容旧行为）
+      if (hasOnlyHeading && !mediaLayout) {
+        current.push(cleanLine)
         continue
       }
       commitSlide(slides, current, currentLayout)
-      slides.push({ rawMd: line })
+      slides.push({ rawMd: cleanLine, layout: mediaLayout })
       current = []
       currentLayout = undefined
       continue
