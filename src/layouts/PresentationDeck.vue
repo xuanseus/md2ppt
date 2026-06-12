@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { usePresentation } from '../composables/usePresentation'
 import { useKeyboardNavigation } from '../composables/useKeyboardNavigation'
 import { useTouchNavigation } from '../composables/useTouchNavigation'
@@ -9,6 +9,9 @@ import SlideRenderer from './SlideRenderer.vue'
 import SlideOverview from './SlideOverview.vue'
 import DeckControls from './DeckControls.vue'
 import ClickSpark from '../components/interactive/ClickSpark.vue'
+import Aurora from '../components/backgrounds/Aurora.vue'
+import Silk from '../components/backgrounds/Silk.vue'
+import Grainient from '../components/backgrounds/Grainient.vue'
 
 const {
   slides,
@@ -30,6 +33,53 @@ useTheme() // init theme from localStorage on mount
 
 const isOverview = ref(false)
 const viewportRef = ref<HTMLElement | null>(null)
+
+// ── 持久背景：根据当前 slide 类型切换 Aurora / Silk，v-show 常驻不卸载 ──
+function readCSSColor(varName: string): string {
+  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || '#000000'
+}
+
+const auroraColors = ref<string[]>(['#42D392', '#1a1a2e', '#647EFF'])
+const silkColor = ref('#42D392')
+const grainientColors = ref<string[]>(['#FF9FFC', '#5227FF', '#B19EEF'])
+
+function syncBackgroundColors() {
+  auroraColors.value = [
+    readCSSColor('--color-accent'),
+    readCSSColor('--color-foreground'),
+    readCSSColor('--color-h1-to'),
+  ]
+  silkColor.value = readCSSColor('--color-accent') || '#42D392'
+  grainientColors.value = [
+    readCSSColor('--color-background') || '#ffffff',
+    readCSSColor('--color-accent') || '#42D392',
+    readCSSColor('--color-h1-to') || '#647EFF',
+  ]
+}
+
+let colorObserver: MutationObserver | null = null
+
+onMounted(() => {
+  syncBackgroundColors()
+  colorObserver = new MutationObserver(syncBackgroundColors)
+  colorObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] })
+})
+
+onUnmounted(() => {
+  colorObserver?.disconnect()
+})
+
+// 与 SlideRenderer 逻辑一致：layout 优先、type 兜底
+function effectiveLayout(slide: typeof currentSlide.value): string {
+  if (!slide) return ''
+  return (slide.layout && slide.layout !== 'auto') ? slide.layout : slide.type
+}
+const showAurora = computed(() => effectiveLayout(currentSlide.value) === 'cover')
+const showSilk = computed(() => effectiveLayout(currentSlide.value) === 'section')
+const showGrainient = computed(() => {
+  const el = effectiveLayout(currentSlide.value)
+  return el !== 'cover' && el !== 'section'
+})
 
 // Wheel navigation with debounce
 let wheelLocked = false
@@ -100,13 +150,48 @@ async function handleReloadMd() {
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-gradient-to-r from-transparent via-accent/15 to-transparent" />
     </div>
 
-    <div ref="viewportRef" class="w-full h-full">
+    <div ref="viewportRef" class="relative w-full h-full">
+      <!-- 持久背景层，Transition 期间永不消失 -->
+      <div class="absolute inset-0 z-0" style="background-color: var(--color-background)" />
+
+      <!-- WebGL 背景常驻不卸载，v-show 只切换显隐 -->
+      <div class="absolute inset-0 z-[1] pointer-events-none">
+        <Aurora
+          v-show="showAurora"
+          :color-stops="auroraColors"
+          :speed="0.8"
+          :amplitude="0.6"
+          :intensity="0.8"
+        />
+        <Silk
+          v-show="showSilk"
+          :color="silkColor"
+          :speed="3"
+          :scale="1.2"
+          :noise-intensity="1.2"
+        />
+        <Grainient
+          v-show="showGrainient"
+          :color1="grainientColors[0]"
+          :color2="grainientColors[1]"
+          :color3="grainientColors[2]"
+          :time-speed="0.15"
+          :warp-strength="0.25"
+          :grain-amount="0.03"
+          :contrast="1.0"
+          :saturation="0.5"
+        />
+      </div>
+
+      <!-- 半透遮罩，压暗 WebGL 背景使其不喧宾夺主 -->
+      <div class="absolute inset-0 z-[2] pointer-events-none" style="background: var(--color-background); opacity: 0.3" />
+
       <Transition
         v-if="!isOverview && currentSlide"
         :name="currentTransition"
         mode="out-in"
       >
-        <div :key="currentSlide.id" class="w-full h-full">
+        <div :key="currentSlide.id" class="relative z-10 w-full h-full">
           <SlideRenderer :slide="currentSlide" />
         </div>
       </Transition>

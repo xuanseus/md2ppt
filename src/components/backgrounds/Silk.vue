@@ -260,7 +260,6 @@ div {
   width: 100% !important;
   height: 100% !important;
   min-height: 100% !important;
-  display: block !important;
 }
 
 :deep(canvas) {

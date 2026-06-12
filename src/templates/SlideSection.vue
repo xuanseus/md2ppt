@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import type { Slide } from '../types/slides'
-import Silk from '../components/backgrounds/Silk.vue'
 import StarBorder from '../components/cards/StarBorder.vue'
 import SplitText from '../components/text-effects/SplitText.vue'
 
-const props = defineProps<{ slide: Slide }>()
+defineProps<{ slide: Slide }>()
 
 // 从当前主题 CSS 变量读取实际色值
 function readCSSColor(varName: string): string {
@@ -33,15 +32,6 @@ onUnmounted(() => {
 
 <template>
   <div class="slide-section relative flex items-center justify-center overflow-hidden w-full h-full">
-    <!-- Silk 动态背景 -->
-    <Silk
-      class="absolute inset-0"
-      :color="accentColor"
-      :speed="3"
-      :scale="1.2"
-      :noise-intensity="1.2"
-    />
-
     <!-- 内容卡片 -->
     <div class="relative z-10 max-w-4xl px-16 slide-animate">
       <StarBorder

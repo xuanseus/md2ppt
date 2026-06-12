@@ -1,51 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import type { Slide } from '../types/slides'
-import Aurora from '../components/backgrounds/Aurora.vue'
 import SplitText from '../components/text-effects/SplitText.vue'
 
 defineProps<{ slide: Slide }>()
-
-// 从当前主题 CSS 变量读取实际色值
-function readCSSColor(varName: string): string {
-  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || '#000000'
-}
-
-const auroraColors = ref<string[]>(['#42D392', '#1a1a2e', '#647EFF'])
-
-function syncColors() {
-  auroraColors.value = [
-    readCSSColor('--color-accent'),
-    readCSSColor('--color-foreground'),
-    readCSSColor('--color-h1-to'),
-  ]
-}
-
-let observer: MutationObserver | null = null
-
-onMounted(() => {
-  syncColors()
-  // 监听主题切换（class="dark" 或 style 属性变化）
-  observer = new MutationObserver(syncColors)
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] })
-})
-
-onUnmounted(() => {
-  observer?.disconnect()
-})
 </script>
 
 <template>
   <div class="slide-cover relative flex items-center justify-center overflow-hidden w-full h-full">
-    <!-- Aurora 动态背景 -->
-    <Aurora
-      class="absolute inset-0"
-      :color-stops="auroraColors"
-      :speed="0.8"
-      :amplitude="0.6"
-      :intensity="0.8"
-    />
-
     <!-- 内容区 -->
     <div class="relative z-10 max-w-4xl px-16 text-center">
       <!-- 标题上方装饰小标 -->
