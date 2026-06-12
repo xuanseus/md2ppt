@@ -129,7 +129,6 @@
   .slide-content code {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 0.85em;
-    background: var(--color-muted);
     padding: 0.15em 0.4em;
     border-radius: 0.25rem;
   }
@@ -204,7 +203,6 @@
     padding: 1rem 1.2rem;
     margin: 1.5rem auto;
     border-radius: 0.5rem;
-    background: var(--color-muted);
     position: relative;
     font-style: normal;
     color: var(--color-foreground);
@@ -212,6 +210,10 @@
     align-items: flex-start;
     gap: 0.6rem;
     max-width: calc(100% - 2rem);
+  }
+
+  .slide-content blockquote p {
+    margin: 0;
   }
 
   .slide-content blockquote::before {

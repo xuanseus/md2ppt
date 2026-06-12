@@ -65,14 +65,12 @@ defineProps<{ slide: Slide }>()
 }
 
 .prose-content :deep(code) {
-  background: var(--color-muted);
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
   font-size: 0.9em;
 }
 
 .prose-content :deep(pre) {
-  background: var(--color-muted);
   border-radius: 0.5rem;
   overflow-x: auto;
 }
