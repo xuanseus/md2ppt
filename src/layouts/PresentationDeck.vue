@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { usePresentation } from '../composables/usePresentation'
 import { useKeyboardNavigation } from '../composables/useKeyboardNavigation'
 import { useTouchNavigation } from '../composables/useTouchNavigation'
@@ -191,7 +191,7 @@ async function handleReloadMd() {
         :name="currentTransition"
         mode="out-in"
       >
-        <div :key="currentSlide.id" class="relative z-10 w-full h-full">
+        <div :key="currentSlide.id" class="relative w-full h-full" :class="currentSlide?.layout === 'media-hero' || currentSlide?.type === 'media' ? 'z-50' : 'z-10'">
           <SlideRenderer :slide="currentSlide" />
         </div>
       </Transition>

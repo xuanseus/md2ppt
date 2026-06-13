@@ -297,6 +297,17 @@
   animation: fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* 全局图片入场动画 */
+[class*="slide-"] img {
+  animation: fade-in-scale 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.15s;
+}
+
+/* 同一容器内多张图片依次入场 */
+[class*="slide-"] img:nth-child(2) { animation-delay: 0.2s; }
+[class*="slide-"] img:nth-child(3) { animation-delay: 0.3s; }
+[class*="slide-"] img:nth-child(4) { animation-delay: 0.4s; }
+
 .animate-fade-in-scale {
   animation: fade-in-scale 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -406,6 +417,23 @@
   opacity: 0;
   filter: blur(5px);
   transform: scale(1.02);
+}
+
+/* Reveal 缩放淡入过渡 */
+.reveal-enter-active {
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal-enter-from {
+  opacity: 0;
+  transform: scale(1.08);
+  filter: blur(4px);
+}
+.reveal-leave-to {
+  opacity: 0;
+  transform: scale(0.96);
 }
 
 ::view-transition-old(root),

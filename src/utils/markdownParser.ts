@@ -212,17 +212,11 @@ export async function splitIntoSlides(rawMd: string): Promise<Slide[]> {
       continue
     }
 
-    // Split at --- horizontal rules (except for two-column layout)
+    // Split at --- horizontal rules（统一分页符）
     if (/^-{3,}$/.test(line.trim())) {
-      // 如果是两列布局，不分割幻灯片，而是继续收集内容
-      if (currentLayout !== 'two-column') {
-        commitSlide(slides, current, currentLayout)
-        current = []
-        currentLayout = undefined
-        continue
-      }
-      // 两列布局中的 --- 保留为内容的一部分，继续添加
-      current.push(line)
+      commitSlide(slides, current, currentLayout)
+      current = []
+      currentLayout = undefined
       continue
     }
 
@@ -259,28 +253,6 @@ export async function splitIntoSlides(rawMd: string): Promise<Slide[]> {
     slides.map(async (s, i) => {
       const rawMd = s.rawMd.trim()
       const layout = s.layout as any
-
-      // 对于两列布局，需要用 --- 分隔左右两列
-      if (layout === 'two-column') {
-        const parts = rawMd.split(/^---$/m).map(p => p.trim()).filter(p => p)
-        const title = extractTitle(rawMd)
-        // 从左侧内容中移除标题行，避免标题重复显示
-        let leftContent = parts[0] || ''
-        if (title && leftContent) {
-          leftContent = leftContent.replace(/^#{1,6}\s+.+(\n|$)/, '').trim()
-        }
-        return {
-          id: i,
-          rawMd,
-          html: await parseMarkdown(parts[0] || ''),
-          type: 'content' as const,
-          layout,
-          title,
-          index: i,
-          leftHtml: await parseMarkdown(leftContent),
-          rightHtml: await parseMarkdown(parts[1] || ''),
-        }
-      }
 
       return {
         id: i,
