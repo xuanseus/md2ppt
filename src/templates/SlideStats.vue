@@ -78,7 +78,7 @@ onUnmounted(() => {
 .prose-stats :deep(h4) {
   font-size: 1.125rem;
   font-weight: 500;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color-muted-foreground);
@@ -90,7 +90,7 @@ onUnmounted(() => {
   font-size: 6rem;
   font-weight: 700;
   line-height: 1;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
   background: linear-gradient(135deg, var(--color-accent), var(--color-h1-to, #647EFF));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -107,6 +107,7 @@ onUnmounted(() => {
 .prose-stats :deep(p) {
   font-size: 1.25rem;
   color: var(--color-muted-foreground);
-  margin-top: 0;
+  margin-top: 1.5rem;
+  line-height: 1.7;
 }
 </style>

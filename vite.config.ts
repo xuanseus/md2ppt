@@ -15,7 +15,8 @@ export default defineConfig(({mode}) => {
 
     function serveAssetsMiddleware(server: ViteDevServer) {
         server.middlewares.use('/assets', (req, res, next) => {
-            const filePath = path.join(assetsDir, req.url || '')
+            const decodedUrl = decodeURIComponent(req.url || '')
+            const filePath = path.join(assetsDir, decodedUrl)
             if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
                 const ext = path.extname(filePath).toLowerCase()
                 const mime: Record<string, string> = {

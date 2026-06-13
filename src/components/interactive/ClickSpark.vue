@@ -57,6 +57,10 @@ const easeFunc = computed(() => {
 });
 
 const handleClick = (e: MouseEvent) => {
+  // 不拦截交互元素上的点击（视频控件、按钮、链接等）
+  const target = e.target as HTMLElement
+  if (target.closest('video, button, a, input, [data-no-spark]')) return
+
   const canvas = canvasRef.value;
   if (!canvas) return;
   const rect = canvas.getBoundingClientRect();

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Slide } from '../types/slides'
 import { computed } from 'vue'
+import { marked } from 'marked'
 import FadeContent from '../components/transitions/FadeContent.vue'
 
 const props = defineProps<{ slide: Slide }>()
@@ -50,7 +51,9 @@ const parsed = computed(() => {
     }
   }
 
-  return { subtitle: beforeText.join(' '), columns: columns.slice(0, 2), afterText: afterText.join(' ') }
+  const subtitle = beforeText.length ? marked.parse(beforeText.join('\n')) as string : ''
+  const after = afterText.length ? marked.parse(afterText.join('\n')) as string : ''
+  return { subtitle, columns: columns.slice(0, 2), afterText: after }
 })
 </script>
 
@@ -63,7 +66,7 @@ const parsed = computed(() => {
       <h3 v-if="slide.title" class="text-xl md:text-2xl font-semibold mb-3 text-center slide-animate">
         {{ slide.title }}
       </h3>
-      <p v-if="parsed.subtitle" class="text-sm text-muted-foreground mb-8 text-center max-w-xl slide-animate">{{ parsed.subtitle }}</p>
+      <div v-if="parsed.subtitle" class="comparison-subtitle mb-8 text-center max-w-xl slide-animate" v-html="parsed.subtitle"></div>
 
       <div class="comparison-grid w-full max-w-4xl">
         <FadeContent
@@ -113,7 +116,7 @@ const parsed = computed(() => {
         </FadeContent>
       </div>
 
-      <p v-if="parsed.afterText" class="text-sm text-muted-foreground mt-6 text-center max-w-xl">{{ parsed.afterText }}</p>
+      <div v-if="parsed.afterText" class="comparison-after mt-6 text-center max-w-xl" v-html="parsed.afterText"></div>
     </div>
   </div>
 </template>
@@ -135,5 +138,18 @@ const parsed = computed(() => {
 
 .comparison-col li {
   animation: fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.comparison-subtitle :deep(img) {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  margin: 0 auto 1rem;
+}
+
+.comparison-after :deep(p) {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
 }
 </style>

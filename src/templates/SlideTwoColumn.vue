@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import type { Slide } from '../types/slides'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { marked } from 'marked'
 import GradientText from '../components/text-effects/GradientText.vue'
 import FadeContent from '../components/transitions/FadeContent.vue'
 
@@ -30,6 +31,52 @@ onMounted(() => {
 onUnmounted(() => {
   observer?.disconnect()
 })
+
+interface Column {
+  title: string
+  html: string
+}
+
+const parsed = computed(() => {
+  const raw = props.slide.rawMd
+  const body = raw.replace(/^#{1,6}\s+.+(\n|$)/m, '').trim()
+
+  const columns: Column[] = []
+  const beforeText: string[] = []
+  const afterText: string[] = []
+  let hitColumns = false
+
+  // 按 **粗体标题** 拆分
+  const parts = body.split(/(?=^\*\*[^*]+\*\*$)/gm)
+  for (const part of parts) {
+    const trimmed = part.trim()
+    if (!trimmed) continue
+    const titleMatch = trimmed.match(/^\*\*([^*]+)\*\*/m)
+    if (titleMatch) {
+      hitColumns = true
+      const contentLines: string[] = []
+      for (const line of trimmed.split('\n')) {
+        const t = line.trim()
+        if (t && !t.match(/^\*\*[^*]+\*\*$/)) {
+          contentLines.push(t)
+        }
+      }
+      columns.push({ title: titleMatch[1], html: marked.parse(contentLines.join('\n')) as string })
+    } else {
+      for (const line of trimmed.split('\n')) {
+        const t = line.trim()
+        if (t) {
+          if (hitColumns) afterText.push(t)
+          else beforeText.push(t)
+        }
+      }
+    }
+  }
+
+  const subtitle = beforeText.length ? marked.parse(beforeText.join('\n')) as string : ''
+  const after = afterText.length ? marked.parse(afterText.join('\n')) as string : ''
+  return { subtitle, columns: columns.slice(0, 2), afterText: after }
+})
 </script>
 
 <template>
@@ -52,23 +99,35 @@ onUnmounted(() => {
       </FadeContent>
 
       <!-- 渐变装饰线 -->
-      <div class="accent-line w-20 mx-auto mb-10 slide-animate" />
+      <div class="accent-line w-20 mx-auto mb-6 slide-animate" />
+
+      <!-- 列前副标题 -->
+      <div v-if="parsed.subtitle" class="twocol-subtitle mb-8 text-center max-w-xl mx-auto slide-animate" v-html="parsed.subtitle"></div>
 
       <!-- 两列内容 -->
       <div class="grid grid-cols-2 gap-8">
-        <FadeContent :blur="true" :duration="600" :delay="200">
-          <div class="glass p-8 prose-two-col relative overflow-hidden">
-            <div class="absolute top-0 left-6 right-6 h-[2px] rounded-full bg-gradient-to-r from-accent/40 to-transparent" />
-            <div v-html="slide.leftHtml" />
-          </div>
-        </FadeContent>
-        <FadeContent :blur="true" :duration="600" :delay="400">
-          <div class="glass p-8 prose-two-col relative overflow-hidden">
-            <div class="absolute top-0 left-6 right-6 h-[2px] rounded-full bg-gradient-to-r from-[var(--color-h1-to)]/40 to-transparent" />
-            <div v-html="slide.rightHtml" />
+        <FadeContent
+          v-for="(col, i) in parsed.columns"
+          :key="i"
+          :blur="true"
+          :duration="600"
+          :delay="200 + i * 200"
+        >
+          <div class="glass p-8 relative overflow-hidden">
+            <div
+              class="absolute top-0 left-6 right-6 h-[2px] rounded-full"
+              :class="i === 0
+                ? 'bg-gradient-to-r from-accent/40 to-transparent'
+                : 'bg-gradient-to-r from-[var(--color-h1-to)]/40 to-transparent'"
+            />
+            <h4 class="text-xl font-bold mb-4 pb-2 border-b-2 border-accent/30">{{ col.title }}</h4>
+            <div v-html="col.html" class="prose-two-col" />
           </div>
         </FadeContent>
       </div>
+
+      <!-- 列尾文字 -->
+      <div v-if="parsed.afterText" class="twocol-after mt-6 text-center max-w-xl mx-auto" v-html="parsed.afterText"></div>
     </div>
   </div>
 </template>
@@ -76,20 +135,6 @@ onUnmounted(() => {
 <style scoped>
 .slide-twocol {
   padding: 3rem 4rem;
-}
-
-.prose-two-col :deep(h3) {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
-}
-
-.prose-two-col :deep(h4) {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
 }
 
 .prose-two-col :deep(p) {
@@ -116,5 +161,19 @@ onUnmounted(() => {
 .prose-two-col :deep(strong) {
   font-weight: 700;
   color: var(--color-accent);
+}
+
+.twocol-subtitle :deep(img),
+.twocol-after :deep(img) {
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  margin: 0 auto 1rem;
+}
+
+.twocol-after :deep(p) {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
 }
 </style>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Slide } from '../types/slides'
 import { computed } from 'vue'
+import { marked } from 'marked'
 import SpotlightCard from '../components/cards/SpotlightCard.vue'
 
 const props = defineProps<{ slide: Slide }>()
@@ -11,10 +12,6 @@ interface ListItem {
   desc: string
   titleHtml: string
   descHtml: string
-}
-
-function renderInlineCode(text: string): string {
-  return text.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
 }
 
 const parsed = computed(() => {
@@ -34,8 +31,8 @@ const parsed = computed(() => {
         emoji: m[1],
         title: m[2],
         desc: m[3],
-        titleHtml: renderInlineCode(m[2]),
-        descHtml: renderInlineCode(m[3]),
+        titleHtml: marked.parseInline(m[2]) as string,
+        descHtml: marked.parseInline(m[3]) as string,
       })
       continue
     }
@@ -46,7 +43,9 @@ const parsed = computed(() => {
     }
   }
 
-  return { subtitle: beforeText.join(' '), items, afterText: afterText.join(' ') }
+  const subtitle = beforeText.length ? marked.parse(beforeText.join('\n')) as string : ''
+  const after = afterText.length ? marked.parse(afterText.join('\n')) as string : ''
+  return { subtitle, items, afterText: after }
 })
 </script>
 
@@ -59,7 +58,7 @@ const parsed = computed(() => {
       <h3 v-if="slide.title" class="text-xl md:text-2xl font-semibold mb-3 text-center slide-animate">
         {{ slide.title }}
       </h3>
-      <p v-if="parsed.subtitle" class="text-sm text-muted-foreground mb-8 text-center max-w-xl slide-animate">{{ parsed.subtitle }}</p>
+      <div v-if="parsed.subtitle" class="list-subtitle mb-8 text-center max-w-xl slide-animate" v-html="parsed.subtitle"></div>
 
       <div v-if="parsed.items.length" class="list-grid w-full max-w-2xl grid grid-cols-1 gap-4">
         <SpotlightCard
@@ -80,7 +79,7 @@ const parsed = computed(() => {
       </div>
       <p v-else class="text-muted-foreground text-sm">（暂无列表项）</p>
 
-      <p v-if="parsed.afterText" class="text-sm text-muted-foreground mt-6 text-center max-w-xl">{{ parsed.afterText }}</p>
+      <div v-if="parsed.afterText" class="list-after mt-6 text-center max-w-xl" v-html="parsed.afterText"></div>
     </div>
   </div>
 </template>
@@ -104,15 +103,17 @@ const parsed = computed(() => {
   border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
 }
 
-.inline-code {
-  display: inline-block;
-  padding: 0.1em 0.4em;
-  font-size: 0.875em;
-  font-weight: 500;
-  font-family: var(--font-mono, 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, monospace);
-  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
-  border-radius: 0.3em;
-  vertical-align: baseline;
-  line-height: 1.4;
+.list-subtitle :deep(img),
+.list-after :deep(img) {
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  margin: 0 auto 1rem;
+}
+
+.list-after :deep(p) {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
 }
 </style>

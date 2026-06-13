@@ -41,19 +41,29 @@ defineProps<{ slide: Slide }>()
 
 .prose-content :deep(ul),
 .prose-content :deep(ol) {
-  padding-left: 1.5rem;
-  margin-bottom: 1rem;
+  padding-left: 0;
+  margin: 1rem 0;
+  list-style: none;
 }
 
 .prose-content :deep(li) {
-  font-size: 1.125rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.7;
+  padding-left: 1.75rem;
   position: relative;
 }
 
-.prose-content :deep(li)::marker {
-  color: var(--color-accent);
+.prose-content :deep(li)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0.7;
 }
 
 .prose-content :deep(blockquote) {

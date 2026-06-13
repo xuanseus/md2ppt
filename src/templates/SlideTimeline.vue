@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Slide } from '../types/slides'
 import { computed } from 'vue'
+import { marked } from 'marked'
 import FadeContent from '../components/transitions/FadeContent.vue'
 
 const props = defineProps<{ slide: Slide }>()
@@ -33,7 +34,9 @@ const parsed = computed(() => {
     }
   }
 
-  return { subtitle: beforeText.join(' '), entries, afterText: afterText.join(' ') }
+  const subtitle = beforeText.length ? marked.parse(beforeText.join('\n')) as string : ''
+  const after = afterText.length ? marked.parse(afterText.join('\n')) as string : ''
+  return { subtitle, entries, afterText: after }
 })
 </script>
 
@@ -46,7 +49,7 @@ const parsed = computed(() => {
       <h4 v-if="slide.title" class="text-lg md:text-xl font-medium mb-3 text-center text-muted-foreground slide-animate">
         {{ slide.title }}
       </h4>
-      <p v-if="parsed.subtitle" class="text-sm text-muted-foreground mb-8 text-center max-w-xl slide-animate">{{ parsed.subtitle }}</p>
+      <div v-if="parsed.subtitle" class="timeline-subtitle mb-8 text-center max-w-xl slide-animate" v-html="parsed.subtitle"></div>
 
       <div v-if="parsed.entries.length" class="timeline flex flex-col w-full max-w-2xl">
         <FadeContent
@@ -74,7 +77,7 @@ const parsed = computed(() => {
       </div>
       <p v-else class="text-muted-foreground text-sm">（暂无时间线条目）</p>
 
-      <p v-if="parsed.afterText" class="text-sm text-muted-foreground mt-6 text-center max-w-xl">{{ parsed.afterText }}</p>
+      <div v-if="parsed.afterText" class="timeline-after mt-6 text-center max-w-xl" v-html="parsed.afterText"></div>
     </div>
   </div>
 </template>
@@ -82,5 +85,19 @@ const parsed = computed(() => {
 <style scoped>
 .slide-timeline-wrapper {
   padding: 3rem 4rem;
+}
+
+.timeline-subtitle :deep(img),
+.timeline-after :deep(img) {
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  margin: 0 auto 1rem;
+}
+
+.timeline-after :deep(p) {
+  font-size: 0.875rem;
+  color: var(--color-muted-foreground);
 }
 </style>
