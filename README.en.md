@@ -17,7 +17,7 @@
 
 **MD2PPT** turns Markdown into a horizontal swipe web deck with live preview. Write MD, see the result in browser instantly, and build into a single self-contained HTML file.
 
-**Key feature**: Built-in `/md2ppt` skill — hand your speech script to AI, it auto-generates layout-tagged PPT.
+**Key feature**: Built-in `/md2ppt` skill — hand your speech script to AI, it condenses key points and auto-generates layout-tagged PPT. PPT is a visual anchor, not a teleprompter.
 
 ## AI-Powered PPT Generation (Recommended)
 
@@ -50,6 +50,7 @@ We adopted a microservices approach...
 Type `/md2ppt` in Claude Code and paste your script. The AI will:
 
 - 🔍 Analyze content structure (cover, sections, data, code, comparisons…)
+- ✂️ **Condense key points**: long sentences → phrases, paragraphs → keywords
 - 🏷️ Add `{layout: xxx}` tags automatically
 - 📝 Output `xxx-ppt.md` file
 
@@ -129,7 +130,7 @@ VITE_ASSETS_PATH=md/assets
 | Trigger | Behavior |
 |---------|----------|
 | `#` / `##` / `###` / `####` | Each heading becomes its own slide |
-| `---` | Slide break |
+| `---` | Universal slide break (all layouts) |
 | `<video>` / `<img>` | Extracted to fullscreen slide, add `{layout: media-hero}` at line end |
 | ` ``` ` fenced code block | Protected from splitting |
 
@@ -142,13 +143,13 @@ Add `{layout: xxx}` after a heading to specify layout. 12 types available:
 | `cover` | Title / closing slide |
 | `section` | Chapter divider |
 | `content` | Standard content |
-| `two-column` | Side-by-side columns |
+| `two-column` | Side-by-side (`**bold**` marks columns) |
 | `stats` | Big-number highlight |
 | `quote` | Blockquote showcase |
 | `code-full` | Code display |
 | `image-grid` | Image gallery |
 | `media-hero` | Video / hero image |
-| `comparison` | Before / after |
+| `comparison` | Before/after (`**bold**` + `- list`) |
 | `timeline` | Milestone roadmap |
 | `list` | Feature checklist |
 
@@ -162,7 +163,21 @@ Example:
 Year-over-year user growth rate
 ```
 
-Media example (title + media separated by `---`, tag on media line):
+Two-column / comparison example (`**bold**` marks columns, **NO `---`**):
+
+```markdown
+### Before vs After {layout: comparison}
+
+**Legacy**
+- ❌ Complex deploy
+- ❌ Hard to maintain
+
+**Modern**
+- ✅ One-click deploy
+- ✅ Auto ops
+```
+
+Media example (title + `---` break + media line tag):
 
 ```markdown
 ## Demo Video

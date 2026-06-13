@@ -2,15 +2,15 @@
 
 ## AI 生成 PPT（推荐）
 
-使用内置 `/md2ppt` skill，将演讲稿交给 AI 自动生成带布局标记的 PPT：
+使用内置 `/md2ppt` skill，将演讲稿交给 AI 自动提炼要点并生成带布局标记的 PPT：
 
 1. 准备一份纯文本演讲稿（.md）
 2. 在对话中输入 `/md2ppt` 并提供演讲稿
-3. AI 自动分析内容结构 → 添加 `{layout: xxx}` 标记 → 输出 `-ppt.md` 文件
+3. AI 自动分析内容结构 → **提炼要点**（长句变短语，段落变关键词）→ 添加 `{layout: xxx}` 标记 → 输出 `-ppt.md` 文件
 4. 将生成的 `-ppt.md` 设为 `.env` 中的 `VITE_MD_FILE_PATH`
 5. `npm run dev` 预览效果
 
-> 💡 12 种布局自动匹配：cover / section / content / two-column / stats / quote / code-full / image-grid / media-hero / comparison / timeline / list
+> 💡 **演讲稿 ≠ 展示稿**：PPT 是视觉锚点不是提词器。12 种布局自动匹配：cover / section / content / two-column / stats / quote / code-full / image-grid / media-hero / comparison / timeline / list
 
 ## 使用方式
 
@@ -62,14 +62,16 @@ VITE_ASSETS_PATH=md/assets
 
 ## 幻灯片拆分规则
 
-原则：**宁可一页少，不能一页多**。
+原则：**宁可一页少，不能一页多**。PPT 是提炼后的展示稿，不是演讲稿全文。
 
 | 触发行 | 行为 |
 |--------|------|
 | `##` / `###` / `####` 标题 | 每个标题独立成页 |
+| `---` 水平线 | **全局分页符**（所有布局一视同仁） |
 | `<video>` / `<img>` 标签 | 单独抽出一页，行末加 `{layout: media-hero}` |
-| `---` 水平线 | 分页点 |
 | ` ``` ` 代码块 | 内部内容受保护，不触发分页 |
+
+> 🔑 `two-column` / `comparison` 用 `**粗体标题**` 标记左右列，禁止 `---`。
 
 ## 幻灯片模板
 
