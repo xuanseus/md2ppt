@@ -86,7 +86,7 @@ const parsed = computed(() => {
     <div class="orb w-[300px] h-[300px] bg-[var(--color-h1-to)]/6 bottom-10 right-10" style="animation-delay: -8s" />
 
     <!-- 内容 -->
-    <div class="relative z-10 w-full max-w-5xl px-12">
+    <div class="relative z-10 w-full max-w-6xl px-10">
       <!-- 居中大标题用 GradientText -->
       <FadeContent :blur="true" :duration="800">
         <GradientText
@@ -134,11 +134,11 @@ const parsed = computed(() => {
 
 <style scoped>
 .slide-twocol {
-  padding: 3rem 4rem;
+  padding: 2.5rem 3rem;  /* 旧 3rem 4rem */
 }
 
 .prose-two-col :deep(p) {
-  font-size: 1.125rem;
+  font-size: var(--fs-body-sm);
   line-height: 1.7;
   margin-bottom: 0.75rem;
 }
@@ -163,6 +163,12 @@ const parsed = computed(() => {
   color: var(--color-accent);
 }
 
+/* 列标题跟随缩放 */
+.prose-two-col :deep(h4),
+.slide-twocol :deep(h4) {
+  font-size: var(--fs-h4);
+}
+
 .twocol-subtitle :deep(img),
 .twocol-after :deep(img) {
   max-width: 100%;
@@ -173,7 +179,7 @@ const parsed = computed(() => {
 }
 
 .twocol-after :deep(p) {
-  font-size: 0.875rem;
+  font-size: var(--fs-caption);
   color: var(--color-muted-foreground);
 }
 </style>

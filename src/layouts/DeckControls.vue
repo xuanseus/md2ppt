@@ -50,6 +50,18 @@ function handleThemeClick(e: MouseEvent) {
   }
 }
 
+// ── 内容缩放 (1x / 1.25x / 1.5x) ──
+const scaleOptions = [1, 1.25, 1.5]
+const scaleLabels = ['1x', '1.25x', '1.5x']
+const currentScaleIndex = ref(parseInt(localStorage.getItem('content-scale') || '0'))
+
+function cycleScale() {
+  currentScaleIndex.value = (currentScaleIndex.value + 1) % scaleOptions.length
+  const scale = scaleOptions[currentScaleIndex.value]
+  document.documentElement.style.setProperty('--content-scale', String(scale))
+  localStorage.setItem('content-scale', String(currentScaleIndex.value))
+}
+
 const isFullscreen = ref(false)
 
 function toggleFullscreen() {
@@ -156,6 +168,16 @@ onUnmounted(() => {
           :title="`当前动画: ${transitionName}`"
         >
           {{ transitionName }}
+        </button>
+
+        <span class="w-px h-5 bg-border/30" />
+
+        <button
+          class="p-2 rounded-lg hover:bg-muted transition-colors text-xs font-mono"
+          @click="cycleScale"
+          :title="`内容缩放: ${scaleLabels[currentScaleIndex]}`"
+        >
+          {{ scaleLabels[currentScaleIndex] }}
         </button>
       </div>
     </div>

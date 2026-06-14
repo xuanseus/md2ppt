@@ -55,6 +55,11 @@ const gridCols = computed(() => images.value.length === 1 ? 1 : 2)
 
 <style scoped>
 .slide-image-grid-wrapper {
-  padding: 3rem 4rem;
+  padding: 2.5rem 3rem;  /* 旧 3rem 4rem */
+}
+
+/* 标题跟随缩放 */
+.slide-image-grid-wrapper :deep(h4) {
+  font-size: var(--fs-h4);
 }
 </style>

@@ -60,7 +60,7 @@ const parsed = computed(() => {
       </h3>
       <div v-if="parsed.subtitle" class="list-subtitle mb-8 text-center max-w-xl slide-animate" v-html="parsed.subtitle"></div>
 
-      <div v-if="parsed.items.length" class="list-grid w-full max-w-2xl grid grid-cols-1 gap-4">
+      <div v-if="parsed.items.length" class="list-grid w-full max-w-3xl grid grid-cols-1 gap-4">
         <SpotlightCard
           v-for="(item, i) in parsed.items"
           :key="i"
@@ -86,7 +86,20 @@ const parsed = computed(() => {
 
 <style scoped>
 .slide-list-wrapper {
-  padding: 3rem 4rem;
+  padding: 2.5rem 3rem;  /* 旧 3rem 4rem */
+}
+
+/* 标题跟随缩放 */
+.slide-list-wrapper :deep(h3) {
+  font-size: var(--fs-h3);
+}
+
+/* 列表项文字跟随缩放 */
+.list-card :deep(.text-base) {
+  font-size: var(--fs-caption);
+}
+.list-card :deep(.text-sm) {
+  font-size: var(--fs-small);
 }
 
 .list-card {
@@ -113,7 +126,7 @@ const parsed = computed(() => {
 }
 
 .list-after :deep(p) {
-  font-size: 0.875rem;
+  font-size: var(--fs-caption);
   color: var(--color-muted-foreground);
 }
 </style>

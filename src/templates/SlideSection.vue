@@ -33,10 +33,10 @@ onUnmounted(() => {
 <template>
   <div class="slide-section relative flex items-center justify-center overflow-hidden w-full h-full">
     <!-- 内容卡片 -->
-    <div class="relative z-10 max-w-4xl px-16 slide-animate">
+    <div class="relative z-10 max-w-5xl px-12 slide-animate">
       <StarBorder
         as="div"
-        class="section-card px-20 py-20 text-center rounded-2xl"
+        class="section-card px-16 py-16 text-center rounded-2xl"
         :color="accentColor"
         speed="8s"
         :thickness="2"
@@ -72,7 +72,7 @@ onUnmounted(() => {
 }
 
 .section-title :deep(h2) {
-  font-size: 3rem;
+  font-size: var(--fs-section-title);
   font-weight: 700;
   margin-bottom: 1rem;
   line-height: 1.2;
@@ -83,7 +83,7 @@ onUnmounted(() => {
 }
 
 .prose-section :deep(p) {
-  font-size: 1.25rem;
+  font-size: var(--fs-body);
   color: var(--color-muted-foreground);
   line-height: 1.6;
 }

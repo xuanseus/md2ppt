@@ -66,7 +66,7 @@ onUnmounted(() => {
     />
 
     <!-- 主要内容 -->
-    <div class="relative z-10 max-w-4xl px-16 flex flex-col items-center justify-center text-center slide-animate">
+    <div class="relative z-10 max-w-5xl px-12 flex flex-col items-center justify-center text-center slide-animate">
       <div class="stats-content flex flex-col items-center">
         <div v-html="slide.html" class="prose-stats" />
       </div>
@@ -76,7 +76,7 @@ onUnmounted(() => {
 
 <style scoped>
 .prose-stats :deep(h4) {
-  font-size: 1.125rem;
+  font-size: var(--fs-body-sm);
   font-weight: 500;
   margin-bottom: 2.5rem;
   text-transform: uppercase;
@@ -87,7 +87,7 @@ onUnmounted(() => {
 
 .prose-stats :deep(strong) {
   display: block;
-  font-size: 6rem;
+  font-size: var(--fs-stat);
   font-weight: 700;
   line-height: 1;
   margin-bottom: 1.5rem;
@@ -105,7 +105,7 @@ onUnmounted(() => {
 }
 
 .prose-stats :deep(p) {
-  font-size: 1.25rem;
+  font-size: var(--fs-body);
   color: var(--color-muted-foreground);
   margin-top: 1.5rem;
   line-height: 1.7;

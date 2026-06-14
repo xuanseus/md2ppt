@@ -53,6 +53,27 @@
     background: var(--color-background);
     color: var(--color-foreground);
   }
+
+  /* ═══════════════════════════════════════════
+     排版刻度 + 用户缩放系统
+     ═══════════════════════════════════════════ */
+  :root {
+    /* 用户可控缩放系数（由 index.html 内联脚本初始化） */
+    --content-scale: 1;
+
+    /* 排版刻度 — 新 1x 基准已比旧版放大 */
+    --fs-hero:           calc(4.5rem  * var(--content-scale));  /* 72px  Cover H1 / Stats */
+    --fs-section-title:  calc(3rem    * var(--content-scale));  /* 48px  Section H2 */
+    --fs-h2:             calc(2.5rem  * var(--content-scale));  /* 40px  Content H2 */
+    --fs-h3:             calc(2rem    * var(--content-scale));  /* 32px  Content H3 */
+    --fs-h4:             calc(1.5rem  * var(--content-scale));  /* 24px  Code / 列标题 */
+    --fs-body:           calc(1.375rem * var(--content-scale)); /* 22px  正文（旧 20px） */
+    --fs-body-sm:        calc(1.125rem * var(--content-scale)); /* 18px  次要正文（旧 16-18px） */
+    --fs-caption:        calc(1rem     * var(--content-scale)); /* 16px  说明文字（旧 14px） */
+    --fs-small:          calc(0.875rem * var(--content-scale)); /* 14px  最小文字 */
+    --fs-stat:           calc(6rem    * var(--content-scale));  /* 96px  数据大字 */
+    --fs-quote:          calc(2.25rem * var(--content-scale));  /* 36px  引用 */
+  }
 }
 
 @layer components {
@@ -102,13 +123,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem 4rem;
+    padding: 2.5rem 3rem;  /* 旧 3rem 4rem — 缩小 padding，给内容更多空间 */
     overflow: hidden;
   }
 
   .slide-content > div {
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 2rem;    /* 旧 3rem */
+    padding-right: 2rem;
   }
 
   .slide-content h1,
@@ -122,7 +143,7 @@
     color: var(--color-code-fg, var(--color-foreground));
     border-radius: 0.5rem;
     font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 0.875rem;
+    font-size: var(--fs-caption);  /* 旧 0.875rem — 统一到排版刻度 */
     line-height: 1.6;
   }
 
@@ -168,6 +189,45 @@
   }
 
   .slide-content .shiki .line {
+    display: block;
+  }
+
+  /* ═══════════════════════════════════════════
+     代码块全局样式（替换废弃的 .slide-content 前缀）
+     ═══════════════════════════════════════════ */
+  .code-block-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .code-block-wrapper pre {
+    background: transparent;
+    margin: 0;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: var(--fs-caption);
+    line-height: 1.6;
+  }
+
+  .code-block-wrapper code {
+    background: transparent;
+    padding: 0;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  .shiki {
+    background: transparent !important;
+    counter-reset: line;
+    font-size: var(--fs-caption);
+  }
+
+  .shiki code {
+    display: block;
+  }
+
+  .shiki .line {
     display: block;
   }
 

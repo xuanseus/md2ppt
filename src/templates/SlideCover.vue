@@ -8,7 +8,7 @@ defineProps<{ slide: Slide }>()
 <template>
   <div class="slide-cover relative flex items-center justify-center overflow-hidden w-full h-full">
     <!-- 内容区 -->
-    <div class="relative z-10 max-w-4xl px-16 text-center">
+    <div class="relative z-10 max-w-5xl px-12 text-center">
       <!-- 标题上方装饰小标 -->
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-medium tracking-widest uppercase mb-8 slide-animate">
         <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
@@ -37,7 +37,7 @@ defineProps<{ slide: Slide }>()
 
 <style scoped>
 .cover-title :deep(h1) {
-  font-size: 4.5rem;
+  font-size: var(--fs-hero);
   font-weight: 800;
   margin-bottom: 2rem;
   line-height: 1.1;
@@ -55,7 +55,7 @@ defineProps<{ slide: Slide }>()
 }
 
 .prose-cover :deep(p) {
-  font-size: 1.5rem;
+  font-size: var(--fs-body);
   color: var(--color-muted-foreground);
   line-height: 1.6;
   margin-top: 0;

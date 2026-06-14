@@ -51,7 +51,7 @@ onUnmounted(() => {
     <div class="absolute bottom-16 right-16 text-[12rem] leading-none font-serif text-accent/[0.07] select-none pointer-events-none rotate-180">"</div>
 
     <!-- 引用内容 -->
-    <div class="relative z-10 max-w-4xl px-16 slide-animate">
+    <div class="relative z-10 max-w-5xl px-12 slide-animate">
       <div class="text-center mb-8">
         <div class="w-12 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
       </div>
@@ -65,7 +65,7 @@ onUnmounted(() => {
 
 <style scoped>
 .prose-quote :deep(h3) {
-  font-size: 1rem;
+  font-size: var(--fs-caption);
   font-weight: 500;
   margin-bottom: 2rem;
   text-align: center;
@@ -76,7 +76,7 @@ onUnmounted(() => {
 
 .prose-quote :deep(blockquote),
 .prose-quote :deep(p) {
-  font-size: 2.25rem;
+  font-size: var(--fs-quote);
   font-weight: 300;
   line-height: 1.625;
   text-align: center;

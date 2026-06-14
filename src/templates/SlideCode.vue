@@ -11,12 +11,12 @@ defineProps<{ slide: Slide }>()
 
     <!-- 代码内容 -->
     <div
-        class="relative z-10 slide-code-container h-full flex flex-col items-center justify-center px-16 py-16 slide-animate">
+        class="relative z-10 slide-code-container h-full flex flex-col items-center justify-center px-12 py-12 slide-animate">
       <div v-if="slide.title" class="code-title mb-6">
         <h4 class="text-2xl font-bold">{{ slide.title }}</h4>
       </div>
 
-      <div class="w-full max-w-4xl prose-code" v-html="slide.html"/>
+      <div class="w-full max-w-5xl prose-code" v-html="slide.html"/>
     </div>
   </div>
 </template>
@@ -30,7 +30,7 @@ defineProps<{ slide: Slide }>()
 }
 
 .slide-code-wrapper .prose-code p {
-  font-size: 1.125rem;
+  font-size: var(--fs-body-sm);
   color: var(--color-muted-foreground);
   text-align: center;
   line-height: 1.6;
@@ -64,6 +64,7 @@ defineProps<{ slide: Slide }>()
 
 .code-title h4 {
   margin: 0;
+  font-size: var(--fs-h4);
 }
 
 /* 隐藏 slide.html 中的重复标题 */

@@ -8,7 +8,7 @@ defineProps<{ slide: Slide }>()
   <div class="slide-content-wrapper relative flex flex-col items-center justify-center overflow-hidden">
     <!-- 内容区 -->
     <div class="relative z-10 w-full flex flex-col items-center slide-animate">
-      <div v-html="slide.html" class="w-full max-w-4xl mx-auto px-8 prose-content" />
+      <div v-html="slide.html" class="w-full max-w-5xl mx-auto px-6 prose-content" />
     </div>
   </div>
 </template>
@@ -17,11 +17,11 @@ defineProps<{ slide: Slide }>()
 .slide-content-wrapper {
   width: 100%;
   height: 100%;
-  padding: 3rem 4rem;
+  padding: 2.5rem 3rem;  /* 旧 3rem 4rem */
 }
 
 .prose-content :deep(h2) {
-  font-size: 2.5rem;
+  font-size: var(--fs-h2);
   font-weight: 700;
   margin-bottom: 0;
   text-align: center;
@@ -29,13 +29,13 @@ defineProps<{ slide: Slide }>()
 }
 
 .prose-content :deep(h3) {
-  font-size: 2rem;
+  font-size: var(--fs-h3);
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
 
 .prose-content :deep(p) {
-  font-size: 1.25rem;
+  font-size: var(--fs-body);
   line-height: 1.8;
 }
 
@@ -47,7 +47,7 @@ defineProps<{ slide: Slide }>()
 }
 
 .prose-content :deep(li) {
-  font-size: 1.15rem;
+  font-size: var(--fs-body-sm);
   margin-bottom: 0.6rem;
   line-height: 1.7;
   padding-left: 1.75rem;

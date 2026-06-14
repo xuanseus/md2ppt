@@ -51,7 +51,7 @@ const parsed = computed(() => {
       </h4>
       <div v-if="parsed.subtitle" class="timeline-subtitle mb-8 text-center max-w-xl slide-animate" v-html="parsed.subtitle"></div>
 
-      <div v-if="parsed.entries.length" class="timeline flex flex-col w-full max-w-2xl">
+      <div v-if="parsed.entries.length" class="timeline flex flex-col w-full max-w-3xl">
         <FadeContent
           v-for="(entry, i) in parsed.entries"
           :key="i"
@@ -84,7 +84,20 @@ const parsed = computed(() => {
 
 <style scoped>
 .slide-timeline-wrapper {
-  padding: 3rem 4rem;
+  padding: 2.5rem 3rem;  /* 旧 3rem 4rem */
+}
+
+/* 标题跟随缩放 */
+.slide-timeline-wrapper :deep(h4) {
+  font-size: var(--fs-h4);
+}
+
+/* 条目文字跟随缩放 */
+.timeline-entry :deep(.text-sm) {
+  font-size: var(--fs-caption);
+}
+.timeline-entry :deep(.text-base) {
+  font-size: var(--fs-body-sm);
 }
 
 .timeline-subtitle :deep(img),
@@ -97,7 +110,7 @@ const parsed = computed(() => {
 }
 
 .timeline-after :deep(p) {
-  font-size: 0.875rem;
+  font-size: var(--fs-caption);
   color: var(--color-muted-foreground);
 }
 </style>

@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>%VITE_MD_FILE_PATH%</title>
   </head>
+  <script>
+    // 在页面渲染前设置缩放系数，避免闪白
+    (function() {
+      var scales = [1, 1.25, 1.5]
+      var idx = parseInt(localStorage.getItem('content-scale') || '0')
+      document.documentElement.style.setProperty('--content-scale', scales[idx] || 1)
+    })()
+  </script>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>

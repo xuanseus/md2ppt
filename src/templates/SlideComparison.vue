@@ -68,7 +68,7 @@ const parsed = computed(() => {
       </h3>
       <div v-if="parsed.subtitle" class="comparison-subtitle mb-8 text-center max-w-xl slide-animate" v-html="parsed.subtitle"></div>
 
-      <div class="comparison-grid w-full max-w-4xl">
+      <div class="comparison-grid w-full">
         <FadeContent
           v-for="(col, i) in parsed.columns"
           :key="i"
@@ -123,13 +123,15 @@ const parsed = computed(() => {
 
 <style scoped>
 .slide-comparison-wrapper {
-  padding: 3rem 4rem;
+  padding: 2.5rem 3rem;  /* 旧 3rem 4rem */
 }
 
 .comparison-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+  max-width: 64rem;       /* 旧 max-w-4xl (56rem) — 加宽 */
+  width: 100%;
 }
 
 .comparison-col {
@@ -138,6 +140,19 @@ const parsed = computed(() => {
 
 .comparison-col li {
   animation: fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* 标题跟随缩放 */
+.slide-comparison-wrapper :deep(h3) {
+  font-size: var(--fs-h3);
+}
+
+.comparison-col :deep(strong) {
+  font-size: var(--fs-body-sm);
+}
+
+.comparison-col :deep(li) {
+  font-size: var(--fs-caption);
 }
 
 .comparison-subtitle :deep(img) {
@@ -149,7 +164,7 @@ const parsed = computed(() => {
 }
 
 .comparison-after :deep(p) {
-  font-size: 0.875rem;
+  font-size: var(--fs-caption);
   color: var(--color-muted-foreground);
 }
 </style>
