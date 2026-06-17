@@ -59,7 +59,7 @@
      ═══════════════════════════════════════════ */
   :root {
     /* 用户可控缩放系数（由 index.html 内联脚本初始化） */
-    --content-scale: 1;
+    --content-scale: 1.25;
 
     /* 排版刻度 — 新 1x 基准已比旧版放大 */
     --fs-hero:           calc(4.5rem  * var(--content-scale));  /* 72px  Cover H1 / Stats */

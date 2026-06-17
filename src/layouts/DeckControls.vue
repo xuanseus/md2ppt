@@ -53,7 +53,7 @@ function handleThemeClick(e: MouseEvent) {
 // ── 内容缩放 (1x / 1.25x / 1.5x) ──
 const scaleOptions = [1, 1.25, 1.5]
 const scaleLabels = ['1x', '1.25x', '1.5x']
-const currentScaleIndex = ref(parseInt(localStorage.getItem('content-scale') || '0'))
+const currentScaleIndex = ref(parseInt(localStorage.getItem('content-scale') || '1'))
 
 function cycleScale() {
   currentScaleIndex.value = (currentScaleIndex.value + 1) % scaleOptions.length
