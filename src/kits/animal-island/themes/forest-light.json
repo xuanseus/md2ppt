@@ -1,0 +1,21 @@
+{
+  "name": "forest-light",
+  "label": "森林·晨光",
+  "dark": false,
+  "vars": {
+    "--color-background": "#f5f9f0",
+    "--color-foreground": "#4a5a2a",
+    "--color-muted": "#e8f0d8",
+    "--color-muted-foreground": "#7a8a5a",
+    "--color-border": "#d0e0c0",
+    "--color-accent": "#6fba2c",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#ffffff",
+    "--color-code-bg": "#2a3020",
+    "--color-code-fg": "#e8f0d8",
+    "--color-blockquote-border": "#6fba2c",
+    "--color-heading": "#3a4a1a",
+    "--color-h1-from": "#6fba2c",
+    "--color-h1-to": "#19c8b9"
+  }
+}

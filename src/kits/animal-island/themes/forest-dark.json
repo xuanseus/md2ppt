@@ -1,0 +1,21 @@
+{
+  "name": "forest-dark",
+  "label": "森林·暮色",
+  "dark": true,
+  "vars": {
+    "--color-background": "#1a2a1a",
+    "--color-foreground": "#d0e8c0",
+    "--color-muted": "#253525",
+    "--color-muted-foreground": "#8aaa7a",
+    "--color-border": "#3a5a30",
+    "--color-accent": "#6fba2c",
+    "--color-accent-foreground": "#1a1a1a",
+    "--color-card": "#253525",
+    "--color-code-bg": "#101a10",
+    "--color-code-fg": "#d0e8c0",
+    "--color-blockquote-border": "#6fba2c",
+    "--color-heading": "#e0f0d0",
+    "--color-h1-from": "#6fba2c",
+    "--color-h1-to": "#85cc45"
+  }
+}

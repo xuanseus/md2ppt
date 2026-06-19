@@ -4,11 +4,10 @@ import { usePresentation } from '../composables/usePresentation'
 import { useKeyboardNavigation } from '../composables/useKeyboardNavigation'
 import { useTouchNavigation } from '../composables/useTouchNavigation'
 import { useSlideTransition } from '../composables/useSlideTransition'
-import { useTheme } from '../composables/useTheme'
+import { initTheme, useKit } from '../composables/useKit'
 import SlideRenderer from './SlideRenderer.vue'
 import SlideOverview from './SlideOverview.vue'
 import DeckControls from './DeckControls.vue'
-import ClickSpark from '../components/interactive/ClickSpark.vue'
 import Aurora from '../components/backgrounds/Aurora.vue'
 import Silk from '../components/backgrounds/Silk.vue'
 import Grainient from '../components/backgrounds/Grainient.vue'
@@ -29,10 +28,14 @@ const {
 } = usePresentation()
 
 const { currentTransition, cycleTransition } = useSlideTransition()
-useTheme() // init theme from localStorage on mount
+const { activeKit } = useKit()
+initTheme() // init kit theme from localStorage on mount
 
 const isOverview = ref(false)
 const viewportRef = ref<HTMLElement | null>(null)
+
+// ── 全局背景策略：Beats 用 WebGL，Animal Island 等用静态 CSS ──
+const useWebGL = computed(() => activeKit.decorations?.background === 'webgl')
 
 // ── 持久背景：根据当前 slide 类型切换 Aurora / Silk，v-show 常驻不卸载 ──
 function readCSSColor(varName: string): string {
@@ -129,15 +132,7 @@ async function handleReloadMd() {
 </script>
 
 <template>
-  <ClickSpark
-    class="relative w-screen h-screen overflow-hidden bg-background text-foreground"
-    spark-color="#42D392"
-    :spark-size="8"
-    :spark-radius="20"
-    :spark-count="10"
-    :duration="500"
-    easing="ease-out"
-  >
+  <div class="relative w-screen h-screen overflow-hidden bg-background text-foreground">
     <!-- 全局背景装饰 -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
       <!-- 基础渐变底色 -->
@@ -150,12 +145,12 @@ async function handleReloadMd() {
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-gradient-to-r from-transparent via-accent/15 to-transparent" />
     </div>
 
-    <div ref="viewportRef" class="relative w-full h-full">
+    <div ref="viewportRef" class="relative w-full h-full overflow-hidden">
       <!-- 持久背景层，Transition 期间永不消失 -->
       <div class="absolute inset-0 z-0" style="background-color: var(--color-background)" />
 
-      <!-- WebGL 背景常驻不卸载，v-show 只切换显隐 -->
-      <div class="absolute inset-0 z-[1] pointer-events-none">
+      <!-- WebGL 背景（仅 Beats 等 webgl 套件）— 常驻不卸载，v-show 只切换显隐 -->
+      <div v-if="useWebGL" class="absolute inset-0 z-[1] pointer-events-none">
         <Aurora
           v-show="showAurora"
           :color-stops="auroraColors"
@@ -183,8 +178,8 @@ async function handleReloadMd() {
         />
       </div>
 
-      <!-- 半透遮罩，压暗 WebGL 背景使其不喧宾夺主 -->
-      <div class="absolute inset-0 z-[2] pointer-events-none" style="background: var(--color-background); opacity: 0.3" />
+      <!-- 半透遮罩（仅 WebGL 套件需要，压暗背景使其不喧宾夺主） -->
+      <div v-if="useWebGL" class="absolute inset-0 z-[2] pointer-events-none" style="background: var(--color-background); opacity: 0.3" />
 
       <Transition
         v-if="!isOverview && currentSlide"
@@ -217,5 +212,5 @@ async function handleReloadMd() {
       @cycle-transition="cycleTransition"
       @reload-md="handleReloadMd"
     />
-  </ClickSpark>
+  </div>
 </template>

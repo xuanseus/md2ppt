@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import themes, { getNextTheme } from '../themes'
+import { useKit } from '../composables/useKit'
 
 defineProps<{
   currentSlideIndex: number
@@ -15,10 +15,14 @@ const emit = defineEmits<{
   cycleTransition: []
 }>()
 
-const curName = ref(localStorage.getItem('theme-preset') || themes[0].name)
-const curTheme = computed(() => themes.find(t => t.name === curName.value) || themes[0])
-const themeLabel = computed(() => curTheme.value.label)
-const themeIsDark = computed(() => curTheme.value.dark)
+const { activeKit, getCurrentTheme, setKit, getNextKit } = useKit()
+
+const currentThemeName = ref(localStorage.getItem('theme-preset') || activeKit.themes[0]?.name || '')
+const curTheme = computed(() => activeKit.themes.find(t => t.name === currentThemeName.value) || activeKit.themes[0])
+const themeLabel = computed(() => curTheme.value?.label || '默认')
+const themeIsDark = computed(() => curTheme.value?.dark || false)
+const kitLabel = computed(() => activeKit.label)
+const nextKit = computed(() => getNextKit())
 
 function handleThemeClick(e: MouseEvent) {
   const x = e.clientX
@@ -32,15 +36,18 @@ function handleThemeClick(e: MouseEvent) {
   el.style.setProperty('--circle-y', `${y}px`)
   el.style.setProperty('--circle-r', `${endRadius}px`)
 
-  const next = getNextTheme(curName.value)
+  const curIdx = activeKit.themes.findIndex(t => t.name === currentThemeName.value)
+  const next = activeKit.themes[(curIdx + 1) % activeKit.themes.length]
 
   const apply = () => {
-    el.classList.toggle('dark', next.dark)
-    for (const [k, v] of Object.entries(next.vars)) {
-      el.style.setProperty(k, v)
+    if (next) {
+      el.classList.toggle('dark', next.dark)
+      for (const [k, v] of Object.entries(next.vars)) {
+        el.style.setProperty(k, v)
+      }
+      localStorage.setItem('theme-preset', next.name)
+      currentThemeName.value = next.name
     }
-    localStorage.setItem('theme-preset', next.name)
-    curName.value = next.name
   }
 
   if (document.startViewTransition) {
@@ -48,6 +55,10 @@ function handleThemeClick(e: MouseEvent) {
   } else {
     apply()
   }
+}
+
+function handleKitClick() {
+  setKit(nextKit.value.id)
 }
 
 // ── 内容缩放 (1x / 1.25x / 1.5x) ──
@@ -152,13 +163,24 @@ onUnmounted(() => {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         </button>
 
+        <!-- Kit 套件切换 -->
+        <button
+          class="p-2 rounded-lg hover:bg-muted transition-colors text-sm flex items-center gap-1"
+          @click="handleKitClick"
+          :title="`当前模板: ${kitLabel} — 点击切换到 ${nextKit.label}`"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+          <span class="text-xs hidden sm:inline">{{ kitLabel }}</span>
+        </button>
+
         <button
           class="p-2 rounded-lg hover:bg-muted transition-colors text-sm flex items-center gap-1"
           @click="handleThemeClick"
           :title="`当前: ${themeLabel} — 点击切换`"
         >
-          <svg v-if="themeIsDark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-          <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          <!-- 暗色 → 月亮 / 亮色 → 太阳 -->
+          <svg v-if="themeIsDark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2"/><path d="M12 21v2"/><path d="m4.22 4.22 1.42 1.42"/><path d="m18.36 18.36 1.42 1.42"/><path d="M1 12h2"/><path d="M21 12h2"/><path d="m4.22 19.78 1.42-1.42"/><path d="m18.36 5.64 1.42-1.42"/></svg>
           <span class="text-xs ml-1 hidden sm:inline">{{ themeLabel }}</span>
         </button>
 

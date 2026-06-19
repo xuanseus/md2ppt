@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Slide } from '../types/slides'
+import type { Slide } from '../../../types/slides'
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { marked } from 'marked'
-import GradientText from '../components/text-effects/GradientText.vue'
-import FadeContent from '../components/transitions/FadeContent.vue'
+import GradientText from '../../../components/text-effects/GradientText.vue'
+import FadeContent from '../../../components/transitions/FadeContent.vue'
 
 const props = defineProps<{ slide: Slide }>()
 

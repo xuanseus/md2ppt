@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Slide } from '../types/slides'
+import type { Slide } from '../../../types/slides'
 import { computed } from 'vue'
 import { marked } from 'marked'
-import FadeContent from '../components/transitions/FadeContent.vue'
+import FadeContent from '../../../components/transitions/FadeContent.vue'
 
 const props = defineProps<{ slide: Slide }>()
 
@@ -61,7 +61,7 @@ const parsed = computed(() => {
           class="timeline-entry flex gap-5"
         >
           <!-- 左侧轨道：圆点 + 连接线 -->
-          <div class="rail flex flex-col items-center flex-shrink-0 w-5 pt-3">
+          <div class="rail flex flex-col items-center flex-shrink-0 w-5 pt-4">
             <div class="w-3 h-3 rounded-full bg-accent ring-4 ring-accent/20 flex-shrink-0" />
             <div
               v-if="i < parsed.entries.length - 1"

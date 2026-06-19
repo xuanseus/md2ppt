@@ -1,0 +1,21 @@
+{
+  "name": "island-light",
+  "label": "动物岛·暖白",
+  "dark": false,
+  "vars": {
+    "--color-background": "#f8f8f0",
+    "--color-foreground": "#794f27",
+    "--color-muted": "#f0e8d8",
+    "--color-muted-foreground": "#9f927d",
+    "--color-border": "#e8e2d6",
+    "--color-accent": "#19c8b9",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#ffffff",
+    "--color-code-bg": "#2d2820",
+    "--color-code-fg": "#f0e8d8",
+    "--color-blockquote-border": "#19c8b9",
+    "--color-heading": "#5a3e28",
+    "--color-h1-from": "#19c8b9",
+    "--color-h1-to": "#6fba2c"
+  }
+}

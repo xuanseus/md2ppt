@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import type { Slide } from '../types/slides'
-import StarBorder from '../components/cards/StarBorder.vue'
-import SplitText from '../components/text-effects/SplitText.vue'
+import type { Slide } from '../../../types/slides'
+import StarBorder from '../../../components/cards/StarBorder.vue'
+import SplitText from '../../../components/text-effects/SplitText.vue'
 
 defineProps<{ slide: Slide }>()
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { Slide } from '../types/slides'
-import SplitText from '../components/text-effects/SplitText.vue'
+import type { Slide } from '../../../types/slides'
+import SplitText from '../../../components/text-effects/SplitText.vue'
 
 defineProps<{ slide: Slide }>()
 </script>

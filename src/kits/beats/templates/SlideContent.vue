@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Slide } from '../types/slides'
+import type { Slide } from '../../../types/slides'
 
 defineProps<{ slide: Slide }>()
 </script>

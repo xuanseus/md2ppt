@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { Slide } from '../types/slides'
-import Grainient from '../components/backgrounds/Grainient.vue'
+import type { Slide } from '../../../types/slides'
+import Grainient from '../../../components/backgrounds/Grainient.vue'
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps<{ slide: Slide }>()

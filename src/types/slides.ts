@@ -7,7 +7,6 @@ export type SlideLayout =
   | 'content'     // 标准内容页
   | 'two-column'  // 两列布局
   | 'stats'       // 数据大字报
-  | 'image-grid'  // 图片网格
   | 'quote'       // 引用页
   | 'code-full'   // 全屏代码
   | 'media-hero'  // 媒体大图

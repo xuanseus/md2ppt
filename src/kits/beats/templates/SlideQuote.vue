@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import type { Slide } from '../types/slides'
-import Particles from '../components/backgrounds/Particles.vue'
+import type { Slide } from '../../../types/slides'
+import Particles from '../../../components/backgrounds/Particles.vue'
 
 const props = defineProps<{ slide: Slide }>()
 

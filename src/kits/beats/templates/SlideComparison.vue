@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Slide } from '../types/slides'
+import type { Slide } from '../../../types/slides'
 import { computed } from 'vue'
 import { marked } from 'marked'
-import FadeContent from '../components/transitions/FadeContent.vue'
+import FadeContent from '../../../components/transitions/FadeContent.vue'
 
 const props = defineProps<{ slide: Slide }>()
 
@@ -136,6 +136,14 @@ const parsed = computed(() => {
 
 .comparison-col {
   min-height: 260px;
+  transform: translateY(0) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.comparison-col:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
 }
 
 .comparison-col li {

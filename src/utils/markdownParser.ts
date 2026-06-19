@@ -269,5 +269,7 @@ export async function splitIntoSlides(rawMd: string): Promise<Slide[]> {
 
 function extractTitle(rawMd: string): string {
   const match = rawMd.match(/^#{1,6}\s+(.+)$/m)
-  return match ? match[1].trim() : ''
+  if (!match) return ''
+  // 去掉 {layout: xxx} / {class: xxx} 等标记
+  return match[1].replace(/\s*\{[^}]+\}\s*$/g, '').trim()
 }

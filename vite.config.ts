@@ -168,7 +168,7 @@ export default defineConfig(({mode}) => {
             }),
             Components({
                 dts: 'components.d.ts',
-                dirs: ['src/components', 'src/layouts'],
+                dirs: ['src/components', 'src/layouts', 'src/kits/beats/templates', 'src/kits/animal-island/templates'],
             }),
             mdSlidesPlugin(),
             copyAssetsPlugin(),

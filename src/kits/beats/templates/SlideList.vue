@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Slide } from '../types/slides'
+import type { Slide } from '../../../types/slides'
 import { computed } from 'vue'
 import { marked } from 'marked'
-import SpotlightCard from '../components/cards/SpotlightCard.vue'
+import SpotlightCard from '../../../components/cards/SpotlightCard.vue'
 
 const props = defineProps<{ slide: Slide }>()
 
