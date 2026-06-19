@@ -1,0 +1,21 @@
+{
+  "name": "ocean-blue",
+  "label": "宝可梦·水蓝",
+  "dark": false,
+  "vars": {
+    "--color-background": "#d8e8f8",
+    "--color-foreground": "#1a2a4a",
+    "--color-muted": "#c0d8f0",
+    "--color-muted-foreground": "#4a6a8a",
+    "--color-border": "#a0c8e8",
+    "--color-accent": "#2060c0",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#f0f6fc",
+    "--color-code-bg": "#0a1a2a",
+    "--color-code-fg": "#c0d8f0",
+    "--color-blockquote-border": "#2060c0",
+    "--color-heading": "#102040",
+    "--color-h1-from": "#2060c0",
+    "--color-h1-to": "#4090e0"
+  }
+}

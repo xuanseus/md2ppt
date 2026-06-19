@@ -1,0 +1,25 @@
+{
+  "name": "pastel-pixel",
+  "label": "Pastel Pixel",
+  "dark": false,
+  "vars": {
+    "--color-background": "#f8f0e8",
+    "--color-foreground": "#4a3848",
+    "--color-muted": "#f0e0d0",
+    "--color-muted-foreground": "#8a7880",
+    "--color-border": "#c0a0b0",
+    "--color-accent": "#c878a0",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#fef8f4",
+    "--color-code-bg": "#2a2028",
+    "--color-code-fg": "#f0d0e0",
+    "--color-blockquote-border": "#d090b0",
+    "--color-heading": "#604050",
+    "--color-h1-from": "#d090b0",
+    "--color-h1-to": "#a0c878",
+    "--pixel-bg-grid": "#c878a012",
+    "--pixel-shadow": "#a07080",
+    "--pixel-highlight": "#f8e0e0",
+    "--pixel-scanline": "rgba(0,0,0,0.02)"
+  }
+}

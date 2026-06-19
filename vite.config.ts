@@ -168,7 +168,7 @@ export default defineConfig(({mode}) => {
             }),
             Components({
                 dts: 'components.d.ts',
-                dirs: ['src/components', 'src/layouts', 'src/kits/beats/templates', 'src/kits/animal-island/templates'],
+                dirs: ['src/components', 'src/layouts', 'src/kits/beats/templates', 'src/kits/animal-island/templates', 'src/kits/holo/templates', 'src/kits/pixelium/templates', 'src/kits/shuimo/templates', 'src/kits/cyberpunk/templates', 'src/kits/pixel-ui/templates'],
             }),
             mdSlidesPlugin(),
             copyAssetsPlugin(),

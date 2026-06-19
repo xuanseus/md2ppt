@@ -1,0 +1,25 @@
+{
+  "name": "ink-black",
+  "label": "水墨·玄",
+  "dark": true,
+  "vars": {
+    "--color-background": "#1a1a1c",
+    "--color-foreground": "#d4d0c8",
+    "--color-muted": "#242426",
+    "--color-muted-foreground": "#8a8680",
+    "--color-border": "#3a3834",
+    "--color-accent": "#c84c3c",
+    "--color-accent-foreground": "#f8f4f0",
+    "--color-card": "#222224",
+    "--color-code-bg": "#0d0d0f",
+    "--color-code-fg": "#c8c4bc",
+    "--color-blockquote-border": "#6a645c",
+    "--color-heading": "#f0ece4",
+    "--color-h1-from": "#e8e0d0",
+    "--color-h1-to": "#b8a890",
+    "--color-seal": "#c84c3c",
+    "--color-ink-light": "#4a4640",
+    "--color-ink-wash": "#2a2824",
+    "--color-paper-texture": "rgba(200, 190, 170, 0.03)"
+  }
+}

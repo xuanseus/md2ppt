@@ -1,0 +1,25 @@
+{
+  "name": "celadon",
+  "label": "青瓷·韵",
+  "dark": false,
+  "vars": {
+    "--color-background": "#eef4ee",
+    "--color-foreground": "#2a3830",
+    "--color-muted": "#dfe8e0",
+    "--color-muted-foreground": "#7a8a7e",
+    "--color-border": "#c4d4c8",
+    "--color-accent": "#c84c3c",
+    "--color-accent-foreground": "#f8f4f0",
+    "--color-card": "#f4f8f4",
+    "--color-code-bg": "#1e2822",
+    "--color-code-fg": "#dce8e0",
+    "--color-blockquote-border": "#7a9a80",
+    "--color-heading": "#162018",
+    "--color-h1-from": "#2a3a2e",
+    "--color-h1-to": "#5a7a5e",
+    "--color-seal": "#c84c3c",
+    "--color-ink-light": "#a8c0aa",
+    "--color-ink-wash": "#dae4dc",
+    "--color-paper-texture": "rgba(140, 170, 140, 0.05)"
+  }
+}

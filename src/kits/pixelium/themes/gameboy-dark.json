@@ -1,0 +1,21 @@
+{
+  "name": "gameboy-dark",
+  "label": "GameBoy·暗夜绿",
+  "dark": true,
+  "vars": {
+    "--color-background": "#0f380f",
+    "--color-foreground": "#9bbc0f",
+    "--color-muted": "#184a18",
+    "--color-muted-foreground": "#68a068",
+    "--color-border": "#306230",
+    "--color-accent": "#9bbc0f",
+    "--color-accent-foreground": "#0f380f",
+    "--color-card": "#184a18",
+    "--color-code-bg": "#061a06",
+    "--color-code-fg": "#9bbc0f",
+    "--color-blockquote-border": "#9bbc0f",
+    "--color-heading": "#c4e060",
+    "--color-h1-from": "#9bbc0f",
+    "--color-h1-to": "#68c068"
+  }
+}

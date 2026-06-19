@@ -1,0 +1,25 @@
+{
+  "name": "neon-dark",
+  "label": "全息·霓虹暗夜",
+  "dark": true,
+  "vars": {
+    "--color-background": "#0a0d14",
+    "--color-foreground": "#d4e8f0",
+    "--color-muted": "#101520",
+    "--color-muted-foreground": "#5a7088",
+    "--color-border": "#1a2a40",
+    "--color-accent": "#00d4ff",
+    "--color-accent-foreground": "#0a0d14",
+    "--color-card": "#0f1420",
+    "--color-code-bg": "#060a10",
+    "--color-code-fg": "#00d4ff",
+    "--color-blockquote-border": "#00d4ff",
+    "--color-heading": "#00d4ff",
+    "--color-h1-from": "#00d4ff",
+    "--color-h1-to": "#7c3aed",
+    "--holo-glow": "0 0 20px rgba(0, 212, 255, 0.4), 0 0 60px rgba(0, 212, 255, 0.1)",
+    "--holo-glow-amber": "0 0 20px rgba(255, 180, 0, 0.4), 0 0 60px rgba(255, 180, 0, 0.1)",
+    "--holo-glow-green": "0 0 20px rgba(0, 255, 100, 0.4), 0 0 60px rgba(0, 255, 100, 0.1)",
+    "--holo-border-glow": "0 0 8px rgba(0, 212, 255, 0.3)"
+  }
+}

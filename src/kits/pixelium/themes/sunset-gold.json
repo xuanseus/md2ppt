@@ -1,0 +1,21 @@
+{
+  "name": "sunset-gold",
+  "label": "星露谷·日落金",
+  "dark": false,
+  "vars": {
+    "--color-background": "#fdf0d5",
+    "--color-foreground": "#3a2a1a",
+    "--color-muted": "#f5e0b0",
+    "--color-muted-foreground": "#8a6a3a",
+    "--color-border": "#e8c880",
+    "--color-accent": "#d07020",
+    "--color-accent-foreground": "#fff8f0",
+    "--color-card": "#fff8f0",
+    "--color-code-bg": "#2a1a0a",
+    "--color-code-fg": "#f5e0b0",
+    "--color-blockquote-border": "#d07020",
+    "--color-heading": "#3a1a0a",
+    "--color-h1-from": "#d07020",
+    "--color-h1-to": "#e0a040"
+  }
+}

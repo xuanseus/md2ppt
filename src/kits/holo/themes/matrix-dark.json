@@ -1,0 +1,25 @@
+{
+  "name": "matrix-dark",
+  "label": "全息·矩阵觉醒",
+  "dark": true,
+  "vars": {
+    "--color-background": "#060d06",
+    "--color-foreground": "#c8f0c8",
+    "--color-muted": "#0c140c",
+    "--color-muted-foreground": "#4a6e4a",
+    "--color-border": "#1a2e1a",
+    "--color-accent": "#00ff64",
+    "--color-accent-foreground": "#060d06",
+    "--color-card": "#0a140a",
+    "--color-code-bg": "#030803",
+    "--color-code-fg": "#00ff64",
+    "--color-blockquote-border": "#00ff64",
+    "--color-heading": "#00ff64",
+    "--color-h1-from": "#00ff64",
+    "--color-h1-to": "#00d4ff",
+    "--holo-glow": "0 0 20px rgba(0, 255, 100, 0.4), 0 0 60px rgba(0, 255, 100, 0.1)",
+    "--holo-glow-amber": "0 0 20px rgba(255, 180, 0, 0.4), 0 0 60px rgba(255, 180, 0, 0.1)",
+    "--holo-glow-green": "0 0 24px rgba(0, 255, 100, 0.5), 0 0 70px rgba(0, 255, 100, 0.12)",
+    "--holo-border-glow": "0 0 8px rgba(0, 255, 100, 0.3)"
+  }
+}

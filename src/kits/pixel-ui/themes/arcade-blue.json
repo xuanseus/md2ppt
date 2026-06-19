@@ -1,0 +1,25 @@
+{
+  "name": "arcade-blue",
+  "label": "Arcade Neon Blue",
+  "dark": true,
+  "vars": {
+    "--color-background": "#0a0a2e",
+    "--color-foreground": "#c0d0ff",
+    "--color-muted": "#101038",
+    "--color-muted-foreground": "#7080b8",
+    "--color-border": "#3040a0",
+    "--color-accent": "#4080ff",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#0f0f30",
+    "--color-code-bg": "#050520",
+    "--color-code-fg": "#a0c0ff",
+    "--color-blockquote-border": "#6080ff",
+    "--color-heading": "#80b0ff",
+    "--color-h1-from": "#4080ff",
+    "--color-h1-to": "#c030ff",
+    "--pixel-bg-grid": "#4080ff08",
+    "--pixel-shadow": "#000030",
+    "--pixel-highlight": "#6090ff",
+    "--pixel-scanline": "rgba(0,100,255,0.06)"
+  }
+}

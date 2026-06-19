@@ -34,6 +34,8 @@ declare module 'vue' {
     PixelTransition: typeof import('./src/components/transitions/PixelTransition.vue')['default']
     PresentationDeck: typeof import('./src/layouts/PresentationDeck.vue')['default']
     RotatingText: typeof import('./src/components/text-effects/RotatingText.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     ScrambleText: typeof import('./src/components/text-effects/ScrambleText.vue')['default']
     ShinyText: typeof import('./src/components/text-effects/ShinyText.vue')['default']
     Silk: typeof import('./src/components/backgrounds/Silk.vue')['default']

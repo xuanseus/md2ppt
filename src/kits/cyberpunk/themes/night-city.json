@@ -1,0 +1,21 @@
+{
+  "name": "night-city",
+  "label": "夜之城",
+  "dark": true,
+  "vars": {
+    "--color-background": "#050508",
+    "--color-foreground": "#e0d0ff",
+    "--color-muted": "#111118",
+    "--color-muted-foreground": "#8888aa",
+    "--color-border": "#2a2040",
+    "--color-accent": "#ff00ff",
+    "--color-accent-foreground": "#050508",
+    "--color-card": "#0c0c18",
+    "--color-code-bg": "#020208",
+    "--color-code-fg": "#00ffff",
+    "--color-blockquote-border": "#ff00ff",
+    "--color-heading": "#ff66ff",
+    "--color-h1-from": "#ff00ff",
+    "--color-h1-to": "#00ffff"
+  }
+}

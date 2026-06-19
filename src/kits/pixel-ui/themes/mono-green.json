@@ -1,0 +1,25 @@
+{
+  "name": "mono-green",
+  "label": "Mono Green Phosphor",
+  "dark": true,
+  "vars": {
+    "--color-background": "#0a1a0a",
+    "--color-foreground": "#33ff33",
+    "--color-muted": "#0d220d",
+    "--color-muted-foreground": "#22aa22",
+    "--color-border": "#1a551a",
+    "--color-accent": "#00ff41",
+    "--color-accent-foreground": "#0a1a0a",
+    "--color-card": "#0f280f",
+    "--color-code-bg": "#051005",
+    "--color-code-fg": "#33ff33",
+    "--color-blockquote-border": "#00ff41",
+    "--color-heading": "#66ff66",
+    "--color-h1-from": "#00ff41",
+    "--color-h1-to": "#33cc33",
+    "--pixel-bg-grid": "#33ff3308",
+    "--pixel-shadow": "#003300",
+    "--pixel-highlight": "#66ff66",
+    "--pixel-scanline": "rgba(0,255,0,0.06)"
+  }
+}

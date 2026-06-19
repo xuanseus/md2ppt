@@ -1,0 +1,21 @@
+{
+  "name": "green-terminal",
+  "label": "绿色终端",
+  "dark": true,
+  "vars": {
+    "--color-background": "#000000",
+    "--color-foreground": "#00ff41",
+    "--color-muted": "#061206",
+    "--color-muted-foreground": "#2a8a2a",
+    "--color-border": "#0a3a0a",
+    "--color-accent": "#00ff41",
+    "--color-accent-foreground": "#000000",
+    "--color-card": "#020a02",
+    "--color-code-bg": "#001000",
+    "--color-code-fg": "#00ff41",
+    "--color-blockquote-border": "#00ff41",
+    "--color-heading": "#33ff66",
+    "--color-h1-from": "#00ff41",
+    "--color-h1-to": "#33ff66"
+  }
+}

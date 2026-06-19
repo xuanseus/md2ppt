@@ -136,7 +136,7 @@ VITE_ASSETS_PATH=md/assets
 
 ## 布局类型
 
-在标题后加 `{layout: xxx}` 指定布局，共 12 种：
+在标题后加 `{layout: xxx}` 指定布局，共 11 种：
 
 | 布局 | 用途 |
 |------|------|
@@ -147,7 +147,6 @@ VITE_ASSETS_PATH=md/assets
 | `stats` | 数据大字报 |
 | `quote` | 大段引用 |
 | `code-full` | 代码展示 |
-| `image-grid` | 图片网格 |
 | `media-hero` | 视频 / 大图 |
 | `comparison` | 方案对比（`**粗体**`+`- 列表`） |
 | `timeline` | 时间线 |
@@ -197,6 +196,17 @@ VITE_ASSETS_PATH=md/assets
 <video src="./assets/demo.mp4" controls></video> {layout: media-hero}
 ```
 
+## 模板套件 & 主题
+
+项目内置两套 **PPT 模板套件（Kit）**，底部控制栏一键切换：
+
+| 套件 | 风格 | 背景 |
+|------|------|------|
+| **Realtime Beats** | 现代科技风，WebGL 动态背景，玻璃拟态 | Aurora / Silk / Grainient |
+| **Animal Island** | 自然治愈风，暖调配色，圆角卡片 | 纯 CSS 渐变 |
+
+每个套件自带 4 种配色主题，底部控制栏循环切换。新增套件：`src/kits/` 下新建目录 → `index.ts` 出口 → 注册到 `kits/index.ts`。
+
 ## 快捷键
 
 | 键 | 功能 |
@@ -207,10 +217,6 @@ VITE_ASSETS_PATH=md/assets
 | F | 全屏 |
 | 数字键 | 跳转指定页 |
 | 鼠标滚轮 / 触摸滑动 | 翻页 |
-
-## 主题
-
-`src/themes/` 下为 JSON 格式主题文件。新增主题：复制已有 JSON → 修改色值 → 在 `index.ts` 中注册。
 
 ## 技术栈
 

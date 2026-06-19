@@ -1,0 +1,25 @@
+{
+  "name": "vermillion",
+  "label": "朱砂·印",
+  "dark": true,
+  "vars": {
+    "--color-background": "#1c1614",
+    "--color-foreground": "#d8cec4",
+    "--color-muted": "#261e1a",
+    "--color-muted-foreground": "#9a8a7c",
+    "--color-border": "#3a2e28",
+    "--color-accent": "#d4553c",
+    "--color-accent-foreground": "#faf6f2",
+    "--color-card": "#221a16",
+    "--color-code-bg": "#100c0a",
+    "--color-code-fg": "#d0c6b8",
+    "--color-blockquote-border": "#d4553c",
+    "--color-heading": "#f0e8dc",
+    "--color-h1-from": "#f0e8dc",
+    "--color-h1-to": "#d4553c",
+    "--color-seal": "#d4553c",
+    "--color-ink-light": "#5a4a3c",
+    "--color-ink-wash": "#2e221a",
+    "--color-paper-texture": "rgba(200, 160, 120, 0.04)"
+  }
+}

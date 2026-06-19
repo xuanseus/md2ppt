@@ -1,0 +1,25 @@
+{
+  "name": "neon-light",
+  "label": "全息·极光白昼",
+  "dark": false,
+  "vars": {
+    "--color-background": "#f0f4f8",
+    "--color-foreground": "#0f1a2e",
+    "--color-muted": "#e2e8f0",
+    "--color-muted-foreground": "#4a6078",
+    "--color-border": "#c8d6e5",
+    "--color-accent": "#0088aa",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#ffffff",
+    "--color-code-bg": "#0f1a2e",
+    "--color-code-fg": "#00d4ff",
+    "--color-blockquote-border": "#0088aa",
+    "--color-heading": "#0a2a3d",
+    "--color-h1-from": "#0088aa",
+    "--color-h1-to": "#6c3fc9",
+    "--holo-glow": "0 0 20px rgba(0, 136, 170, 0.2), 0 0 40px rgba(0, 136, 170, 0.05)",
+    "--holo-glow-amber": "0 0 20px rgba(200, 140, 20, 0.2), 0 0 40px rgba(200, 140, 20, 0.05)",
+    "--holo-glow-green": "0 0 20px rgba(0, 160, 80, 0.2), 0 0 40px rgba(0, 160, 80, 0.05)",
+    "--holo-border-glow": "0 0 6px rgba(0, 136, 170, 0.15)"
+  }
+}

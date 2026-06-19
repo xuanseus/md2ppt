@@ -1,0 +1,21 @@
+{
+  "name": "arctic-neon",
+  "label": "极寒霓虹",
+  "dark": true,
+  "vars": {
+    "--color-background": "#061020",
+    "--color-foreground": "#c0e0ff",
+    "--color-muted": "#0d1a30",
+    "--color-muted-foreground": "#5a80aa",
+    "--color-border": "#1a3050",
+    "--color-accent": "#00ccff",
+    "--color-accent-foreground": "#061020",
+    "--color-card": "#0a1830",
+    "--color-code-bg": "#020810",
+    "--color-code-fg": "#00ddff",
+    "--color-blockquote-border": "#00ccff",
+    "--color-heading": "#e0f0ff",
+    "--color-h1-from": "#00ccff",
+    "--color-h1-to": "#ffffff"
+  }
+}

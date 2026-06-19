@@ -10,7 +10,7 @@
 4. 将生成的 `-ppt.md` 设为 `.env` 中的 `VITE_MD_FILE_PATH`
 5. `npm run dev` 预览效果
 
-> 💡 **演讲稿 ≠ 展示稿**：PPT 是视觉锚点不是提词器。12 种布局自动匹配：cover / section / content / two-column / stats / quote / code-full / image-grid / media-hero / comparison / timeline / list
+> 💡 **演讲稿 ≠ 展示稿**：PPT 是视觉锚点不是提词器。11 种布局自动匹配：cover / section / content / two-column / stats / quote / code-full / media-hero / comparison / timeline / list
 
 ## 使用方式
 
@@ -83,14 +83,18 @@ VITE_ASSETS_PATH=md/assets
 | media | 含 `<video>` / `<img>` | `SlideMedia.vue` |
 | content | 默认 | `SlideContent.vue` |
 
-## 主题
+## 模板套件 & 主题
 
-`src/themes/` 目录，JSON 格式。新增主题只需：
+项目内置两套 PPT 模板套件（Kit），底部控制栏一键切换：
 
-1. 复制已有 JSON 文件，修改色值
-2. 在 `index.ts` 中 import 并加入数组
+| 套件 | 风格 | 背景 |
+|------|------|------|
+| **Realtime Beats** | 现代科技风，WebGL 动态背景，玻璃拟态 | Aurora / Silk / Grainient |
+| **Animal Island** | 自然治愈风，暖调配色，圆角卡片 | 纯 CSS 渐变 |
 
-切换顺序 = 数组排列顺序。
+每个套件自带 4 种配色主题，底部控制栏循环切换。
+
+新增套件：`src/kits/` 下新建目录 → `index.ts` 出口 → 注册到 `kits/index.ts`。
 
 ## 快捷键
 

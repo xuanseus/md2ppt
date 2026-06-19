@@ -1,0 +1,25 @@
+{
+  "name": "amber-dark",
+  "label": "全息·琥珀协议",
+  "dark": true,
+  "vars": {
+    "--color-background": "#0d0b08",
+    "--color-foreground": "#f5e6c8",
+    "--color-muted": "#18140e",
+    "--color-muted-foreground": "#8a7555",
+    "--color-border": "#2a2218",
+    "--color-accent": "#ffb400",
+    "--color-accent-foreground": "#0d0b08",
+    "--color-card": "#15120c",
+    "--color-code-bg": "#080604",
+    "--color-code-fg": "#ffb400",
+    "--color-blockquote-border": "#ffb400",
+    "--color-heading": "#ffb400",
+    "--color-h1-from": "#ffb400",
+    "--color-h1-to": "#ff6b35",
+    "--holo-glow": "0 0 20px rgba(255, 180, 0, 0.4), 0 0 60px rgba(255, 180, 0, 0.1)",
+    "--holo-glow-amber": "0 0 20px rgba(255, 180, 0, 0.5), 0 0 60px rgba(255, 180, 0, 0.15)",
+    "--holo-glow-green": "0 0 20px rgba(0, 255, 100, 0.4), 0 0 60px rgba(0, 255, 100, 0.1)",
+    "--holo-border-glow": "0 0 8px rgba(255, 180, 0, 0.3)"
+  }
+}

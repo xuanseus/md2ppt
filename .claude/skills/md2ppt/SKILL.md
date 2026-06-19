@@ -111,20 +111,7 @@ description: 将演讲稿转换为带有布局标记的 PPT Markdown 格式。�
 用户增长率，较去年同期翻倍
 ```
 
-### 6. 图片网格 {layout: image-grid}
-- **使用场景**：多图展示、产品截图、案例展示
-- **内容要求**：2-4 张图片，使用 `![alt](path)` 语法
-- **示例**：
-```markdown
-##### 产品展示 {layout: image-grid}
-
-![产品界面1](./assets/screenshot1.png)
-![产品界面2](./assets/screenshot2.png)
-![产品界面3](./assets/screenshot3.png)
-![产品界面4](./assets/screenshot4.png)
-```
-
-### 7. 引用页 {layout: quote}
+### 6. 引用页 {layout: quote}
 - **使用场景**：重要观点、专家名言、核心论点
 - **内容要求**：居中的大段引用文字
 - **示例**：
@@ -136,7 +123,7 @@ description: 将演讲稿转换为带有布局标记的 PPT Markdown 格式。�
 > 强调核心观点。"
 ```
 
-### 8. 全屏代码 {layout: code-full}
+### 7. 全屏代码 {layout: code-full}
 - **使用场景**：展示代码示例、配置片段
 - **内容要求**：代码块，会自动应用深色主题
 - **示例**：
@@ -151,7 +138,7 @@ function optimize() {
 `​``
 ```
 
-### 9. 媒体大图 {layout: media-hero}
+### 8. 媒体大图 {layout: media-hero}
 - **使用场景**：视频演示、全屏图片展示
 - **🚫 必须同行！** `{layout: media-hero}` 必须写在 `<video>` 或 `<img>` 的**同一行末尾**，换行无效！独立一行会被当普通文本忽略
 - **分页规则**：用 `---` 强制分隔标题和媒体，标题一页 + 媒体一页
@@ -171,7 +158,7 @@ function optimize() {
 {layout: media-hero}
 ```
 
-### 10. 对比页 {layout: comparison}
+### 9. 对比页 {layout: comparison}
 - **使用场景**：Before/After、Pros/Cons、新旧方案对比（红色 ✕ / 绿色 ✓ 图标 + 玻璃卡片样式）
 - **格式**：`{列前副标题}` → `**左列标题**` + `- 列表项` → `**右列标题**` + `- 列表项` → `{列尾总结}`，副标题和总结均为可选
 - **🚫 严禁使用 `---` ！** `comparison` 布局用 `**粗体标题**` 分隔两列，`---` 会强制分页
@@ -194,7 +181,7 @@ function optimize() {
 实际项目中建议根据团队情况灵活选择
 ```
 
-### 11. 时间线 {layout: timeline}
+### 10. 时间线 {layout: timeline}
 - **使用场景**：发展历程、路线图、里程碑
 - **内容要求**：时间节点列表，按时间顺序
 - **示例**：
@@ -207,7 +194,7 @@ function optimize() {
 - **2024 Q4**: 正式发布，全面推广
 ```
 
-### 12. 列表页 {layout: list}
+### 11. 列表页 {layout: list}
 - **使用场景**：特性罗列、优势总结、要点清单
 - **⚠️ 格式要求（严格）**：`- {emoji} {标题}：{描述}` —— emoji 后跟空格+标题，然后**必须用中文冒号 `：` 或英文冒号 `:` 或破折号 `—` 分隔**标题和描述，否则解析失败显示"暂无列表项"
 - **示例**：
@@ -219,6 +206,62 @@ function optimize() {
 - 💡 智能优化：AI 驱动的自动调优
 - 📊 数据分析：实时可视化监控面板
 ```
+
+## 模板套件 & 主题
+
+md2ppt 内置两套 PPT 模板套件（Kit），底部控制栏一键切换：
+
+| 套件 | 风格 | 背景 |
+|------|------|------|
+| **Realtime Beats** | 现代科技风，WebGL 动态背景，玻璃拟态 | Aurora / Silk / Grainient |
+| **Animal Island** | 自然治愈风，暖调配色，圆角卡片 | 纯 CSS 渐变 |
+
+每个套件自带 4 种配色主题，通过底部控制栏的 ☀️/🌙 按钮循环切换。
+
+### 自定义 Kit
+
+用户可以自行添加新的模板套件：
+
+```
+src/kits/
+  my-kit/               # 新建套件目录
+    index.ts             # 出口文件，参考 beats/index.ts
+    templates/           # 12 个 SlideXxx.vue 模板
+    themes/              # 主题 JSON 文件
+```
+
+1. 复制 `src/kits/beats/` 或 `src/kits/animal-island/` 作为模板
+2. 修改 `index.ts` 中的 `id`、`label`、`description`
+3. 替换 `templates/` 下的组件为你自己的设计
+4. 修改 `themes/` 下的 JSON 中 `vars` 色值
+5. 在 `src/kits/index.ts` 的 `kits` 数组中注册
+
+### 自定义主题
+
+每个套件的主题是 JSON 文件，只需覆盖 CSS 变量即可换肤：
+
+```json
+{
+  "name": "my-theme",
+  "label": "我的主题",
+  "dark": false,
+  "vars": {
+    "--color-background": "#ffffff",
+    "--color-foreground": "#1a1a2e",
+    "--color-accent": "#42D392",
+    "--color-muted": "#f4f4f5",
+    "--color-border": "#e4e4e7",
+    "--color-card": "#ffffff",
+    "--color-code-bg": "#2A2A2A",
+    "--color-code-fg": "#EFEFEF",
+    "--color-heading": "#273849",
+    "--color-h1-from": "#42D392",
+    "--color-h1-to": "#647EFF"
+  }
+}
+```
+
+在对应套件的 `index.ts` 中 import 并加入 `themes` 数组即可。
 
 ## 转换原则
 
@@ -275,7 +318,7 @@ function optimize() {
 | 对比分析（列表项、✕/✓ 图标） | `comparison` |
 | 对比分析（自由文本、段落、无列表） | `two-column` |
 | 关键数据 | `stats` |
-| 多图展示 | `image-grid` |
+| 多图展示 | `content`（图片嵌入正文）或 `media-hero`（大图） |
 | 重要观点 | `quote` |
 | 代码演示 | `code-full` |
 | 视频/大图 | `media-hero` |

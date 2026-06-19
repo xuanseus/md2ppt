@@ -1,6 +1,11 @@
 import type { KitDef } from './types'
 import { beatsKit } from './beats'
 import { animalIslandKit } from './animal-island'
+import { holoKit } from './holo'
+import { pixeliumKit } from './pixelium'
+import { shuimoKit } from './shuimo'
+import { cyberpunkKit } from './cyberpunk'
+import { pixelUiKit } from './pixel-ui'
 
 export type { KitDef }
 
@@ -8,6 +13,11 @@ export type { KitDef }
 export const kits: KitDef[] = [
   beatsKit,
   animalIslandKit,
+  holoKit,
+  pixeliumKit,
+  shuimoKit,
+  cyberpunkKit,
+  pixelUiKit,
 ]
 
 /** 默认套件 */

@@ -1,6 +1,6 @@
 # 排版字体测试 {layout: cover}
 
-本文件覆盖所有 12 种布局模板，用于验证字体大小分配是否合理。
+本文件覆盖所有 11 种布局模板，用于验证字体大小分配是否合理。
 
 ---
 
@@ -68,15 +68,6 @@ def hello():
 
 ---
 
-#### 图片网格 {layout: image-grid}
-
-![示例图片1](./assets/img.png)
-![示例图片2](./assets/img.png)
-![示例图片3](./assets/img.png)
-![示例图片4](./assets/img.png)
-
----
-
 ### 对比页 {layout: comparison}
 
 新旧方案全方位对比，帮你快速做出技术选型决策
@@ -121,7 +112,13 @@ def hello():
 
 ---
 
-## 媒体大图 {layout: section}
+### 图片展示 {layout: content}
+
+图片直接嵌入正文，content 布局自动处理排版：
+
+![示例图片](./assets/img.png)
+
+多张图片自然排列，无需单独模板。
 
 ---
 
@@ -131,4 +128,4 @@ def hello():
 
 ### 结束页 {layout: cover}
 
-感谢观看，所有 12 种布局类型测试完毕。
+感谢观看，所有 11 种布局类型测试完毕。

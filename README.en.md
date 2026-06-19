@@ -136,7 +136,7 @@ VITE_ASSETS_PATH=md/assets
 
 ## Layout Types
 
-Add `{layout: xxx}` after a heading to specify layout. 12 types available:
+Add `{layout: xxx}` after a heading to specify layout. 11 types available:
 
 | Layout | Use case |
 |--------|----------|
@@ -147,7 +147,6 @@ Add `{layout: xxx}` after a heading to specify layout. 12 types available:
 | `stats` | Big-number highlight |
 | `quote` | Blockquote showcase |
 | `code-full` | Code display |
-| `image-grid` | Image gallery |
 | `media-hero` | Video / hero image |
 | `comparison` | Before/after (`**bold**` + `- list`) |
 | `timeline` | Milestone roadmap |
@@ -187,6 +186,17 @@ Media example (title + `---` break + media line tag):
 <video src="./assets/demo.mp4" controls></video> {layout: media-hero}
 ```
 
+## Template Kits & Themes
+
+Two built-in **PPT template kits**, switchable via bottom toolbar:
+
+| Kit | Style | Background |
+|-----|-------|------------|
+| **Realtime Beats** | Modern tech, WebGL backgrounds, glassmorphism | Aurora / Silk / Grainient |
+| **Animal Island** | Nature-inspired, warm palette, rounded cards | Pure CSS gradients |
+
+Each kit comes with 4 color themes, cyclable via toolbar. To add a kit: create directory under `src/kits/` → add `index.ts` → register in `kits/index.ts`.
+
 ## Keyboard Shortcuts
 
 | Key | Action |
@@ -197,10 +207,6 @@ Media example (title + `---` break + media line tag):
 | F | Fullscreen |
 | Number keys | Jump to slide |
 | Scroll / touch swipe | Navigate |
-
-## Themes
-
-JSON theme files live in `src/themes/`. To add one: duplicate an existing JSON → tweak colors → register in `index.ts`.
 
 ## Tech Stack
 

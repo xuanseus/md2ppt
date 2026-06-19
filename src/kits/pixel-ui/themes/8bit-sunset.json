@@ -1,0 +1,25 @@
+{
+  "name": "8bit-sunset",
+  "label": "8-bit Sunset",
+  "dark": false,
+  "vars": {
+    "--color-background": "#fcf0d8",
+    "--color-foreground": "#4a2c2c",
+    "--color-muted": "#f5e0b8",
+    "--color-muted-foreground": "#8a6e4e",
+    "--color-border": "#d4883c",
+    "--color-accent": "#d84030",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#fef8ee",
+    "--color-code-bg": "#2d1f10",
+    "--color-code-fg": "#ffe8a0",
+    "--color-blockquote-border": "#e89020",
+    "--color-heading": "#8b2020",
+    "--color-h1-from": "#e85020",
+    "--color-h1-to": "#f0a030",
+    "--pixel-bg-grid": "#f5e0b833",
+    "--pixel-shadow": "#b06020",
+    "--pixel-highlight": "#ffe8b0",
+    "--pixel-scanline": "rgba(0,0,0,0.04)"
+  }
+}

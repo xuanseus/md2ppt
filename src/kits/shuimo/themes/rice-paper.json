@@ -1,0 +1,25 @@
+{
+  "name": "rice-paper",
+  "label": "宣纸·素",
+  "dark": false,
+  "vars": {
+    "--color-background": "#f5f0e8",
+    "--color-foreground": "#3a3228",
+    "--color-muted": "#ebe4d6",
+    "--color-muted-foreground": "#8a8070",
+    "--color-border": "#d4ccc0",
+    "--color-accent": "#c84c3c",
+    "--color-accent-foreground": "#f8f4f0",
+    "--color-card": "#faf6ee",
+    "--color-code-bg": "#2a2520",
+    "--color-code-fg": "#e8e0d4",
+    "--color-blockquote-border": "#b8a898",
+    "--color-heading": "#1e1a14",
+    "--color-h1-from": "#3a3228",
+    "--color-h1-to": "#6a5c48",
+    "--color-seal": "#c84c3c",
+    "--color-ink-light": "#b8a898",
+    "--color-ink-wash": "#e8e0d4",
+    "--color-paper-texture": "rgba(180, 160, 130, 0.06)"
+  }
+}
