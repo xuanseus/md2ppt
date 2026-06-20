@@ -120,10 +120,14 @@ const parsed = computed(() => {
             <div class="cp-tl-playhead-line" />
           </div>
 
-          <!-- 时间刻度标签 -->
+          <!-- 时间刻度标签 — 对齐卡片位置 -->
           <div class="cp-tl-ticks">
-            <span v-for="entry in parsed.entries" :key="entry.date" class="cp-mono cp-tl-tick" v-show="false" />
-            <div v-for="n in 5" :key="n" class="cp-mono cp-tl-tick-label" :style="{ left: (n * 20) + '%' }">T+{{ n * 10 }}</div>
+            <div
+              v-for="(entry, i) in parsed.entries"
+              :key="entry.date"
+              class="cp-mono cp-tl-tick-label"
+              :style="{ left: ((i / Math.max(parsed.entries.length - 1, 1)) * 100) + '%' }"
+            >{{ entry.date }}</div>
           </div>
         </div>
 

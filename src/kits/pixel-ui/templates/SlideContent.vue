@@ -212,16 +212,11 @@ defineProps<{ slide: Slide }>()
 .px-content-prose :deep(code) {
   padding: 0.1rem 0.4rem;
   font-size: 0.85em;
-  background: var(--color-muted);
-  color: var(--color-accent);
   font-family: 'Fira Code', 'JetBrains Mono', monospace;
   image-rendering: pixelated;
 }
 .px-content-prose :deep(pre) {
-  border: 4px solid var(--color-border);
   overflow-x: auto;
-  image-rendering: pixelated;
-  box-shadow: 4px 4px 0 var(--pixel-shadow);
 }
 .px-content-prose :deep(a) {
   color: var(--color-accent);
@@ -229,15 +224,13 @@ defineProps<{ slide: Slide }>()
   border-bottom: 2px solid var(--color-accent);
   image-rendering: pixelated;
 }
-.px-content-prose :deep(img) {
-  max-width: 90%;
-  max-height: 40vh;
-  display: block;
-  margin: 0.75rem auto;
-  image-rendering: pixelated;
-  border: 4px solid var(--color-border);
-  box-shadow: 4px 4px 0 var(--pixel-shadow);
-}
+px-content-prose :deep(img) {
+    max-width: 60%;
+    max-height: 40vh;
+    display: block;
+    margin: 1rem auto;
+    object-fit: contain;
+  }
 .px-content-prose :deep(strong) {
   font-weight: 700;
   color: var(--color-accent);

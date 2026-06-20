@@ -44,7 +44,7 @@ defineProps<{ slide: Slide }>()
         <span class="cp-mono" style="color: var(--color-foreground)">:</span>
         <span class="cp-mono" style="color: var(--color-accent)">~/chapters</span>
         <span class="cp-mono" style="color: var(--color-foreground)">$ </span>
-        <span class="cp-mono" style="color: var(--color-heading)">cat CHAPTER_{{ String(slide.index + 1).padStart(2, '0') }}.md</span>
+        <span class="cp-mono" style="color: var(--color-heading)">cat CHAPTER_{{ String(slide.index + 1).padStart(2, '0') }}</span>
         <span class="cp-cursor-blink cp-mono" style="color: var(--color-accent)">█</span>
       </div>
 
@@ -118,6 +118,13 @@ defineProps<{ slide: Slide }>()
   font-family: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', ui-monospace, monospace;
   text-shadow: 0 0 50px var(--color-accent), 0 0 100px color-mix(in srgb, var(--color-accent) 30%, transparent);
   text-transform: uppercase;
+}
+
+.cp-section-sub :deep(h1),
+.cp-section-sub :deep(h2),
+.cp-section-sub :deep(h3),
+.cp-section-sub :deep(h4) {
+  display: none;
 }
 
 .cp-section-sub :deep(p) {

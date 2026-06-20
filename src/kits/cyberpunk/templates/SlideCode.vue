@@ -1,17 +1,56 @@
 <script setup lang="ts">
 import type { Slide } from '../../../types/slides'
+import { computed } from 'vue'
 
-defineProps<{ slide: Slide }>()
+const props = defineProps<{ slide: Slide }>()
+
+const LANG_DISPLAY: Record<string, string> = {
+  javascript: 'JavaScript ES2024',
+  typescript: 'TypeScript 5.x',
+  python: 'Python 3.11',
+  bash: 'Bash',
+  shell: 'Shell',
+  powershell: 'PowerShell 7',
+  html: 'HTML5',
+  css: 'CSS3',
+  json: 'JSON',
+  markdown: 'Markdown',
+  java: 'Java 21',
+  go: 'Go 1.x',
+  rust: 'Rust',
+  c: 'C11',
+  cpp: 'C++20',
+  csharp: 'C# 12',
+  swift: 'Swift 6',
+  kotlin: 'Kotlin 2.x',
+  ruby: 'Ruby 3.x',
+  php: 'PHP 8.x',
+  sql: 'SQL',
+  yaml: 'YAML',
+  xml: 'XML',
+  dockerfile: 'Docker',
+  diff: 'Diff',
+  vue: 'Vue 3 SFC',
+  svelte: 'Svelte 5',
+  makefile: 'Makefile',
+}
+
+const codeLang = computed(() => {
+  const match = props.slide.rawMd.match(/^```(\w+)/m)
+  if (!match) return ''
+  const lang = match[1].toLowerCase()
+  return LANG_DISPLAY[lang] || lang
+})
 </script>
 
 <template>
-  <div class="cp-code w-full h-full" style="background: #020208">
+  <div class="cp-code w-full h-full" style="background: var(--color-background)">
     <!-- 背景矩阵雨效果 -->
     <div class="cp-matrix-bg" />
 
     <!-- ═══ 终端窗口 ═══ -->
     <div class="relative z-10 w-full h-full flex items-center justify-center" style="padding: 2rem 3rem">
-      <div class="cp-terminal-window" style="width: 100%; max-width: 960px; max-height: 90%; overflow: hidden">
+      <div class="cp-terminal-window" style="width: 100%; max-width: 960px; overflow: hidden">
         <!-- 终端标题栏 -->
         <div class="cp-term-titlebar">
           <!-- 红绿灯 -->
@@ -28,16 +67,7 @@ defineProps<{ slide: Slide }>()
           </div>
         </div>
 
-        <!-- 命令栏 -->
-        <div class="cp-term-cmdbar">
-          <span class="cp-mono" style="color: #00ff88">root@system</span>
-          <span class="cp-mono" style="color: var(--color-foreground)">:</span>
-          <span class="cp-mono" style="color: var(--color-accent)">~/src</span>
-          <span class="cp-mono" style="color: var(--color-foreground)">$ </span>
-          <span class="cp-mono cp-cmd-cursor" style="color: var(--color-accent)">cat source.py █</span>
-        </div>
-
-        <!-- ═══ 代码区：带行号 + 滚动条 ═══ -->
+        <!-- ═══ 代码区：带行号 ═══ -->
         <div class="cp-term-body" style="position: relative">
           <!-- 行号列 -->
           <div class="cp-line-numbers">
@@ -46,12 +76,6 @@ defineProps<{ slide: Slide }>()
 
           <!-- 代码内容 -->
           <div v-html="slide.html" class="cp-code-prose" />
-
-          <!-- 底部闪烁光标 -->
-          <div class="cp-cursor-line">
-            <span class="cp-mono cp-line-num" style="color: var(--color-muted-foreground); margin-right: 1rem; opacity: 0.4">{{ 25 }}</span>
-            <span class="cp-cursor-blink cp-mono" style="color: var(--color-accent)">█</span>
-          </div>
         </div>
 
         <!-- 底部状态栏 -->
@@ -59,12 +83,12 @@ defineProps<{ slide: Slide }>()
           <div class="flex gap-4">
             <span class="cp-mono cp-status-item" style="color: var(--color-muted-foreground)">UTF-8</span>
             <span class="cp-mono cp-status-item" style="color: var(--color-muted-foreground)">LF</span>
-            <span class="cp-mono cp-status-item" style="color: var(--color-muted-foreground)">Python 3.11</span>
+            <span class="cp-mono cp-status-item" style="color: var(--color-muted-foreground)">{{ codeLang || 'Plain Text' }}</span>
           </div>
           <div class="flex gap-4">
             <span class="cp-mono cp-status-item" style="color: var(--color-accent)">Ln 24, Col 1</span>
             <span class="cp-mono cp-status-item" style="color: var(--color-muted-foreground)">Spaces: 4</span>
-            <span class="cp-mono cp-status-item" style="color: #00ff88">● SYNTAX OK</span>
+            <span class="cp-mono cp-status-item" style="color: var(--color-accent)">● SYNTAX OK</span>
           </div>
         </div>
       </div>
@@ -85,8 +109,8 @@ defineProps<{ slide: Slide }>()
     repeating-linear-gradient(180deg,
       transparent 0,
       transparent 40px,
-      rgba(0, 255, 65, 0.5) 40px,
-      rgba(0, 255, 65, 0.5) 42px,
+      color-mix(in srgb, var(--color-accent) 50%, transparent) 40px,
+      color-mix(in srgb, var(--color-accent) 50%, transparent) 42px,
       transparent 42px,
       transparent 80px
     );
@@ -100,7 +124,7 @@ defineProps<{ slide: Slide }>()
 
 /* 终端窗口 */
 .cp-terminal-window {
-  background: color-mix(in srgb, var(--color-code-bg) 95%, #000);
+  background: color-mix(in srgb, #282a36 95%, #000);
   border: 1px solid var(--color-border);
   border-radius: 6px;
   box-shadow: 0 0 40px color-mix(in srgb, var(--color-accent) 10%, transparent), 0 0 80px color-mix(in srgb, var(--color-accent) 5%, transparent);
@@ -122,27 +146,10 @@ defineProps<{ slide: Slide }>()
 .cp-terminate-btn { width: 12px; height: 12px; border-radius: 50%; }
 .cp-term-title { font-size: 0.65rem; color: var(--color-muted-foreground); opacity: 0.7; }
 
-/* 命令栏 */
-.cp-term-cmdbar {
-  padding: 0.5rem 1rem;
-  font-size: 0.75rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
-  background: color-mix(in srgb, var(--color-muted) 30%, transparent);
-}
-
-.cp-cmd-cursor { animation: cp-cursor 1s step-end infinite; }
-
-@keyframes cp-cursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
 /* 终端 body */
 .cp-term-body {
-  flex: 1;
   display: flex;
   padding: 0.75rem 0;
-  overflow-y: auto;
   position: relative;
 }
 
@@ -198,18 +205,6 @@ defineProps<{ slide: Slide }>()
 .cp-code-prose :deep(p) {
   display: none;
 }
-
-/* 光标行 */
-.cp-cursor-line {
-  display: flex;
-  align-items: center;
-  padding: 0 0.75rem;
-  padding-right: 1rem;
-  font-size: var(--fs-caption);
-  background: color-mix(in srgb, var(--color-accent) 5%, transparent);
-}
-
-.cp-cursor-blink { animation: cp-cursor 1s step-end infinite; }
 
 /* 底部状态栏 */
 .cp-term-statusbar {

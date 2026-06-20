@@ -6,10 +6,19 @@ defineProps<{ slide: Slide }>()
 
 <template>
   <div class="ai-media flex items-center justify-center w-full h-full" style="background: var(--color-background)">
-    <!-- 边框装饰 -->
-    <div class="absolute inset-4 rounded-3xl border-2 pointer-events-none opacity-15" style="border-color: var(--color-accent)" />
+    <!-- 外圆角边框 -->
+    <div class="absolute inset-5 rounded-[24px] border-2 pointer-events-none opacity-15" style="border-color: var(--color-accent)" />
 
-    <div class="relative z-10 w-full h-full flex items-center justify-center p-8">
+    <!-- 内圆角边框 -->
+    <div class="absolute inset-8 rounded-[18px] border pointer-events-none opacity-10" style="border-color: var(--color-accent); border-style: dashed;" />
+
+    <!-- 四角装饰圆点 -->
+    <div class="absolute top-4 left-4 w-3 h-3 rounded-full opacity-25" style="background: var(--color-accent)" />
+    <div class="absolute top-4 right-4 w-3 h-3 rounded-full opacity-25" style="background: var(--color-accent)" />
+    <div class="absolute bottom-4 left-4 w-3 h-3 rounded-full opacity-25" style="background: var(--color-accent)" />
+    <div class="absolute bottom-4 right-4 w-3 h-3 rounded-full opacity-25" style="background: var(--color-accent)" />
+
+    <div class="relative z-10 w-full h-full flex items-center justify-center p-10">
       <div v-html="slide.html" class="ai-media-content" />
     </div>
   </div>
@@ -17,19 +26,16 @@ defineProps<{ slide: Slide }>()
 
 <style scoped>
 .ai-media-content :deep(video) {
-  width: 100vw;
-  height: 100vh;
+  max-width: 100%;
+  max-height: 65vh;
   object-fit: contain;
   display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  border-radius: var(--animal-border-radius-base, 18px);
 }
 
 .ai-media-content :deep(img) {
-  max-width: 95%;
-  max-height: 85vh;
+  max-width: 90%;
+  max-height: 65vh;
   display: block;
   margin: 0 auto;
   border-radius: var(--animal-border-radius-base, 18px);

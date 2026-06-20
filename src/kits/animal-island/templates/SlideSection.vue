@@ -46,6 +46,13 @@ defineProps<{ slide: Slide }>()
   font-family: var(--animal-font-family, inherit);
 }
 
+.ai-section-sub :deep(h1),
+.ai-section-sub :deep(h2),
+.ai-section-sub :deep(h3),
+.ai-section-sub :deep(h4) {
+  display: none;
+}
+
 .ai-section-sub :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

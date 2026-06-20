@@ -11,8 +11,8 @@
   --color-accent: #42D392;
   --color-accent-foreground: #ffffff;
   --color-card: #ffffff;
-  --color-code-bg: #2A2A2A;
-  --color-code-fg: #EFEFEF;
+  --color-code-bg: #282a36;
+  --color-code-fg: #f8f8f2;
   --color-blockquote-border: #42B883;
   --color-heading: #273849;
   --color-h1-from: #42D392;
@@ -28,8 +28,8 @@
   --color-accent: #42B883;
   --color-accent-foreground: #1a1a1a;
   --color-card: #1e1e1e;
-  --color-code-bg: #101215;
-  --color-code-fg: rgba(255, 255, 255, 0.8);
+  --color-code-bg: #282a36;
+  --color-code-fg: #f8f8f2;
   --color-blockquote-border: #42B883;
   --color-heading: rgba(255, 255, 255, 0.85);
   --color-h1-from: #42D392;
@@ -207,7 +207,7 @@
     background: transparent;
     margin: 0;
     font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: var(--fs-caption);
+    font-size: 0.875rem;
     line-height: 1.6;
   }
 
@@ -220,7 +220,7 @@
   .shiki {
     background: transparent !important;
     counter-reset: line;
-    font-size: var(--fs-caption);
+    font-size: 0.875rem;
   }
 
   .shiki code {
@@ -229,6 +229,27 @@
 
   .shiki .line {
     display: block;
+  }
+
+  /* 代码块统一滚动条 — 细窄不抢眼 */
+  .code-block-wrapper ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  .code-block-wrapper ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .code-block-wrapper ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 2px;
+  }
+  .code-block-wrapper ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  /* Firefox 细滚动条 */
+  .code-block-wrapper * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
   }
 
   .slide-content video {

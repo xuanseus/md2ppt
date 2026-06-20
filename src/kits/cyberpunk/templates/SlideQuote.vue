@@ -5,12 +5,12 @@ defineProps<{ slide: Slide }>()
 </script>
 
 <template>
-  <div class="cp-quote w-full h-full" style="background: #000a00">
+  <div class="cp-quote w-full h-full" style="background: var(--color-background)">
     <!-- 密集扫描线 -->
     <div class="absolute inset-0 pointer-events-none z-0 cp-phosphor-scan" />
 
     <!-- 绿色荧光屏边框 -->
-    <div class="absolute inset-4 pointer-events-none" style="border: 1px solid rgba(0, 255, 65, 0.2); box-shadow: inset 0 0 60px rgba(0, 255, 65, 0.05)" />
+    <div class="absolute inset-4 pointer-events-none" style="border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent); box-shadow: inset 0 0 60px color-mix(in srgb, var(--color-accent) 5%, transparent)" />
 
     <!-- 四角 bracket — 磷光绿 -->
     <div class="absolute top-6 left-6 w-10 h-10 pointer-events-none cp-phosphor-bracket-tl" />
@@ -24,11 +24,11 @@ defineProps<{ slide: Slide }>()
       <div class="cp-transmission-header">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-3">
-            <span class="cp-mono text-sm cp-phosphor-blink" style="color: #00ff41">⬡</span>
-            <span class="cp-mono" style="font-size: 0.7rem; color: #00ff41; letter-spacing: 0.15em">DECRYPTED MESSAGE</span>
+            <span class="cp-mono text-sm cp-phosphor-blink" style="color: var(--color-accent)">⬡</span>
+            <span class="cp-mono" style="font-size: 0.7rem; color: var(--color-accent); letter-spacing: 0.15em">DECRYPTED MESSAGE</span>
           </div>
-          <div class="cp-mono" style="font-size: 0.6rem; color: rgba(0, 255, 65, 0.5)">
-            CLASSIFICATION: <span style="color: #00ff41">OMEGA-BLACK</span>
+          <div class="cp-mono" style="font-size: 0.6rem; color: color-mix(in srgb, var(--color-accent) 50%, transparent)">
+            CLASSIFICATION: <span style="color: var(--color-accent)">OMEGA-BLACK</span>
           </div>
         </div>
         <div class="cp-header-line mt-2" />
@@ -38,7 +38,7 @@ defineProps<{ slide: Slide }>()
       <div class="flex-1 flex items-center justify-center" style="padding: 2rem 0">
         <div class="cp-transmission-body">
           <!-- 左侧传输标签 -->
-          <div class="cp-mono cp-label-left" style="font-size: 0.5rem; color: rgba(0, 255, 65, 0.3)">
+          <div class="cp-mono cp-label-left" style="font-size: 0.5rem; color: color-mix(in srgb, var(--color-accent) 30%, transparent)">
             SRC: NODE_7F.33.01<br/>
             ENC: AES-256<br/>
             CHK: VALID
@@ -46,13 +46,13 @@ defineProps<{ slide: Slide }>()
 
           <!-- 引文内容 — 绿色磷光 -->
           <div class="cp-quote-text-wrap">
-            <div class="cp-quote-marker cp-mono" style="color: rgba(0, 255, 65, 0.4)">BEGIN TRANSMISSION</div>
+            <div class="cp-quote-marker cp-mono" style="color: color-mix(in srgb, var(--color-accent) 40%, transparent)">BEGIN TRANSMISSION</div>
             <div v-html="slide.html" class="cp-quote-prose" />
-            <div class="cp-quote-marker cp-mono mt-3" style="color: rgba(0, 255, 65, 0.4)">END TRANSMISSION</div>
+            <div class="cp-quote-marker cp-mono mt-3" style="color: color-mix(in srgb, var(--color-accent) 40%, transparent)">END TRANSMISSION</div>
           </div>
 
           <!-- 右侧传输标签 -->
-          <div class="cp-mono cp-label-right" style="font-size: 0.5rem; color: rgba(0, 255, 65, 0.3)">
+          <div class="cp-mono cp-label-right" style="font-size: 0.5rem; color: color-mix(in srgb, var(--color-accent) 30%, transparent)">
             DST: NODE_9C.7A.02<br/>
             DEC: 0.003ms<br/>
             SIG: +12dB
@@ -64,7 +64,7 @@ defineProps<{ slide: Slide }>()
       <div class="cp-signature-bar">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-4">
-            <span class="cp-mono" style="font-size: 0.55rem; color: rgba(0, 255, 65, 0.4)">SIGNAL</span>
+            <span class="cp-mono" style="font-size: 0.55rem; color: color-mix(in srgb, var(--color-accent) 40%, transparent)">SIGNAL</span>
             <div class="cp-signal-strength">
               <div v-for="n in 8" :key="n" class="cp-signal-block cp-signal-anim" :style="{
                 height: (n * 10 + 4) + '%',
@@ -72,14 +72,14 @@ defineProps<{ slide: Slide }>()
                 animationDelay: (n * 0.1) + 's'
               }" />
             </div>
-            <span class="cp-mono" style="font-size: 0.55rem; color: #00ff41">98%</span>
+            <span class="cp-mono" style="font-size: 0.55rem; color: var(--color-accent)">98%</span>
           </div>
           <div class="flex items-center gap-4">
-            <span class="cp-mono" style="font-size: 0.55rem; color: rgba(0, 255, 65, 0.4)">NOISE</span>
+            <span class="cp-mono" style="font-size: 0.55rem; color: color-mix(in srgb, var(--color-accent) 40%, transparent)">NOISE</span>
             <div class="cp-noise-wave">
               <div v-for="n in 6" :key="n" class="cp-noise-dot cp-noise-anim" :style="{ animationDelay: (n * 0.15) + 's' }" />
             </div>
-            <span class="cp-mono" style="font-size: 0.55rem; color: rgba(0, 255, 65, 0.6)">0.02%</span>
+            <span class="cp-mono" style="font-size: 0.55rem; color: color-mix(in srgb, var(--color-accent) 60%, transparent)">0.02%</span>
           </div>
         </div>
       </div>
@@ -96,15 +96,15 @@ defineProps<{ slide: Slide }>()
 /* 磷光扫描线 — 更密的绿色 CRT 感 */
 .cp-phosphor-scan {
   background:
-    repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0, 255, 65, 0.03) 1px, rgba(0, 255, 65, 0.03) 2px),
-    repeating-linear-gradient(90deg, transparent, transparent 120px, rgba(0, 255, 65, 0.01) 120px, rgba(0, 255, 65, 0.01) 121px);
+    repeating-linear-gradient(0deg, transparent, transparent 1px, color-mix(in srgb, var(--color-accent) 3%, transparent) 1px, color-mix(in srgb, var(--color-accent) 3%, transparent) 2px),
+    repeating-linear-gradient(90deg, transparent, transparent 120px, color-mix(in srgb, var(--color-accent) 1%, transparent) 120px, color-mix(in srgb, var(--color-accent) 1%, transparent) 121px);
 }
 
 /* Phosphor brackets */
-.cp-phosphor-bracket-tl { border-top: 2px solid rgba(0, 255, 65, 0.5); border-left: 2px solid rgba(0, 255, 65, 0.5); box-shadow: -1px -1px 8px rgba(0, 255, 65, 0.2); }
-.cp-phosphor-bracket-tr { border-top: 2px solid rgba(0, 255, 65, 0.5); border-right: 2px solid rgba(0, 255, 65, 0.5); box-shadow: 1px -1px 8px rgba(0, 255, 65, 0.2); }
-.cp-phosphor-bracket-bl { border-bottom: 2px solid rgba(0, 255, 65, 0.5); border-left: 2px solid rgba(0, 255, 65, 0.5); box-shadow: -1px 1px 8px rgba(0, 255, 65, 0.2); }
-.cp-phosphor-bracket-br { border-bottom: 2px solid rgba(0, 255, 65, 0.5); border-right: 2px solid rgba(0, 255, 65, 0.5); box-shadow: 1px 1px 8px rgba(0, 255, 65, 0.2); }
+.cp-phosphor-bracket-tl { border-top: 2px solid color-mix(in srgb, var(--color-accent) 50%, transparent); border-left: 2px solid color-mix(in srgb, var(--color-accent) 50%, transparent); box-shadow: -1px -1px 8px color-mix(in srgb, var(--color-accent) 20%, transparent); }
+.cp-phosphor-bracket-tr { border-top: 2px solid color-mix(in srgb, var(--color-accent) 50%, transparent); border-right: 2px solid color-mix(in srgb, var(--color-accent) 50%, transparent); box-shadow: 1px -1px 8px color-mix(in srgb, var(--color-accent) 20%, transparent); }
+.cp-phosphor-bracket-bl { border-bottom: 2px solid color-mix(in srgb, var(--color-accent) 50%, transparent); border-left: 2px solid color-mix(in srgb, var(--color-accent) 50%, transparent); box-shadow: -1px 1px 8px color-mix(in srgb, var(--color-accent) 20%, transparent); }
+.cp-phosphor-bracket-br { border-bottom: 2px solid color-mix(in srgb, var(--color-accent) 50%, transparent); border-right: 2px solid color-mix(in srgb, var(--color-accent) 50%, transparent); box-shadow: 1px 1px 8px color-mix(in srgb, var(--color-accent) 20%, transparent); }
 
 .cp-phosphor-blink { animation: cp-phosphor-blink 4s step-end infinite; }
 
@@ -116,7 +116,7 @@ defineProps<{ slide: Slide }>()
 /* 头部线 */
 .cp-header-line {
   height: 2px;
-  background: repeating-linear-gradient(90deg, #00ff41 0, #00ff41 4px, transparent 4px, transparent 8px);
+  background: repeating-linear-gradient(90deg, var(--color-accent) 0, var(--color-accent) 4px, transparent 4px, transparent 8px);
   opacity: 0.4;
 }
 
@@ -148,7 +148,7 @@ defineProps<{ slide: Slide }>()
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  color: rgba(0, 255, 65, 0.6);
+  color: color-mix(in srgb, var(--color-accent) 60%, transparent);
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -161,9 +161,9 @@ defineProps<{ slide: Slide }>()
   font-style: normal;
   border: none;
   margin: 0;
-  color: #00ff41;
+  color: var(--color-accent);
   font-family: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', ui-monospace, monospace;
-  text-shadow: 0 0 15px #00ff41, 0 0 40px rgba(0, 255, 65, 0.5);
+  text-shadow: 0 0 15px var(--color-accent), 0 0 40px color-mix(in srgb, var(--color-accent) 50%, transparent);
 }
 
 /* 信号强度 */
@@ -176,9 +176,9 @@ defineProps<{ slide: Slide }>()
 
 .cp-signal-block {
   width: 4px;
-  background: #00ff41;
+  background: var(--color-accent);
   border-radius: 1px 1px 0 0;
-  box-shadow: 0 0 4px #00ff41;
+  box-shadow: 0 0 4px var(--color-accent);
 }
 
 .cp-signal-anim { animation: cp-signal-pulse 2s ease-in-out infinite; }
@@ -194,9 +194,9 @@ defineProps<{ slide: Slide }>()
 .cp-noise-dot {
   width: 2px;
   height: 6px;
-  background: #00ff41;
+  background: var(--color-accent);
   opacity: 0.5;
-  box-shadow: 0 0 3px #00ff41;
+  box-shadow: 0 0 3px var(--color-accent);
 }
 
 .cp-noise-anim { animation: cp-noise-flicker 0.8s ease-in-out infinite; }
@@ -213,8 +213,8 @@ defineProps<{ slide: Slide }>()
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.5), 0 2px 6px rgba(0, 255, 65, 0.1);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent) 30%, transparent), transparent);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent) 50%, transparent), 0 2px 6px rgba(0, 255, 65, 0.1);
   animation: cp-scan-beam 4s linear infinite;
   pointer-events: none;
 }
@@ -225,7 +225,7 @@ defineProps<{ slide: Slide }>()
 }
 
 .cp-signature-bar {
-  border-top: 1px solid rgba(0, 255, 65, 0.15);
+  border-top: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
   padding-top: 1rem;
 }
 </style>

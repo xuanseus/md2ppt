@@ -51,7 +51,7 @@ const parsed = computed(() => {
       style="background: radial-gradient(ellipse, var(--color-foreground) 0%, transparent 70%)" />
 
     <!-- 标题区 — 左上方 -->
-    <div v-if="slide.title" class="absolute top-8 left-8 z-20">
+    <div v-if="slide.title" class="absolute z-20" style="top: 8%; left: 16%;">
       <h2 style="font-size: var(--fs-h2); font-weight: 700; color: var(--color-heading); font-family: 'Noto Serif SC', 'STSong', Georgia, serif; letter-spacing: 0.08em;">
         {{ slide.title }}
       </h2>
@@ -59,8 +59,7 @@ const parsed = computed(() => {
         style="background: linear-gradient(90deg, var(--color-foreground), transparent)" />
     </div>
 
-    <div v-if="parsed.subtitle" class="absolute top-28 left-8 z-20" v-html="parsed.subtitle"
-      style="font-size: var(--fs-body-sm); color: var(--color-muted-foreground); font-family: 'Noto Serif SC', 'STKaiti', 'KaiTi', Georgia, serif; opacity: 0.5;" />
+    <div v-if="parsed.subtitle" class="absolute z-20" style="top: 20%; left: 16%; font-size: var(--fs-body-sm); color: var(--color-muted-foreground); font-family: 'Noto Serif SC', 'STKaiti', 'KaiTi', Georgia, serif; opacity: 0.5;" v-html="parsed.subtitle" />
 
     <!-- 时间线布局：条目向左扇出 + 右侧竖线轨道 -->
     <div class="sm-timeline-layout">
@@ -102,8 +101,7 @@ const parsed = computed(() => {
       （暂无时间线条目）
     </p>
 
-    <div v-if="parsed.afterText" class="absolute bottom-6 left-8 z-20" v-html="parsed.afterText"
-      style="font-size: var(--fs-caption); color: var(--color-muted-foreground); font-family: 'Noto Serif SC', 'STKaiti', 'KaiTi', Georgia, serif; opacity: 0.4;" />
+    <div v-if="parsed.afterText" class="absolute z-20" style="bottom: 2%; left: 16%; font-size: var(--fs-caption); color: var(--color-muted-foreground); font-family: 'Noto Serif SC', 'STKaiti', 'KaiTi', Georgia, serif; opacity: 0.4;" v-html="parsed.afterText" />
   </div>
 </template>
 
@@ -121,7 +119,7 @@ const parsed = computed(() => {
 /* 时间线整体布局 — 条目区 + 右侧轨道 */
 .sm-timeline-layout {
   position: absolute;
-  inset: 14% 0 8% 6%;
+  inset: 14% 8% 8% 16%;
   display: flex;
   flex-direction: row-reverse; /* 轨道在右，条目在左 */
 }

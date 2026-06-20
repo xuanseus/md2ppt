@@ -34,7 +34,7 @@ defineProps<{ slide: Slide }>()
 
       <!-- 代码内容区 -->
       <div class="sm-code-body"
-        style="background: var(--color-code-bg); border-left: 4px solid var(--color-ink-light); border-right: 4px solid var(--color-ink-light);">
+        style="background: #282a36; border-left: 4px solid var(--color-ink-light); border-right: 4px solid var(--color-ink-light);">
         <div v-html="slide.html" class="sm-code-prose" />
       </div>
 
@@ -173,20 +173,14 @@ defineProps<{ slide: Slide }>()
 }
 
 .sm-code-prose :deep(pre) {
-  border-radius: 3px;
   overflow-x: auto;
   margin: 0.5rem 0;
-  border: 1px solid var(--color-border);
-  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
 }
 
 .sm-code-prose :deep(code) {
   font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace;
   font-size: var(--fs-caption);
   line-height: 1.6;
-  /* 暖色调 */
-  color: var(--color-code-fg);
-  filter: sepia(0.08);
 }
 
 .sm-code-prose :deep(p) {

@@ -11,8 +11,6 @@
     "--color-accent": "#c84c3c",
     "--color-accent-foreground": "#f8f4f0",
     "--color-card": "#f4f8f4",
-    "--color-code-bg": "#1e2822",
-    "--color-code-fg": "#dce8e0",
     "--color-blockquote-border": "#7a9a80",
     "--color-heading": "#162018",
     "--color-h1-from": "#2a3a2e",

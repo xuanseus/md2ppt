@@ -40,7 +40,7 @@ const parsed = computed(() => {
 </script>
 
 <template>
-  <div class="px-timeline flex items-center justify-center w-full h-full" style="background: linear-gradient(180deg, #0d0d1a 0%, #1a1230 50%, #0d0d1a 100%)">
+  <div class="px-timeline flex items-center justify-center w-full h-full" style="background: var(--color-background)">
     <div class="absolute inset-0 pointer-events-none opacity-3" style="background-image: repeating-linear-gradient(0deg, var(--color-foreground) 0px, var(--color-foreground) 1px, transparent 1px, transparent calc(var(--px-bit) * 3)), repeating-linear-gradient(90deg, var(--color-foreground) 0px, var(--color-foreground) 1px, transparent 1px, transparent calc(var(--px-bit) * 3))" />
 
     <div class="relative z-10 w-full max-w-3xl px-10 slide-animate">
@@ -49,7 +49,6 @@ const parsed = computed(() => {
         <!-- 任务日志标题栏 -->
         <div :style="{ background: 'linear-gradient(90deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 60%, var(--color-h1-to)))', padding: '0.75rem 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '3px solid var(--color-border)' }">
           <div class="flex items-center gap-3">
-            <span style="font-family: monospace; color: var(--color-background); font-size: 1.1rem">📜</span>
             <span class="font-extrabold text-sm tracking-widest uppercase" style="color: var(--color-background); font-family: var(--px-font)">QUEST LOG</span>
           </div>
           <span class="font-bold text-xs" style="color: var(--color-background); font-family: var(--px-font); opacity: 0.7">{{ parsed.entries.length }}/{{ parsed.entries.length }}</span>
@@ -65,30 +64,23 @@ const parsed = computed(() => {
         <!-- 任务条目列表 -->
         <div v-if="parsed.entries.length" style="padding: 0.5rem 1.5rem 1.5rem">
           <div v-for="(entry, i) in parsed.entries" :key="i" class="px-quest-entry"
-            :style="{ display: 'flex', gap: '1rem', alignItems: 'flex-start', padding: '0.75rem 1rem', marginBottom: '0.5rem', background: i === 0 ? 'color-mix(in srgb, var(--color-accent) 10%, transparent)' : 'color-mix(in srgb, var(--color-accent) 4%, transparent)', border: '2px solid ' + (i === 0 ? 'var(--color-accent)' : 'var(--color-border)'), boxShadow: '3px 3px 0 #0004' }">
-            <!-- 完成复选框 -->
-            <div :style="{ flexShrink: 0, width: '22px', height: '22px', background: i === 0 ? 'var(--color-accent)' : 'var(--color-muted)', border: '2px solid ' + (i === 0 ? 'var(--color-accent)' : 'var(--color-border)'), display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '1px' }">
-              <span v-if="i === 0" style="color: var(--color-background); font-size: 0.6rem; font-weight: 900; font-family: monospace">✓</span>
-              <span v-else style="color: var(--color-border); font-size: 0.5rem; font-family: monospace">□</span>
+            :style="{ display: 'flex', gap: '1rem', alignItems: 'flex-start', padding: '0.75rem 1rem', marginBottom: '0.5rem', background: 'color-mix(in srgb, var(--color-accent) 6%, transparent)', border: '2px solid var(--color-border)', boxShadow: '3px 3px 0 #0004' }">
+            <!-- 序号 -->
+            <div :style="{ flexShrink: 0, width: '22px', height: '22px', background: 'var(--color-muted)', border: '2px solid var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '1px' }">
+              <span style="color: var(--color-accent); font-size: 0.55rem; font-weight: 800; font-family: var(--px-font)">{{ i + 1 }}</span>
             </div>
             <!-- 任务内容 -->
             <div class="flex-1">
-              <div :style="{ fontSize: 'var(--fs-caption)', fontWeight: 600, color: 'var(--color-accent)', fontFamily: 'var(--px-font)', marginBottom: '0.2rem', textDecoration: i === 0 ? 'line-through' : 'none', opacity: i === 0 ? 0.6 : 1 }">
-                ◈ Objective {{ String(i + 1).padStart(2, '0') }}: {{ entry.date }}
+              <div :style="{ fontSize: 'var(--fs-caption)', fontWeight: 600, color: 'var(--color-accent)', fontFamily: 'var(--px-font)', marginBottom: '0.2rem' }">
+                ◈ {{ entry.date }}
               </div>
-              <div :style="{ fontSize: 'var(--fs-body-sm)', color: 'var(--color-foreground)', fontFamily: 'var(--px-font)', lineHeight: 1.6, opacity: i === 0 ? 0.55 : 1 }">{{ entry.content }}</div>
+              <div :style="{ fontSize: 'var(--fs-body-sm)', color: 'var(--color-foreground)', fontFamily: 'var(--px-font)', lineHeight: 1.6 }">{{ entry.content }}</div>
             </div>
           </div>
         </div>
 
         <p v-if="!parsed.entries.length && !parsed.subtitle" class="text-center py-8" style="color: var(--color-muted-foreground); font-family: var(--px-font); font-size: var(--fs-body-sm)">No active quests...</p>
 
-        <!-- 底部状态栏 -->
-        <div :style="{ background: 'var(--color-muted)', borderTop: '3px solid var(--color-border)', padding: '0.5rem 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.6rem', fontFamily: 'var(--px-font)', color: 'var(--color-muted-foreground)' }">
-          <span>◀ SELECT</span>
-          <span>▼ DETAILS</span>
-          <span>B: BACK</span>
-        </div>
       </div>
 
       <div v-if="parsed.afterText" v-html="parsed.afterText" class="text-center mt-4" style="font-size: var(--fs-caption); color: var(--color-muted-foreground); font-family: var(--px-font)" />
@@ -98,6 +90,6 @@ const parsed = computed(() => {
 
 <style scoped>
 .px-timeline { padding: 2.5rem 3rem; }
-.px-quest-entry { transition: background 0.1s step-end; }
-.px-quest-entry:hover { background: color-mix(in srgb, var(--color-accent) 14%, transparent) !important; transform: translateX(2px); }
+.px-quest-entry { transition: background 0.15s ease, transform 0.15s ease; }
+.px-quest-entry:hover { background: color-mix(in srgb, var(--color-accent) 12%, transparent) !important; transform: translateX(2px); }
 </style>

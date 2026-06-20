@@ -78,12 +78,6 @@ const rainColsRight = computed(() => Array.from({ length: 8 }, () => generateRai
       </div>
     </div>
 
-    <!-- ============ 底部命令行覆盖 ============ -->
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 holo-cli-bar">
-      <span class="holo-cli-prompt">&gt;_</span>
-      <span class="holo-cli-text">stream_decode --format holo --live</span>
-      <span class="holo-cli-cursor">|</span>
-    </div>
   </div>
 </template>
 
@@ -151,7 +145,7 @@ const rainColsRight = computed(() => Array.from({ length: 8 }, () => generateRai
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
-  background: color-mix(in srgb, var(--color-code-bg) 90%, transparent);
+  background: color-mix(in srgb, #282a36 90%, transparent);
   border-bottom: 1px solid var(--color-border);
   gap: 1rem;
 }
@@ -235,7 +229,7 @@ const rainColsRight = computed(() => Array.from({ length: 8 }, () => generateRai
 
 /* ===== 终端主体 ===== */
 .holo-terminal-body {
-  background: var(--color-code-bg);
+  background: #282a36;
   padding: 1.25rem 1.5rem 1rem;
   min-height: 200px;
 }
@@ -309,16 +303,12 @@ const rainColsRight = computed(() => Array.from({ length: 8 }, () => generateRai
 .holo-code-prose :deep(pre) {
   overflow-x: auto;
   margin: 0.5rem 0;
-  border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 0);
 }
 
 .holo-code-prose :deep(code) {
   font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Fira Code', monospace;
   font-size: var(--fs-caption);
   line-height: 1.6;
-  color: var(--color-code-fg);
-  background: transparent;
 }
 
 .holo-code-prose :deep(p) {
@@ -329,35 +319,4 @@ const rainColsRight = computed(() => Array.from({ length: 8 }, () => generateRai
   margin-top: 0.75rem;
 }
 
-/* ===== 底部CLI栏 ===== */
-.holo-cli-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 1rem;
-  background: color-mix(in srgb, var(--color-code-bg) 80%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
-  clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%, 0 6px);
-}
-
-.holo-cli-prompt {
-  font-size: 0.6rem;
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--color-accent);
-  font-weight: 700;
-}
-
-.holo-cli-text {
-  font-size: 0.6rem;
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--color-muted-foreground);
-  opacity: 0.6;
-}
-
-.holo-cli-cursor {
-  font-size: 0.65rem;
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--color-accent);
-  animation: holo-cursor-glow 1s step-end infinite;
-}
 </style>

@@ -87,7 +87,7 @@ marked.use({
       </div>
     `
         const label = lang ? `<div class="text-xs px-4 pb-2 font-mono" style="color: #6272a4">${lang}</div>` : ''
-        return `<div class="code-block-wrapper rounded-xl overflow-hidden border-2 border-[var(--color-accent)]/20 shadow-lg shadow-[var(--color-accent)]/5" style="background: #282a36">${dots}${label}<div class="px-4 pb-3 overflow-x-auto">${highlighted}</div></div>`
+        return `<div class="code-block-wrapper rounded-xl overflow-hidden border border-white/10 shadow-lg shadow-black/30" style="background: #282a36">${dots}${label}<div class="px-4 pb-3 overflow-x-auto">${highlighted}</div></div>`
       },
     },
     {
@@ -115,7 +115,7 @@ marked.use({
       level: 'inline',
       renderer(token: any) {
         const titleAttr = token.title ? ` title="${token.title}"` : ''
-        return `<img src="${token.href}" alt="${token.text || ''}"${titleAttr} class="max-w-full max-h-[60vh] object-contain rounded-lg mx-auto my-4" />`
+        return `<img src="${token.href}" alt="${token.text || ''}"${titleAttr} class="max-w-full max-h-[40vh] object-contain rounded-lg mx-auto my-4" />`
       },
     },
   ],

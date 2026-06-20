@@ -32,6 +32,7 @@ declare module 'vue' {
     Magnet: typeof import('./src/components/interactive/Magnet.vue')['default']
     Particles: typeof import('./src/components/backgrounds/Particles.vue')['default']
     PixelTransition: typeof import('./src/components/transitions/PixelTransition.vue')['default']
+    PopupSelect: typeof import('./src/layouts/PopupSelect.vue')['default']
     PresentationDeck: typeof import('./src/layouts/PresentationDeck.vue')['default']
     RotatingText: typeof import('./src/components/text-effects/RotatingText.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

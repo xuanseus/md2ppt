@@ -1,11 +1,37 @@
 <script setup lang="ts">
 import type { Slide } from '../../../types/slides'
+import { ref, onMounted, watch, nextTick } from 'vue'
 
-defineProps<{ slide: Slide }>()
+const props = defineProps<{ slide: Slide }>()
+
+const contentRef = ref<HTMLElement | null>(null)
+const duration = ref('')
+
+function formatDuration(seconds: number): string {
+  const m = Math.floor(seconds / 60)
+  const s = Math.floor(seconds % 60)
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
+}
+
+function detectVideo() {
+  if (!contentRef.value) return
+  const video = contentRef.value.querySelector('video') as HTMLVideoElement | null
+  if (!video) { duration.value = ''; return }
+  if (video.duration && !isNaN(video.duration)) {
+    duration.value = formatDuration(video.duration)
+  } else {
+    video.addEventListener('loadedmetadata', () => {
+      duration.value = formatDuration(video.duration)
+    }, { once: true })
+  }
+}
+
+onMounted(() => { nextTick(detectVideo) })
+watch(() => props.slide.html, () => { nextTick(detectVideo) })
 </script>
 
 <template>
-  <div class="px-media flex items-center justify-center w-full h-full" style="background: linear-gradient(180deg, #0a0a1a 0%, #121024 50%, #0a0a1a 100%)">
+  <div class="px-media flex items-center justify-center w-full h-full" style="background: var(--color-background)">
     <!-- 像素网格背景 -->
     <div class="absolute inset-0 pointer-events-none opacity-4" style="background-image: repeating-linear-gradient(0deg, var(--color-foreground) 0px, var(--color-foreground) 1px, transparent 1px, transparent calc(var(--px-bit) * 3)), repeating-linear-gradient(90deg, var(--color-foreground) 0px, var(--color-foreground) 1px, transparent 1px, transparent calc(var(--px-bit) * 3))" />
 
@@ -14,8 +40,8 @@ defineProps<{ slide: Slide }>()
       <div :style="{ background: 'var(--color-card)', border: '4px solid var(--color-border)', boxShadow: '0 0 0 2px var(--color-background), 0 0 0 6px var(--color-border), 8px 8px 0 #0008', maxWidth: '90%', maxHeight: '85vh', display: 'flex', flexDirection: 'column' }">
         <!-- 面板标题栏 -->
         <div :style="{ background: 'linear-gradient(90deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 60%, var(--color-h1-to)))', padding: '0.5rem 1.5rem', borderBottom: '3px solid var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }">
-          <span class="font-extrabold text-xs tracking-widest uppercase" style="color: var(--color-background); font-family: var(--px-font)">◈ ITEM ◈</span>
-          <span class="font-bold text-xs" style="color: var(--color-background); font-family: var(--px-font); opacity: 0.7">RARE ★★★</span>
+          <span class="font-extrabold text-xs tracking-widest uppercase" style="color: var(--color-background); font-family: var(--px-font)">◈ MEDIA ◈</span>
+          <span class="font-bold text-xs" style="color: var(--color-background); font-family: var(--px-font); opacity: 0.7">{{ duration ? '时长 ' + duration : '' }}</span>
         </div>
 
         <!-- 物品图片展示区 -->
@@ -26,14 +52,9 @@ defineProps<{ slide: Slide }>()
           <div class="absolute bottom-2 left-2 pointer-events-none" style="width: 32px; height: 32px; border-bottom: 4px solid var(--color-accent); border-left: 4px solid var(--color-accent); opacity: 0.5"></div>
           <div class="absolute bottom-2 right-2 pointer-events-none" style="width: 32px; height: 32px; border-bottom: 4px solid var(--color-accent); border-right: 4px solid var(--color-accent); opacity: 0.5"></div>
 
-          <div v-html="slide.html" class="px-media-content" />
+          <div ref="contentRef" v-html="slide.html" class="px-media-content" />
         </div>
 
-        <!-- 物品描述栏 -->
-        <div :style="{ background: 'var(--color-muted)', padding: '0.75rem 1.5rem', borderTop: '2px solid var(--color-border)', display: 'flex', alignItems: 'center', gap: '1rem' }">
-          <span style="font-family: var(--px-font); font-size: 0.75rem; color: var(--color-accent)">▶ Examine</span>
-          <span style="font-family: var(--px-font); font-size: 0.65rem; color: var(--color-muted-foreground)">Press A to inspect · Press B to close</span>
-        </div>
       </div>
     </div>
   </div>

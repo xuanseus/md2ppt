@@ -94,19 +94,12 @@ const parsed = computed(() => {
     </div>
 
     <!-- ============ 对角线连接桥 ============ -->
-    <div class="absolute z-25 pointer-events-none" style="top: 45%; left: 35%; width: 30%; height: 10%;">
-      <svg viewBox="0 0 200 40" class="w-full h-full" style="overflow: visible;">
-        <line x1="10" y1="30" x2="190" y2="10" stroke="var(--color-accent)" stroke-width="1" opacity="0.3" stroke-dasharray="4,6"/>
-        <polygon points="185,5 200,10 188,18" fill="var(--color-accent)" opacity="0.4"/>
-      </svg>
-    </div>
-
-    <!-- 对角线中点标识 -->
-    <div class="absolute z-25 pointer-events-none holo-center-node" style="top: 48%; left: 48%;">
-      <div class="holo-node-ring">
-        <span class="holo-node-diamond"></span>
-      </div>
-    </div>
+    <!-- 左列右下 (44%, ~35%) → 右列左上 (56%, ~65%) -->
+    <svg class="absolute inset-0 z-25 pointer-events-none w-full h-full" viewBox="0 0 1000 700" preserveAspectRatio="none" style="overflow: visible;">
+      <line x1="440" y1="245" x2="560" y2="455" stroke="var(--color-accent)" stroke-width="1.5" opacity="0.2" stroke-dasharray="6,8"/>
+      <!-- 箭头指向右列 -->
+      <polygon points="552,443 566,455 554,463" fill="var(--color-accent)" opacity="0.3"/>
+    </svg>
 
     <!-- ============ 右下层面板（第二列） z-20 ============ -->
     <div class="absolute z-20 holo-panel-bottomright" style="
@@ -127,8 +120,8 @@ const parsed = computed(() => {
       <div v-html="parsed.columns[1].html" class="holo-twocol-prose"></div>
     </div>
 
-    <!-- ============ 标题区（左上角固定） ============ -->
-    <div class="absolute z-30" style="top: 8%; left: 5%;">
+    <!-- ============ 大标题（顶部居中） ============ -->
+    <div class="absolute z-30 text-center" style="top: 5%; left: 50%; transform: translateX(-50%); width: 80%; max-width: 800px;">
       <h2 v-if="slide.title" class="holo-twocol-global-title">{{ slide.title }}</h2>
       <div v-if="parsed.subtitle" v-html="parsed.subtitle" class="holo-twocol-global-sub"></div>
     </div>
@@ -215,7 +208,6 @@ const parsed = computed(() => {
 }
 
 .holo-panel-title.alt {
-  text-align: right;
   color: var(--color-heading);
 }
 
@@ -227,36 +219,7 @@ const parsed = computed(() => {
 }
 
 .holo-panel-beam.alt {
-  margin-left: auto;
-  background: linear-gradient(90deg, transparent, var(--color-h1-to));
-}
-
-/* ===== 中心节点 ===== */
-.holo-center-node {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.holo-node-ring {
-  width: 30px;
-  height: 30px;
-  border: 1px solid var(--color-accent);
-  border-radius: 50%;
-  opacity: 0.3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.holo-node-diamond {
-  width: 8px;
-  height: 8px;
-  background: var(--color-accent);
-  transform: rotate(45deg);
-  opacity: 0.6;
+  background: linear-gradient(90deg, var(--color-h1-to), transparent);
 }
 
 /* ===== 全局标题 ===== */
@@ -275,7 +238,6 @@ const parsed = computed(() => {
   color: var(--color-muted-foreground);
   font-family: 'JetBrains Mono', monospace;
   margin-top: 0.5rem;
-  max-width: 250px;
   line-height: 1.5;
 }
 

@@ -8,6 +8,7 @@ export function useKeyboardNavigation(
   goToLast: () => void,
   goToSlide: (n: number) => void,
   isOverview: Ref<boolean>,
+  toggleAutoplay?: () => void,
 ) {
   let digitBuffer = ''
   let digitTimer: ReturnType<typeof setTimeout> | null = null
@@ -52,13 +53,14 @@ export function useKeyboardNavigation(
           document.documentElement.requestFullscreen()
         }
         break
-      case 'Escape':
+      case 'Tab':
         e.preventDefault()
-        if (isOverview.value) {
-          isOverview.value = false
-        } else {
-          isOverview.value = true
-        }
+        isOverview.value = !isOverview.value
+        break
+      case 'p':
+      case 'P':
+        e.preventDefault()
+        toggleAutoplay?.()
         break
       default:
         if (/^[0-9]$/.test(e.key)) {

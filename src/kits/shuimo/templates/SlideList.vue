@@ -124,14 +124,6 @@ defineProps<{ slide: Slide }>()
 }
 
 /* 散落偏移 — 每项微调，形成自然流动感 */
-.sm-list-scatter :deep(li:nth-child(1)) { transform: translateY(-4px) rotate(-0.8deg); }
-.sm-list-scatter :deep(li:nth-child(2)) { transform: translateY(12px) rotate(1.2deg); margin-left: 2rem; }
-.sm-list-scatter :deep(li:nth-child(3)) { transform: translateY(-10px) rotate(-1.5deg); }
-.sm-list-scatter :deep(li:nth-child(4)) { transform: translateY(18px) rotate(0.6deg); margin-left: 1.5rem; }
-.sm-list-scatter :deep(li:nth-child(5)) { transform: translateY(-6px) rotate(-0.3deg); }
-.sm-list-scatter :deep(li:nth-child(6)) { transform: translateY(8px) rotate(1.8deg); margin-left: 3rem; }
-.sm-list-scatter :deep(li:nth-child(7)) { transform: translateY(-2px) rotate(-2deg); }
-.sm-list-scatter :deep(li:nth-child(8)) { transform: translateY(14px) rotate(0.4deg); margin-left: 2.5rem; }
 
 /* 左侧毛笔标记点 */
 .sm-list-scatter :deep(li)::before {
@@ -177,5 +169,11 @@ defineProps<{ slide: Slide }>()
   font-size: var(--fs-body);
   line-height: 1.8;
   font-family: 'Noto Serif SC', 'STKaiti', 'KaiTi', Georgia, serif;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.sm-list-scatter :deep(ul) {
+  margin-bottom: 2rem;
 }
 </style>

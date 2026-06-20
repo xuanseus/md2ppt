@@ -60,10 +60,6 @@ defineProps<{ slide: Slide }>()
         <span class="blink-text">START</span>
       </div>
 
-      <!-- Copyright line at bottom -->
-      <div class="px-cover-copyright mt-8">
-        © {{ new Date().getFullYear() }}
-      </div>
     </div>
 
     <!-- Bottom decoration — solid bar -->
@@ -191,14 +187,6 @@ defineProps<{ slide: Slide }>()
   font-size: calc(1.5rem * var(--content-scale));
 }
 
-/* Copyright */
-.px-cover-copyright {
-  font-size: var(--fs-caption);
-  color: var(--color-muted-foreground);
-  font-family: var(--pixel-font, 'Press Start 2P', monospace);
-  image-rendering: pixelated;
-  letter-spacing: 0.1em;
-}
 
 /* Bottom bar */
 .pixel-bottom-bar {

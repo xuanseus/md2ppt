@@ -1,4 +1,4 @@
-# MD 实时渲染 PPT 项目
+# MD2PPT — Markdown 实时渲染 PPT
 
 ## AI 生成 PPT（推荐）
 
@@ -14,18 +14,14 @@
 
 ## 使用方式
 
-### 开发模式（推荐）
 ```bash
+npm install
 npm run dev      # 开发模式 → http://localhost:5173
-```
-- ✅ 编辑 MD 文件后自动刷新
-- ✅ 热模块替换（HMR），无需手动刷新
-
-### 生产构建
-```bash
 npm run build    # 生产构建到 dist/
 npm run preview  # 预览构建结果
 ```
+
+编辑 MD 文件后自动刷新（HMR）。
 
 ### 打包后使用
 
@@ -34,67 +30,94 @@ npm run preview  # 预览构建结果
 ```
 dist/
 ├── start.bat           ← 双击启动
-├── slides-ppt.md      ← 编辑这个
+├── slides-ppt.md       ← 编辑这个
 └── assets/
     ├── index.html
     ├── serve.ps1
     └── favicon.png
 ```
 
-1. 双击 `start.bat` → PowerShell 起本地服务器 + 自动打开浏览器
-2. 编辑 `dist/slides-ppt.md` 并保存 → 500ms 内浏览器自动刷新
-3. 关闭终端窗口 → 服务器自动停止
-4. 再次双击 `start.bat` → 检测到已运行则只打开浏览器，不重复启动
+1. 双击 `start.bat` → 自动打开浏览器
+2. 编辑 `dist/slides-ppt.md` 并保存 → 500ms 内自动刷新
+3. 关闭终端 → 服务器自动停止
 
-> 💡 原理：页面每 500ms `fetch('./slides-ppt.md')` 检测变化，有改动自动重新渲染。
+### 内容定稿后
+
+HTML 文件内置了打包时的 MD 内容，**无需服务器**。直接双击 `index.html` 即可全屏演示。
 
 ## 配置
 
-编辑 `.env` 切换 MD 文件和资源路径：
+编辑 `.env`：
 
 ```env
-# MD 文件路径（相对于项目根目录）
 VITE_MD_FILE_PATH=md/slides-ppt.md
-
-# 资源目录路径（相对于项目根目录）
 VITE_ASSETS_PATH=md/assets
 ```
 
-## 幻灯片拆分规则
+## 幻灯片拆分
 
-原则：**宁可一页少，不能一页多**。PPT 是提炼后的展示稿，不是演讲稿全文。
+原则：**宁可一页少，不能一页多**。
 
 | 触发行 | 行为 |
 |--------|------|
-| `##` / `###` / `####` 标题 | 每个标题独立成页 |
-| `---` 水平线 | **全局分页符**（所有布局一视同仁） |
-| `<video>` / `<img>` 标签 | 单独抽出一页，行末加 `{layout: media-hero}` |
-| ` ``` ` 代码块 | 内部内容受保护，不触发分页 |
+| `#` / `##` / `###` / `####` | 每个标题独立成页 |
+| `---` 水平线 | **全局分页符** |
+| `<video>` / `<img>` 标签 | 单独抽出全屏页 |
+| ` ``` ` 代码块 | 内部不受分页影响 |
 
-> 🔑 `two-column` / `comparison` 用 `**粗体标题**` 标记左右列，禁止 `---`。
+## 布局类型（11 种）
 
-## 幻灯片模板
+| 布局 | 用途 |
+|------|------|
+| `cover` | 封面 / 结束页 |
+| `section` | 章节过渡 |
+| `content` | 标准内容 |
+| `two-column` | 左右两列（`**粗体**` 标记列标题） |
+| `stats` | 数据大字报 |
+| `quote` | 大段引用 |
+| `code-full` | 代码展示 |
+| `media-hero` | 视频 / 大图 |
+| `comparison` | 方案对比（`**粗体**` + `- 列表`） |
+| `timeline` | 时间线 |
+| `list` | 特性列表 |
 
-| 类型 | 判断规则 | 组件 |
-|------|---------|------|
-| cover | 首页以 `# ` 开头 | `SlideCover.vue` |
-| section | 标题为主，正文 `< 100` 字符 | `SlideSection.vue` |
-| code | 代码块占比 > 40% | `SlideCode.vue` |
-| media | 含 `<video>` / `<img>` | `SlideMedia.vue` |
-| content | 默认 | `SlideContent.vue` |
+示例：
 
-## 模板套件 & 主题
+```markdown
+### 核心数据 {layout: stats}
 
-项目内置两套 PPT 模板套件（Kit），底部控制栏一键切换：
+**80%**
 
-| 套件 | 风格 | 背景 |
-|------|------|------|
-| **Realtime Beats** | 现代科技风，WebGL 动态背景，玻璃拟态 | Aurora / Silk / Grainient |
-| **Animal Island** | 自然治愈风，暖调配色，圆角卡片 | 纯 CSS 渐变 |
+用户增长率，较去年同期翻倍
+```
 
-每个套件自带 4 种配色主题，底部控制栏循环切换。
+```markdown
+### 方案对比 {layout: comparison}
 
-新增套件：`src/kits/` 下新建目录 → `index.ts` 出口 → 注册到 `kits/index.ts`。
+**传统方案**
+- ❌ 部署复杂
+- ❌ 维护困难
+
+**创新方案**
+- ✅ 一键部署
+- ✅ 自动化运维
+```
+
+## 模板套件 & 主题（7 套）
+
+底部控制栏 **短按循环 / 长按面板直达**：
+
+| 套件 | 风格 |
+|------|------|
+| **Realtime Beats** | 现代科技风，WebGL 动态背景，玻璃拟态 |
+| **Animal Island** | 自然治愈风，暖调配色，圆角卡片 |
+| **Holo Sci-Fi** | 全息科幻风，霓虹配色，六边形几何 |
+| **Pixel Island** | 复古像素游戏风，宝可梦 / 星露谷美学 |
+| **Water Ink** | 中国水墨风，宣纸纹理，竖排书法 |
+| **Cyberpunk 2077** | 赛博朋克风，终端 HUD，霓虹暗夜 |
+| **Pixel Retro** | 8-bit NES 美学，像素级精确边框 |
+
+每套自带 4 种配色主题。新增套件：`src/kits/` 下新建目录 → `index.ts` → 注册到 `kits/index.ts`。
 
 ## 快捷键
 
@@ -102,16 +125,24 @@ VITE_ASSETS_PATH=md/assets
 |----|------|
 | `←` `→` 空格 PageUp/Down | 翻页 |
 | Home / End | 首尾页 |
-| ESC | 全局预览 |
+| Tab | 全局预览 |
 | F | 全屏 |
-| 数字键 | 跳转 |
-| 鼠标滚轮 | 翻页 |
-| 触摸滑动 | 翻页 |
+| P | 自动播放 |
+| K / T / A / S | 套件 / 主题 / 动画 / 缩放 |
+| 数字键 | 跳转指定页 |
+| 鼠标滚轮 / 触摸滑动 | 翻页 |
 
-## 架构
+## Dock 控制栏
 
-- **Vue 3 + TypeScript + Vite 8** — Composition API `<script setup>`
-- **Tailwind CSS v4** — `@tailwindcss/vite` 插件
-- **marked** — MD 解析，`v-html` 渲染
-- **自定义 Vite 插件** — `virtual:slides` 虚拟模块 + 文件监听 + HMR + 资源中间件
-- **Auto-imports** — `unplugin-auto-import`（Vue API）+ `unplugin-vue-components`（组件自动注册）
+- 翻页 / 全屏 / 预览 / **自动播放（3s）** / 套件 / 主题 / 动画 / 缩放
+- 非全屏始终显示，全屏 3s 无操作自动隐藏
+- 套件/主题/动画/缩放：短按循环下一个，长按弹出面板滑动选择
+
+## 技术栈
+
+- **Vue 3** Composition API `<script setup>` + TypeScript
+- **Vite** + **Tailwind CSS v4** `@tailwindcss/vite`
+- **marked** + **shiki** — MD 解析 & Dracula 代码高亮
+- **自定义 Vite 插件** — `virtual:slides` 虚拟模块 + HMR
+- **unplugin-auto-import / unplugin-vue-components** — 自动导入
+- **vite-plugin-singlefile** — 单文件打包

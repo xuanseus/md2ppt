@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import type { Slide } from '../../../types/slides'
+import { computed } from 'vue'
 
 defineProps<{ slide: Slide }>()
+
+const sysTime = computed(() => {
+  const d = new Date()
+  return d.toString().replace(/ GMT.*/, '')
+})
 </script>
 
 <template>
@@ -26,7 +32,7 @@ defineProps<{ slide: Slide }>()
         <!-- 系统时间 -->
         <div class="cp-hud-widget" style="border: 1px solid var(--color-border); border-radius: 2px; padding: 0.75rem">
           <div class="cp-mono text-xs mb-1" style="color: var(--color-muted-foreground)">SYS.TIME</div>
-          <div class="cp-mono text-sm cp-time-glow" style="color: var(--color-accent)">{{ new Date().toISOString().slice(11, 19) }}</div>
+          <div class="cp-mono text-sm cp-time-glow" style="color: var(--color-accent)">{{ sysTime }}</div>
           <div class="cp-mono text-xs opacity-50" style="color: var(--color-muted-foreground)">UTC+8 // SYNCED</div>
         </div>
 
@@ -244,28 +250,20 @@ defineProps<{ slide: Slide }>()
   padding: 0.15rem 0.4rem;
   border-radius: 2px;
   font-size: 0.9em;
-  background: var(--color-code-bg);
-  color: var(--color-code-fg);
-  border: 1px solid var(--color-border);
   font-family: 'JetBrains Mono', monospace;
 }
 .cp-content-prose :deep(pre) {
-  border-radius: 2px;
   overflow-x: auto;
-  border: 1px solid var(--color-border);
-  box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent) 8%, transparent);
 }
 .cp-content-prose :deep(strong) {
   color: var(--color-accent);
   text-shadow: 0 0 12px var(--color-accent);
 }
-.cp-content-prose :deep(img) {
-  max-width: 85%;
-  max-height: 50vh;
-  display: block;
-  margin: 0.75rem auto;
-  border-radius: 2px;
-  object-fit: contain;
-  border: 1px solid var(--color-border);
-}
+cp-content-prose :deep(img) {
+    max-width: 60%;
+    max-height: 40vh;
+    display: block;
+    margin: 1rem auto;
+    object-fit: contain;
+  }
 </style>

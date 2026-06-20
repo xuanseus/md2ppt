@@ -5,23 +5,12 @@ defineProps<{ slide: Slide }>()
 </script>
 
 <template>
-  <div class="px-section flex items-center justify-center w-full h-full" style="background: linear-gradient(180deg, #1a0a2e 0%, #0a0a2e 60%, #0d0d1a 100%)">
+  <div class="px-section flex items-center justify-center w-full h-full" style="background: var(--color-background)">
     <!-- 像素网格背景 -->
     <div class="absolute inset-0 pointer-events-none opacity-4" style="background-image: repeating-linear-gradient(0deg, var(--color-foreground) 0px, var(--color-foreground) 1px, transparent 1px, transparent calc(var(--px-bit) * 2)), repeating-linear-gradient(90deg, var(--color-foreground) 0px, var(--color-foreground) 1px, transparent 1px, transparent calc(var(--px-bit) * 2))" />
 
-    <!-- 角色肖像占位区域 -->
-    <div class="absolute left-16 top-50p -translate-y-50p pointer-events-none" style="width: 120px; height: 160px; background: var(--color-card); border: 3px solid var(--color-border); box-shadow: 5px 5px 0 #0006">
-      <div class="w-full h-full flex flex-col items-center justify-center" style="font-family: monospace; color: var(--color-accent); opacity: 0.35">
-        <span style="font-size: 2rem">◉</span>
-        <span style="font-size: 0.65rem; margin-top: 4px">CHAR.</span>
-      </div>
-      <div class="absolute -bottom-7 left-50p -translate-x-50p px-3 py-0d5" style="background: var(--color-accent); color: var(--color-background); font-size: 0.6rem; font-family: var(--px-font); box-shadow: 2px 2px 0 #0004">
-        ???
-      </div>
-    </div>
-
     <!-- RPG 对话框 -->
-    <div class="relative z-10 max-w-3xl ml-40">
+    <div class="relative z-10 max-w-3xl">
       <div style="background: var(--color-card); border: 3px solid var(--color-border); box-shadow: 6px 6px 0 #0006; padding: 2.5rem 3rem; position: relative;">
         <!-- 对话框顶部装饰栏 -->
         <div class="flex items-center justify-between mb-6 pb-4" style="border-bottom: 2px dashed var(--color-border)">
@@ -46,8 +35,6 @@ defineProps<{ slide: Slide }>()
         </div>
       </div>
 
-      <!-- 对话框尾巴 -->
-      <div class="absolute left--28px top-50p -translate-y-50p pointer-events-none" style="width: 0; height: 0; border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-right: 24px solid var(--color-card); filter: drop-shadow(-4px 3px 0 #0004)" />
     </div>
   </div>
 </template>
@@ -66,6 +53,13 @@ defineProps<{ slide: Slide }>()
   margin-bottom: 1rem;
   font-family: var(--px-font);
   text-shadow: 2px 2px 0 #0004;
+}
+
+.px-section-sub :deep(h1),
+.px-section-sub :deep(h2),
+.px-section-sub :deep(h3),
+.px-section-sub :deep(h4) {
+  display: none;
 }
 
 .px-section-sub :deep(p) {

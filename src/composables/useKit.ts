@@ -23,6 +23,10 @@ export function useKit() {
     if (kit.themes.length > 0) {
       applyTheme(kit, kit.themes[0])
     }
+    // 保存全屏状态，reload 后恢复
+    if (document.fullscreenElement) {
+      localStorage.setItem('was-fullscreen', '1')
+    }
     // 需要刷新页面来重新加载模板
     window.location.reload()
   }
@@ -95,5 +99,11 @@ export function initTheme() {
     for (const [k, v] of Object.entries(theme.vars)) {
       el.style.setProperty(k, v)
     }
+  }
+
+  // 恢复全屏状态（套件切换 reload 后）
+  if (localStorage.getItem('was-fullscreen') === '1') {
+    localStorage.removeItem('was-fullscreen')
+    setTimeout(() => document.documentElement.requestFullscreen?.(), 300)
   }
 }

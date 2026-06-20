@@ -25,10 +25,10 @@ export const pixeliumKit: KitDef = {
   description: '复古像素游戏风，Canvas 像素渲染，宝可梦/星露谷美学',
   decorations: { background: 'static' },
   themes: [
+    oceanBlue,
+    sunsetGold,
     gameboyLight,
     gameboyDark,
-    sunsetGold,
-    oceanBlue,
   ],
   templates: {
     cover: SlideCover,

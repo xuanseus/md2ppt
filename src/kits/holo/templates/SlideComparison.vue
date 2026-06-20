@@ -117,34 +117,34 @@ const parsed = computed(() => {
       <div class="holo-hud-bg right"></div>
 
       <!-- HUD数据头部 -->
-      <div class="holo-hud-header right-align">
-        <div class="holo-hud-status">ACTIVE</div>
+      <div class="holo-hud-header">
         <div class="holo-hud-id">UNIT-B</div>
+        <div class="holo-hud-status">ACTIVE</div>
       </div>
 
       <!-- 列标题 -->
       <h3 class="holo-hud-title right-accent">{{ parsed.columns[1].title }}</h3>
 
       <!-- 数据分隔线 -->
-      <div class="holo-hud-divider right-accent" style="margin-left: auto; background: linear-gradient(90deg, transparent, var(--color-h1-to));"></div>
+      <div class="holo-hud-divider right-accent"></div>
 
       <!-- 数据项 -->
       <div class="holo-hud-items">
-        <div v-for="(item, j) in parsed.columns[1].items" :key="j" class="holo-hud-item right-align">
+        <div v-for="(item, j) in parsed.columns[1].items" :key="j" class="holo-hud-item">
+          <span class="holo-hud-marker right-accent">&#x25B8;</span>
           <span class="holo-hud-text">{{ item }}</span>
-          <span class="holo-hud-marker right-accent">&#x25C2;</span>
         </div>
       </div>
 
       <!-- 底部扫描值 -->
-      <div class="holo-hud-footer right-align">
-        <span class="holo-hud-freq">FREQ: 689.1Hz</span>
+      <div class="holo-hud-footer">
         <span>SIG: {{ 80 - j * 3 }}%</span>
+        <span class="holo-hud-freq">FREQ: 689.1Hz</span>
       </div>
     </div>
 
     <!-- ============ 尾部文字 ============ -->
-    <div v-if="parsed.afterText" class="absolute z-10" style="bottom: 6%; left: 50%; transform: translateX(-50%);" v-html="parsed.afterText"></div>
+    <div v-if="parsed.afterText" class="absolute z-10" style="bottom: 12%; left: 50%; transform: translateX(-50%);" v-html="parsed.afterText"></div>
   </div>
 </template>
 
@@ -223,13 +223,13 @@ const parsed = computed(() => {
 }
 
 .holo-hud-panel.left {
-  top: 22%;
-  left: 6%;
+  top: 28%;
+  left: 10%;
 }
 
 .holo-hud-panel.right {
-  bottom: 22%;
-  right: 6%;
+  bottom: 28%;
+  right: 10%;
 }
 
 /* ===== 面板背景 ===== */
@@ -299,7 +299,6 @@ const parsed = computed(() => {
 }
 
 .holo-hud-title.right-accent {
-  text-align: right;
 }
 
 /* ===== HUD 分隔线 ===== */
@@ -336,7 +335,6 @@ const parsed = computed(() => {
 }
 
 .holo-hud-item.right-align {
-  justify-content: flex-end;
 }
 
 .holo-hud-marker {
@@ -359,10 +357,6 @@ const parsed = computed(() => {
 
 .holo-hud-text {
   color: var(--color-foreground);
-}
-
-.holo-hud-item.right-align .holo-hud-text {
-  text-align: right;
 }
 
 /* ===== HUD 底部 ===== */
@@ -395,6 +389,7 @@ const parsed = computed(() => {
   color: var(--color-heading);
   font-family: 'JetBrains Mono', monospace;
   text-transform: uppercase;
+  text-align: center;
   text-shadow: var(--holo-glow);
   margin: 0;
 }

@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">MD2PPT</h1>
-<p align="center">Markdown → Horizontal Swipe Web Deck</p>
+<p align="center">Markdown → Horizontal Swipe Web Slides</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vuedotjs" />
@@ -13,210 +13,168 @@
 
 ---
 
-## What is this
+## What is MD2PPT
 
-**MD2PPT** turns Markdown into a horizontal swipe web deck with live preview. Write MD, see the result in browser instantly, and build into a single self-contained HTML file.
+**MD2PPT** turns Markdown into swipeable web-based presentation slides. Write MD, preview in browser, double-click to open the built output.
 
-**Key feature**: Built-in `/md2ppt` skill — hand your speech script to AI, it condenses key points and auto-generates layout-tagged PPT. PPT is a visual anchor, not a teleprompter.
+**Core feature**: Built-in `/md2ppt` AI skill — paste your speech script, AI distills key points and generates layout-tagged PPT slides. Slides are visual anchors, not teleprompters.
 
-## AI-Powered PPT Generation (Recommended)
+## AI-Generated PPT (Recommended)
 
 ```
-You (speech script) → AI (/md2ppt) → Tagged MD → Live browser preview
+Your speech → AI (/md2ppt) → tagged MD → live preview
 ```
 
-### Step 1: Prepare Your Script
+### Step 1: Write a speech script
 
-Write a plain Markdown speech script with no layout markup:
+Plain Markdown, no layout tags needed:
 
 ```markdown
 # My Talk Title
 
 ## Opening
 
-Hello everyone, today I'd like to share...
+Hello everyone, today I'll cover...
 
 ## Key Metrics
 
-80% user growth, 2x revenue...
-
-## Architecture
-
-We adopted a microservices approach...
+80% user growth, revenue doubled...
 ```
 
-### Step 2: AI Auto-Tagging
+### Step 2: AI generates slides
 
-Type `/md2ppt` in Claude Code and paste your script. The AI will:
+Type `/md2ppt` in Claude Code and paste your script. The AI:
 
-- 🔍 Analyze content structure (cover, sections, data, code, comparisons…)
-- ✂️ **Condense key points**: long sentences → phrases, paragraphs → keywords
-- 🏷️ Add `{layout: xxx}` tags automatically
-- 📝 Output `xxx-ppt.md` file
+- 🔍 Analyzes content structure
+- ✂️ **Distills**: long sentences → short phrases, paragraphs → keywords
+- 🏷️ Adds `{layout: xxx}` tags
+- 📝 Outputs `xxx-ppt.md`
 
 ### Step 3: Preview
 
 ```bash
-# Point .env to the generated file
-# Edit .env → VITE_MD_FILE_PATH=../my-speech-ppt.md
-
 npm run dev
 ```
 
-Open `http://localhost:5173`, navigate with ← → keys.
+Open `http://localhost:5173`, use arrow keys to navigate.
 
 ## Quick Start
 
 ```bash
 npm install
-npm run dev        # Dev server → http://localhost:5173
+npm run dev        # dev → http://localhost:5173
+npm run build      # build to dist/
+npm run preview    # preview build output
 ```
 
-Edit your MD file — the browser reloads automatically.
+## Distributable Output
 
-```bash
-npm run build      # Build to dist/
-npm run preview    # Preview the build
-```
+### Option A: Continue editing → Use BAT launcher
 
-## After Build
-
-Build output is in `dist/`. Choose based on your needs:
-
-### Option 1: Continue editing → Use BAT launcher
-
-**Double-click `dist/start.bat`** (PowerShell zero-dependency local server)
+**Double-click `dist/start.bat`** (zero-dependency PowerShell server)
 
 ```
 dist/
-├── start.bat           ← Double-click to launch
-├── slides-ppt.md       ← Edit this file
+├── start.bat           ← double-click to launch
+├── slides-ppt.md       ← edit this file
 └── assets/
     ├── index.html
     ├── serve.ps1
     └── favicon.png
 ```
 
-1. Double-click `start.bat` → PowerShell starts local server + opens browser
-2. Edit `dist/slides-ppt.md` and save → auto-refresh within 500ms
-3. Close terminal → server stops automatically
-4. Double-click `start.bat` again → detects running server, just opens browser
+### Option B: Content finalized → HTML only
 
-> 💡 How it works: the page polls `./slides-ppt.md` every 500ms, re-renders on change.
+The HTML file embeds the MD content at build time. **No server, no MD file needed**.
 
-### Option 2: Content finalized → Keep only HTML
-
-The HTML file has MD content baked in — **no server, no MD file needed**.
-
-- **No images** → just one `index.html` file is enough
-- **With images** → `index.html` + image files (keep relative paths)
-
-Double-click `index.html` for fullscreen presentation.
+Double-click `index.html` to present fullscreen.
 
 ## Configuration
 
 Edit `.env`:
 
 ```env
-# MD file path (relative to project root)
 VITE_MD_FILE_PATH=md/slides-ppt.md
-
-# Assets directory path (relative to project root)
 VITE_ASSETS_PATH=md/assets
 ```
 
-## Slide Splitting Rules
+## Slide Splitting
 
-| Trigger | Behavior |
-|---------|----------|
-| `#` / `##` / `###` / `####` | Each heading becomes its own slide |
-| `---` | Universal slide break (all layouts) |
-| `<video>` / `<img>` | Extracted to fullscreen slide, add `{layout: media-hero}` at line end |
-| ` ``` ` fenced code block | Protected from splitting |
+| Trigger | Effect |
+|---------|--------|
+| `#` / `##` / `###` / `####` headings | Each heading becomes a slide |
+| `---` horizontal rule | **Global page break** |
+| `<video>` / `<img>` tags | Extracted as full-screen slide |
+| ` ``` ` code blocks | Protected from splitting |
 
-## Layout Types
-
-Add `{layout: xxx}` after a heading to specify layout. 11 types available:
+## Layout Types (11)
 
 | Layout | Use case |
 |--------|----------|
-| `cover` | Title / closing slide |
-| `section` | Chapter divider |
+| `cover` | Title / ending slide |
+| `section` | Chapter transition |
 | `content` | Standard content |
-| `two-column` | Side-by-side (`**bold**` marks columns) |
-| `stats` | Big-number highlight |
-| `quote` | Blockquote showcase |
+| `two-column` | Side-by-side columns (`**bold**` marks column titles) |
+| `stats` | Big number showcase |
+| `quote` | Block quote |
 | `code-full` | Code display |
-| `media-hero` | Video / hero image |
-| `comparison` | Before/after (`**bold**` + `- list`) |
-| `timeline` | Milestone roadmap |
-| `list` | Feature checklist |
+| `media-hero` | Video / large image |
+| `comparison` | A/B comparison (`**bold**` + `- list`) |
+| `timeline` | Timeline |
+| `list` | Feature list |
 
-Example:
+## Kit Themes (7 Kits)
 
-```markdown
-### Key Metrics {layout: stats}
+Tap to cycle, long-press for popup panel:
 
-**80%**
+| Kit | Style |
+|-----|-------|
+| **Realtime Beats** | Modern tech, WebGL backgrounds, glassmorphism |
+| **Animal Island** | Natural warm, rounded cards |
+| **Holo Sci-Fi** | Holographic, neon colors, hexagonal geometry |
+| **Pixel Island** | Retro pixel game, Pokémon / Stardew aesthetic |
+| **Water Ink** | Chinese ink painting, rice paper texture, vertical text |
+| **Cyberpunk 2077** | Cyberpunk, terminal HUD, neon night |
+| **Pixel Retro** | 8-bit NES aesthetic, pixel-precise borders |
 
-Year-over-year user growth rate
-```
+4 color themes per kit. Add kits: create folder under `src/kits/` → `index.ts` → register in `kits/index.ts`.
 
-Two-column / comparison example (`**bold**` marks columns, **NO `---`**):
+### Kit Preview
 
-```markdown
-### Before vs After {layout: comparison}
+| Animal Island | Realtime Beats | Holo Sci-Fi |
+|:---:|:---:|:---:|
+| ![Animal Island](docs/animal-island.png) | ![Beats](docs/beats.png) | ![Holo](docs/holo.png) |
+| Natural Warm | Modern Tech | Holographic Sci-Fi |
 
-**Legacy**
-- ❌ Complex deploy
-- ❌ Hard to maintain
-
-**Modern**
-- ✅ One-click deploy
-- ✅ Auto ops
-```
-
-Media example (title + `---` break + media line tag):
-
-```markdown
-## Demo Video
-
----
-
-<video src="./assets/demo.mp4" controls></video> {layout: media-hero}
-```
-
-## Template Kits & Themes
-
-Two built-in **PPT template kits**, switchable via bottom toolbar:
-
-| Kit | Style | Background |
-|-----|-------|------------|
-| **Realtime Beats** | Modern tech, WebGL backgrounds, glassmorphism | Aurora / Silk / Grainient |
-| **Animal Island** | Nature-inspired, warm palette, rounded cards | Pure CSS gradients |
-
-Each kit comes with 4 color themes, cyclable via toolbar. To add a kit: create directory under `src/kits/` → add `index.ts` → register in `kits/index.ts`.
-
-## Keyboard Shortcuts
+## Shortcuts
 
 | Key | Action |
 |-----|--------|
-| `←` `→` Space PageUp/Down | Navigate slides |
+| `←` `→` Space PageUp/Down | Navigate |
 | Home / End | First / last slide |
-| ESC | Overview mode |
-| F | Fullscreen |
+| Tab | Slide overview |
+| F | Toggle fullscreen |
 | Number keys | Jump to slide |
-| Scroll / touch swipe | Navigate |
+| P | Auto-play |
+| K / T / A / S | Kit / Theme / Transition / Scale |
+| Mouse wheel / touch swipe | Navigate |
+
+## Dock Controls
+
+- Navigation / Fullscreen / Overview / **Auto-play (3s)** / Kit / Theme / Transition / Scale
+- Always visible in windowed mode, auto-hide in fullscreen after 3s
+- Kit/theme/transition/scale: tap to cycle, **long-press for swipe-select popup**
+- 7 transitions: slide / fade / zoom / flip / pixel / reveal / none
+- 3 scale levels: 1x / 1.25x / 1.5x
 
 ## Tech Stack
 
-- **Vue 3** Composition API `<script setup>`
-- **TypeScript** + **Vite 8**
-- **Tailwind CSS v4** via `@tailwindcss/vite`
-- **marked** + **shiki** — Markdown parsing & syntax highlighting
-- **Custom Vite plugin** — `virtual:slides` virtual module + HMR + asset middleware
-- **unplugin-auto-import / unplugin-vue-components** — auto-imports
-- **vite-plugin-singlefile** — single HTML output
+- **Vue 3** Composition API `<script setup>` + **TypeScript**
+- **Vite** + **Tailwind CSS v4**
+- **marked** + **shiki** — MD parsing & Dracula syntax highlighting
+- **Custom Vite plugin** — `virtual:slides` + HMR
+- **unplugin-auto-import / unplugin-vue-components**
+- **vite-plugin-singlefile** — single-file output
 
 ---
 

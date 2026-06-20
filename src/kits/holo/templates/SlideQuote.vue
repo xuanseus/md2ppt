@@ -87,8 +87,8 @@ defineProps<{ slide: Slide }>()
 
 /* ===== 消息气泡外层 ===== */
 .holo-message-bubble {
-  width: 600px;
-  max-width: 70vw;
+  width: 750px;
+  max-width: 82vw;
   position: relative;
 }
 
@@ -110,7 +110,7 @@ defineProps<{ slide: Slide }>()
 
 /* ===== 六边形气泡体 ===== */
 .holo-bubble-body {
-  padding: 3rem 3.5rem;
+  padding: 3rem 4.5rem;
   background: var(--color-card);
   clip-path: polygon(50% 0%, 95% 10%, 100% 40%, 100% 70%, 95% 100%, 50% 100%, 5% 100%, 0% 70%, 0% 40%, 5% 10%);
   text-align: center;

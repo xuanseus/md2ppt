@@ -12,35 +12,35 @@ defineProps<{ slide: Slide }>()
     <div class="sm-paper-texture absolute inset-0 pointer-events-none" />
 
     <!-- 左侧大面积留白 — 仅顶部淡淡墨晕 -->
-    <div class="absolute left-0 top-0 bottom-0 pointer-events-none" style="width: 42%;">
+    <div class="absolute left-0 top-0 bottom-0 pointer-events-none" style="width: 30%;">
       <div class="absolute top-[10%] left-[15%] w-48 h-48 rounded-full opacity-[0.03]"
         style="background: radial-gradient(ellipse, var(--color-foreground) 0%, transparent 70%)" />
     </div>
 
     <!-- 竖向分隔线 -->
     <div class="absolute pointer-events-none opacity-[0.06]"
-      style="left: 42%; top: 15%; bottom: 15%; width: 1px; background: linear-gradient(180deg, transparent 0%, var(--color-foreground) 30%, var(--color-foreground) 70%, transparent 100%)" />
+      style="left: 30%; top: 15%; bottom: 15%; width: 1px; background: linear-gradient(180deg, transparent 0%, var(--color-foreground) 30%, var(--color-foreground) 70%, transparent 100%)" />
 
     <!-- 右侧竖排文字区域 -->
-    <div class="absolute right-0 top-0 bottom-0 flex items-center"
-      style="width: 58%; padding: 3rem;">
+    <div class="absolute right-0 top-0 bottom-0 flex items-center justify-center"
+      style="width: 70%; padding: 3rem;">
 
-      <div class="relative w-full h-full flex items-center" style="writing-mode: vertical-rl; text-orientation: mixed;">
+      <div class="relative h-full flex items-center" style="writing-mode: vertical-rl; text-orientation: mixed; flex-direction: column; gap: 4rem;">
 
         <!-- 竖排印章（章节号） -->
-        <div class="sm-seal absolute left-[2%] top-1/2 -translate-y-1/2 flex items-center justify-center select-none shrink-0"
+        <div class="sm-seal absolute left-[-24px] top-1/2 -translate-y-1/2 flex items-center justify-center select-none shrink-0"
           style="border: 2px solid var(--color-seal); width: 52px; height: 52px; color: var(--color-seal); font-family: 'KaiTi', 'STKaiti', serif; writing-mode: horizontal-tb; font-size: 0.65rem; transform: rotate(-3deg); opacity: 0.6; flex-direction: column; line-height: 1.2; text-align: center;">
           <span>第</span>
           <span>{{ String(slide.index + 1).padStart(2, '0') }}</span>
           <span>章</span>
         </div>
 
-        <!-- 竖排标题 -->
+        <!-- 第一列：竖排标题 -->
         <h2 v-if="slide.title" class="sm-section-title">
           {{ slide.title }}
         </h2>
 
-        <!-- 竖排副标题 / 内文 -->
+        <!-- 第二列：竖排副标题 -->
         <div v-if="slide.html" v-html="slide.html" class="sm-section-sub" />
 
         <!-- 右侧边栏墨点装饰 -->

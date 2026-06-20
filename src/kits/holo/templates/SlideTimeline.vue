@@ -101,7 +101,7 @@ const parsed = computed(() => {
     </div>
 
     <!-- ============ 尾部文字 ============ -->
-    <div v-if="parsed.afterText" class="absolute z-10" style="bottom: 8%; left: 50%; transform: translateX(-50%);" v-html="parsed.afterText"></div>
+    <div v-if="parsed.afterText" class="absolute z-10" style="bottom: 16%; left: 50%; transform: translateX(-50%);" v-html="parsed.afterText"></div>
   </div>
 </template>
 
@@ -253,8 +253,8 @@ const parsed = computed(() => {
 /* ===== 信息卡片 ===== */
 .holo-node-card {
   position: absolute;
-  width: 150px;
-  padding: 0.6rem 0.75rem;
+  width: 180px;
+  padding: 0.75rem 1rem;
   background: color-mix(in srgb, var(--color-card) 90%, transparent);
   border: 1px solid var(--color-border);
   clip-path: polygon(
@@ -267,7 +267,6 @@ const parsed = computed(() => {
 
 .holo-node-card:hover {
   box-shadow: var(--holo-border-glow);
-  transform: scale(1.05);
 }
 
 .card-above {
@@ -283,19 +282,19 @@ const parsed = computed(() => {
 }
 
 .holo-card-date {
-  font-size: 0.55rem;
+  font-size: var(--fs-caption);
   font-weight: 600;
   color: var(--color-accent);
   font-family: 'JetBrains Mono', monospace;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
   text-shadow: var(--holo-glow);
   text-align: center;
 }
 
 .holo-card-content {
-  font-size: 0.7rem;
+  font-size: var(--fs-body-sm);
   color: var(--color-foreground);
   line-height: 1.5;
   text-align: center;
@@ -310,7 +309,7 @@ const parsed = computed(() => {
 }
 
 .holo-timeline :deep(.holo-after-text p) {
-  font-size: var(--fs-caption);
+  font-size: var(--fs-body-sm);
   color: var(--color-muted-foreground);
   font-family: 'JetBrains Mono', monospace;
   text-align: center;

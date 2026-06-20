@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import type { Slide } from '../../../types/slides'
+import { computed } from 'vue'
 
 defineProps<{ slide: Slide }>()
+
+const sysTime = computed(() => {
+  const d = new Date()
+  return d.toString().replace(/ GMT.*/, '')
+})
 </script>
 
 <template>
@@ -35,10 +41,10 @@ defineProps<{ slide: Slide }>()
           <!-- 顶部状态条 -->
           <div class="flex items-center justify-between mb-6 px-2">
             <div class="flex items-center gap-2">
-              <span class="cp-mono text-xs" style="color: #ff4444">SEVERITY</span>
+              <span class="cp-mono text-xs" style="color: var(--color-accent)">SEVERITY</span>
               <span class="cp-severity-bar cp-severity-pulse" />
             </div>
-            <span class="cp-mono text-xs" style="color: var(--color-muted-foreground)">TIMESTAMP: {{ new Date().toISOString().slice(0, 19).replace('T', ' ') }}</span>
+            <span class="cp-mono text-xs" style="color: var(--color-muted-foreground)">TIMESTAMP: {{ sysTime }}</span>
           </div>
 
           <!-- 大数字 -->
@@ -48,10 +54,10 @@ defineProps<{ slide: Slide }>()
           <div class="cp-diagnostics mt-6 pt-4" style="border-top: 1px dashed color-mix(in srgb, var(--color-border) 60%, transparent)">
             <div class="cp-mono text-xs mb-2" style="color: var(--color-muted-foreground)">DIAGNOSTICS //</div>
             <div class="flex gap-6 flex-wrap">
-              <div class="flex items-center gap-1 cp-mono text-xs" style="color: #ffaa00">
+              <div class="flex items-center gap-1 cp-mono text-xs" style="color: var(--color-h1-to)">
                 <span class="cp-blink-slow">●</span> ANOMALY_SCORE: 94.7
               </div>
-              <div class="flex items-center gap-1 cp-mono text-xs" style="color: #00ff88">
+              <div class="flex items-center gap-1 cp-mono text-xs" style="color: var(--color-accent)">
                 <span>●</span> QUARANTINE: ACTIVE
               </div>
               <div class="flex items-center gap-1 cp-mono text-xs" style="color: var(--color-accent)">
@@ -88,7 +94,7 @@ defineProps<{ slide: Slide }>()
 
 /* 红色警报扫描 */
 .cp-alert-sweep {
-  background: repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255,0,0,0.1) 1deg, transparent 2deg, transparent 90deg);
+  background: repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, color-mix(in srgb, var(--color-accent) 10%, transparent) 1deg, transparent 2deg, transparent 90deg);
   animation: cp-sweep 8s linear infinite;
 }
 
@@ -103,9 +109,9 @@ defineProps<{ slide: Slide }>()
 .cp-alert-header {
   font-size: calc(1.2rem * var(--content-scale));
   font-weight: 900;
-  color: #ff4444;
+  color: var(--color-accent);
   letter-spacing: 0.3em;
-  text-shadow: 0 0 30px #ff4444, 0 0 60px #ff0000;
+  text-shadow: 0 0 30px var(--color-accent), 0 0 60px var(--color-h1-to);
   text-transform: uppercase;
 }
 
@@ -114,7 +120,7 @@ defineProps<{ slide: Slide }>()
   letter-spacing: 0.1em;
 }
 
-.cp-alert-icon { color: #ff4444; text-shadow: 0 0 15px #ff4444; }
+.cp-alert-icon { color: var(--color-accent); text-shadow: 0 0 15px var(--color-accent); }
 .cp-blink-fast { animation: cp-blink-fast 0.6s step-end infinite; }
 .cp-blink-offset { animation: cp-blink-fast 0.6s step-end 0.3s infinite; }
 
@@ -130,8 +136,8 @@ defineProps<{ slide: Slide }>()
   width: 100%;
   padding: 2.5rem 3rem;
   background: var(--color-card);
-  border: 2px solid #ff4444;
-  box-shadow: 0 0 40px color-mix(in srgb, #ff4444 25%, transparent), inset 0 0 40px color-mix(in srgb, #ff4444 6%, transparent);
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 0 40px color-mix(in srgb, var(--color-accent) 25%, transparent), inset 0 0 40px color-mix(in srgb, var(--color-accent) 6%, transparent);
 }
 
 .cp-alert-border {
@@ -144,7 +150,7 @@ defineProps<{ slide: Slide }>()
 
 @keyframes cp-alert-border {
   0%, 100% { border-color: transparent; box-shadow: none; }
-  50% { border-color: color-mix(in srgb, #ff4444 50%, transparent); box-shadow: 0 0 20px #ff4444, inset 0 0 20px color-mix(in srgb, #ff4444 20%, transparent); }
+  50% { border-color: color-mix(in srgb, var(--color-accent) 50%, transparent); box-shadow: 0 0 20px var(--color-accent), inset 0 0 20px color-mix(in srgb, var(--color-accent) 20%, transparent); }
 }
 
 .cp-alert-inner { position: relative; z-index: 1; }
@@ -152,7 +158,7 @@ defineProps<{ slide: Slide }>()
 /* 严重度条 */
 .cp-severity-bar {
   width: 60px; height: 4px;
-  background: linear-gradient(90deg, #ffaa00, #ff4444, #ff0000);
+  background: linear-gradient(90deg, var(--color-h1-to), var(--color-accent), var(--color-h1-to));
   border-radius: 2px;
 }
 .cp-severity-pulse { animation: cp-severity-pulse 1s ease-in-out infinite; }
@@ -180,8 +186,8 @@ defineProps<{ slide: Slide }>()
   font-weight: 900;
   line-height: 1;
   margin-bottom: 1.5rem;
-  color: #ff4444;
-  text-shadow: 0 0 40px #ff4444, 0 0 80px #ff0000, 0 2px 4px rgba(0,0,0,0.5);
+  color: var(--color-accent);
+  text-shadow: 0 0 40px var(--color-accent), 0 0 80px var(--color-h1-to), 0 2px 4px rgba(0,0,0,0.5);
   font-family: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', ui-monospace, monospace;
   text-align: center;
   animation: cp-glitch-pulse 2s ease-out;

@@ -17,7 +17,7 @@ defineProps<{ slide: Slide }>()
     <!-- 内层裱边 -->
     <div class="sm-frame-inner" />
 
-    <!-- 画心 — 微旋1.5度，模拟手工装裱的不完美 -->
+    <!-- 画心 — 媒体内容区 -->
     <div class="sm-frame-artwork">
       <div v-html="slide.html" class="sm-media-content" />
     </div>
@@ -62,7 +62,6 @@ defineProps<{ slide: Slide }>()
   pointer-events: none;
   border: 6px solid var(--color-foreground);
   opacity: 0.06;
-  transform: rotate(-1.5deg);
   border-radius: 1px;
 }
 
@@ -73,22 +72,16 @@ defineProps<{ slide: Slide }>()
   pointer-events: none;
   border: 2px solid var(--color-border);
   opacity: 0.15;
-  transform: rotate(-1.5deg);
   background: var(--color-card);
 }
 
-/* 画心 — 媒体内容，微旋 */
+/* 画心 — 媒体内容 */
 .sm-frame-artwork {
   position: absolute;
   inset: 8%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: rotate(-1.5deg);
-  /* 不规则裁剪 — 模拟手裁 */
-  clip-path: polygon(
-    1% 0%, 99% 0.5%, 100% 98%, 98% 100%, 0.5% 99.5%, 0% 2%
-  );
 }
 
 /* 四角墨点 */
@@ -110,14 +103,10 @@ defineProps<{ slide: Slide }>()
 
 /* 媒体内容样式 */
 .sm-media-content :deep(video) {
-  width: 100vw;
-  height: 100vh;
+  max-width: 90%;
+  max-height: 65vh;
   object-fit: contain;
   display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .sm-media-content :deep(img) {

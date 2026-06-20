@@ -10,6 +10,10 @@ interface Column {
   html: string
 }
 
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]+>/g, '').trim()
+}
+
 const parsed = computed(() => {
   const raw = props.slide.rawMd
   const body = raw.replace(/^#{1,6}\s+.+(\n|$)/m, '').trim()
@@ -49,6 +53,10 @@ const parsed = computed(() => {
   const after = afterText.length ? marked.parse(afterText.join('\n')) as string : ''
   return { subtitle, columns: columns.slice(0, 2), afterText: after }
 })
+
+const leftChars = computed(() => parsed.value.columns[0] ? stripHtml(parsed.value.columns[0].html).length : 0)
+const rightChars = computed(() => parsed.value.columns[1] ? stripHtml(parsed.value.columns[1].html).length : 0)
+const totalChars = computed(() => leftChars.value + rightChars.value)
 </script>
 
 <template>
@@ -68,28 +76,28 @@ const parsed = computed(() => {
           </h2>
         </div>
 
-        <!-- RPG 属性条 -->
+        <!-- 列内容统计 -->
         <div class="flex flex-col gap-4 flex-1">
           <div>
             <div class="flex justify-between mb-1">
-              <span class="text-xs font-bold" style="color: var(--color-accent); font-family: var(--px-font)">HP</span>
-              <span class="text-xs" style="color: var(--color-muted-foreground); font-family: var(--px-font)">42/42</span>
+              <span class="text-xs font-bold" style="color: var(--color-accent); font-family: var(--px-font)">LEFT</span>
+              <span class="text-xs" style="color: var(--color-muted-foreground); font-family: var(--px-font)">{{ leftChars }} ch</span>
             </div>
-            <div class="px-hp-bar-bg"><div class="px-hp-bar-fill"></div></div>
+            <div class="px-hp-bar-bg"><div class="px-hp-bar-fill" :style="{ width: totalChars ? (leftChars / totalChars * 100) + '%' : '50%' }"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1">
-              <span class="text-xs font-bold" style="color: var(--color-h1-to); font-family: var(--px-font)">MP</span>
-              <span class="text-xs" style="color: var(--color-muted-foreground); font-family: var(--px-font)">28/28</span>
+              <span class="text-xs font-bold" style="color: var(--color-h1-to); font-family: var(--px-font)">RIGHT</span>
+              <span class="text-xs" style="color: var(--color-muted-foreground); font-family: var(--px-font)">{{ rightChars }} ch</span>
             </div>
-            <div class="px-mp-bar-bg"><div class="px-mp-bar-fill"></div></div>
+            <div class="px-mp-bar-bg"><div class="px-mp-bar-fill" :style="{ width: totalChars ? (rightChars / totalChars * 100) + '%' : '50%' }"></div></div>
           </div>
           <div>
             <div class="flex justify-between mb-1">
-              <span class="text-xs font-bold" style="color: var(--color-muted-foreground); font-family: var(--px-font)">EXP</span>
-              <span class="text-xs" style="color: var(--color-muted-foreground); font-family: var(--px-font)">to Lv.9</span>
+              <span class="text-xs font-bold" style="color: var(--color-muted-foreground); font-family: var(--px-font)">TOTAL</span>
+              <span class="text-xs" style="color: var(--color-muted-foreground); font-family: var(--px-font)">{{ totalChars }} ch</span>
             </div>
-            <div class="px-exp-bar-bg"><div class="px-exp-bar-fill"></div></div>
+            <div class="px-exp-bar-bg"><div class="px-exp-bar-fill" style="width: 100%"></div></div>
           </div>
         </div>
 
@@ -105,7 +113,7 @@ const parsed = computed(() => {
 
       <!-- 右侧：描述卡片 -->
       <div class="flex-1 flex flex-col gap-4">
-        <div v-for="(col, i) in parsed.columns" :key="i" class="px-desc-card flex-1" :style="{ background: 'var(--color-card)', border: '3px solid var(--color-border)', boxShadow: '5px 5px 0 #0006', padding: '1.5rem 2rem', transition: 'transform 0.1s step-end' }">
+        <div v-for="(col, i) in parsed.columns" :key="i" class="px-desc-card flex-1" :style="{ background: 'var(--color-card)', border: '3px solid var(--color-border)', boxShadow: '5px 5px 0 #0006', padding: '1.5rem 2rem' }">
           <div class="flex items-center gap-2 mb-4 pb-3" style="border-bottom: 2px dashed var(--color-border)">
             <span style="font-family: monospace; color: var(--color-accent); font-size: 1rem">{{ i === 0 ? '◆' : '◇' }}</span>
             <h4 style="font-size: var(--fs-h4); font-weight: 700; color: var(--color-heading); font-family: var(--px-font)">{{ col.title }}</h4>
@@ -126,12 +134,15 @@ const parsed = computed(() => {
   width: 100%; height: 12px; border: 2px solid var(--color-border);
   background: var(--color-muted); position: relative;
 }
-.px-hp-bar-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #4c9, color-mix(in srgb, #4c9 60%, var(--color-accent))); animation: px-bar-pulse 2s step-end infinite; }
-.px-mp-bar-fill { height: 100%; width: 80%; background: linear-gradient(90deg, var(--color-h1-to), color-mix(in srgb, var(--color-h1-to) 60%, var(--color-accent))); }
+.px-hp-bar-fill { height: 100%; width: 100%; background: var(--color-background); animation: px-bar-pulse 2s step-end infinite; }
+.px-mp-bar-fill { height: 100%; width: 80%; background: var(--color-background); }
 .px-exp-bar-fill { height: 100%; width: 35%; background: repeating-linear-gradient(90deg, var(--color-accent) 0px, var(--color-accent) 4px, transparent 4px, transparent 8px); }
 
 @keyframes px-bar-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
 
+.px-desc-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 .px-desc-card:hover { transform: translateY(-3px); box-shadow: 7px 7px 0 #0008 !important; }
 
 .px-twocol-prose :deep(p) { font-size: var(--fs-body-sm); line-height: 1.7; margin-bottom: 0.75rem; color: var(--color-foreground); font-family: var(--px-font); }

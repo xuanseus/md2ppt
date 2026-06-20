@@ -15,7 +15,7 @@ defineProps<{ slide: Slide }>()
         <!-- 窗口标题栏 -->
         <div :style="{ background: 'linear-gradient(90deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 70%, var(--color-h1-to)))', padding: '0.5rem 1rem', borderBottom: '2px solid var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }">
           <span class="font-bold text-xs tracking-widest uppercase" style="color: var(--color-background); font-family: var(--px-font)">
-            ▼ MENU
+            ▼ CONTENT
           </span>
           <div class="flex gap-1d5">
             <span style="width: 10px; height: 10px; background: var(--color-background); opacity: 0.6; display: inline-block"></span>
@@ -29,17 +29,6 @@ defineProps<{ slide: Slide }>()
           <div v-html="slide.html" class="px-content-prose" />
         </div>
 
-        <!-- 底部操作提示栏 -->
-        <div :style="{ background: 'var(--color-muted)', borderTop: '2px solid var(--color-border)', padding: '0.6rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2rem' }">
-          <div class="flex items-center gap-2">
-            <span class="px-btn-icon" style="background: var(--color-accent); color: var(--color-background)">A</span>
-            <span class="text-xs" style="color: var(--color-muted-foreground); font-family: var(--px-font)">Continue</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="px-btn-icon" style="background: var(--color-muted-foreground); color: var(--color-background)">B</span>
-            <span class="text-xs" style="color: var(--color-muted-foreground); font-family: var(--px-font)">Back</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -48,18 +37,6 @@ defineProps<{ slide: Slide }>()
 <style scoped>
 .px-content {
   padding: 2.5rem 3rem;
-}
-
-.px-btn-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  font-size: 0.65rem;
-  font-weight: 800;
-  font-family: var(--px-font);
-  box-shadow: 1px 1px 0 #0004;
 }
 
 .px-content-prose :deep(h2) {
@@ -130,20 +107,15 @@ defineProps<{ slide: Slide }>()
 .px-content-prose :deep(code) {
   padding: 0.2rem 0.5rem;
   font-size: 0.9em;
-  background: var(--color-muted);
-  color: var(--color-accent);
   font-family: var(--px-font);
-  border: 1px solid var(--color-border);
 }
 
 .px-content-prose :deep(pre) {
   overflow-x: auto;
-  border: 2px solid var(--color-border);
-  box-shadow: 4px 4px 0 color-mix(in srgb, var(--color-accent) 15%, transparent);
 }
 
 .px-content-prose :deep(h1) {
-  background: linear-gradient(180deg, var(--color-h1-from, var(--color-accent)) 0%, var(--color-h1-to));
+  background: var(--color-background);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -157,13 +129,11 @@ defineProps<{ slide: Slide }>()
   font-family: var(--px-font);
 }
 
-.px-content-prose :deep(img) {
-  max-width: 90%;
-  max-height: 55vh;
-  display: block;
-  margin: 1rem auto;
-  object-fit: contain;
-  border: 3px solid var(--color-border);
-  box-shadow: 6px 6px 0 color-mix(in srgb, var(--color-accent) 15%, transparent);
-}
+px-content-prose :deep(img) {
+    max-width: 60%;
+    max-height: 40vh;
+    display: block;
+    margin: 1rem auto;
+    object-fit: contain;
+  }
 </style>

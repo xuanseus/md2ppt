@@ -69,10 +69,8 @@ const parsed = computed(() => {
           'card-right': i % 2 !== 0,
         }"
         :style="{
-          '--stagger-y': (i * 90 + 20) + 'px',
+          '--stagger-y': (i * 110 + 30) + 'px',
           '--card-z': (10 - i) + '',
-          '--hover-rot': i % 2 === 0 ? '-2deg' : '2deg',
-          '--hover-margin': i % 2 === 0 ? '16px' : '-16px',
         }"
       >
         <!-- 卡片切角边框 -->
@@ -153,9 +151,9 @@ const parsed = computed(() => {
 
 /* ===== 卡片区域 ===== */
 .holo-list-cards-area {
-  width: 60vw;
-  max-width: 700px;
-  min-height: 400px;
+  width: 70vw;
+  max-width: 800px;
+  min-height: 480px;
   position: relative;
   margin-left: 40px;
   margin-right: 40px;
@@ -174,15 +172,15 @@ const parsed = computed(() => {
 }
 
 .holo-floating-card.card-left {
-  margin-left: -180px;
+  margin-left: -220px;
 }
 
 .holo-floating-card.card-right {
-  margin-left: 80px;
+  margin-left: 120px;
 }
 
 .holo-floating-card:hover {
-  transform: translateX(var(--hover-margin, 0)) rotate(var(--hover-rot, 0deg)) scale(1.05);
+  transform: translateX(-50%) scale(1.05);
   z-index: 50;
 }
 

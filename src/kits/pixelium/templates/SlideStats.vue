@@ -5,7 +5,7 @@ defineProps<{ slide: Slide }>()
 </script>
 
 <template>
-  <div class="px-stats flex items-center justify-center w-full h-full" style="background: linear-gradient(160deg, #0a0a1e 0%, #12102a 40%, #0a0a2e 100%)">
+  <div class="px-stats flex items-center justify-center w-full h-full" style="background: var(--color-background)">
     <!-- 战斗像素粒子背景 -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-6">
       <div v-for="n in 16" :key="n" class="absolute px-battle-particle"
@@ -16,45 +16,12 @@ defineProps<{ slide: Slide }>()
       <!-- 战斗数据大框 -->
       <div :style="{ background: 'var(--color-card)', border: '4px solid var(--color-border)', boxShadow: '0 0 0 2px var(--color-background), 0 0 0 6px var(--color-border), 8px 8px 0 #0008', padding: '3rem 4rem', textAlign: 'center' }">
         <!-- LEVEL UP 标签 -->
-        <div class="px-level-up-badge mx-auto mb-6 px-6 py-1d5 inline-block" style="background: linear-gradient(90deg, var(--color-accent), var(--color-h1-to)); color: var(--color-background); box-shadow: 3px 3px 0 #0006">
+        <div class="px-level-up-badge mx-auto mb-6 px-6 py-1d5 inline-block" style="background: linear-gradient(90deg, var(--color-accent), var(--color-h1-to)); color: var(--color-accent-foreground); box-shadow: 3px 3px 0 #0006">
           <span class="text-sm font-extrabold tracking-widest uppercase" style="font-family: var(--px-font)">LEVEL UP!</span>
-        </div>
-
-        <!-- HP 大型血条 -->
-        <div class="mb-6">
-          <div class="flex justify-between items-end mb-2">
-            <span class="text-lg font-extrabold" style="color: var(--color-accent); font-family: var(--px-font)">HP</span>
-            <span class="text-3xl font-black" style="color: var(--color-accent); font-family: var(--px-font); text-shadow: 2px 2px 0 #0004">2,847</span>
-          </div>
-          <div class="px-hp-mega-bar"><div class="px-hp-mega-fill"></div></div>
-          <div class="flex justify-between mt-1">
-            <span class="text-xs" style="color: var(--color-muted-foreground); font-family: var(--px-font)">2,847</span>
-            <span class="text-xs" style="color: var(--color-muted-foreground); font-family: var(--px-font)">3,200</span>
-          </div>
-        </div>
-
-        <!-- MP 能量条 -->
-        <div class="mb-8">
-          <div class="flex justify-between items-end mb-2">
-            <span class="text-sm font-extrabold" style="color: var(--color-h1-to); font-family: var(--px-font)">MP</span>
-            <span class="text-xl font-black" style="color: var(--color-h1-to); font-family: var(--px-font)">456</span>
-          </div>
-          <div class="px-mp-mega-bar"><div class="px-mp-mega-fill"></div></div>
         </div>
 
         <!-- 核心数据大字报内容 -->
         <div v-html="slide.html" class="px-stats-prose" />
-      </div>
-
-      <!-- 战斗指令栏 -->
-      <div class="mt-4 flex items-center justify-center gap-6 px-6 py-3" style="background: var(--color-card); border: 2px solid var(--color-border); box-shadow: 4px 4px 0 #0006">
-        <span class="px-cmd" style="color: var(--color-accent)">FIGHT</span>
-        <span class="px-cmd-sep">|</span>
-        <span class="px-cmd" style="color: var(--color-muted-foreground)">ITEM</span>
-        <span class="px-cmd-sep">|</span>
-        <span class="px-cmd" style="color: var(--color-muted-foreground)">MAGIC</span>
-        <span class="px-cmd-sep">|</span>
-        <span class="px-cmd" style="color: var(--color-muted-foreground)">RUN</span>
       </div>
     </div>
   </div>

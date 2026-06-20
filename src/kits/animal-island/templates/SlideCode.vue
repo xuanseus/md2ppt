@@ -30,7 +30,6 @@ defineProps<{ slide: Slide }>()
 }
 
 .ai-code-prose :deep(pre) {
-  border-radius: var(--animal-border-radius-base, 18px);
   overflow-x: auto;
   margin: 0.5rem 0;
 }

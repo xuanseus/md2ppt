@@ -90,14 +90,10 @@ defineProps<{ slide: Slide }>()
   padding: 0.2rem 0.5rem;
   border-radius: 0.35rem;
   font-size: 0.9em;
-  background: var(--color-muted);
-  color: var(--color-accent);
 }
 
 .ai-content-prose :deep(pre) {
-  border-radius: var(--animal-border-radius-base, 18px);
   overflow-x: auto;
-  border: 2px solid var(--color-border);
 }
 
 .ai-content-prose :deep(h1) {
@@ -113,12 +109,11 @@ defineProps<{ slide: Slide }>()
   text-underline-offset: 2px;
 }
 
-.ai-content-prose :deep(img) {
-  max-width: 90%;
-  max-height: 60vh;
-  display: block;
-  margin: 1rem auto;
-  border-radius: var(--animal-border-radius-base, 18px);
-  object-fit: contain;
-}
+ai-content-prose :deep(img) {
+    max-width: 60%;
+    max-height: 40vh;
+    display: block;
+    margin: 1rem auto;
+    object-fit: contain;
+  }
 </style>

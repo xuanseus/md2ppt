@@ -27,7 +27,7 @@ const {
   reloadMarkdownFromFile,
 } = usePresentation()
 
-const { currentTransition, cycleTransition } = useSlideTransition()
+const { currentTransition, transitions, cycleTransition, setTransition } = useSlideTransition()
 const { activeKit } = useKit()
 initTheme() // init kit theme from localStorage on mount
 
@@ -186,7 +186,7 @@ async function handleReloadMd() {
         :name="currentTransition"
         mode="out-in"
       >
-        <div :key="currentSlide.id" class="relative w-full h-full" :class="currentSlide?.layout === 'media-hero' || currentSlide?.type === 'media' ? 'z-50' : 'z-10'">
+        <div :key="currentSlide.id" class="relative w-full h-full" :class="currentSlide?.layout === 'media-hero' || currentSlide?.type === 'media' ? 'z-10' : 'z-10'">
           <SlideRenderer :slide="currentSlide" />
         </div>
       </Transition>
@@ -207,9 +207,11 @@ async function handleReloadMd() {
       :has-prev="hasPrev"
       :has-next="hasNext"
       :transition-name="currentTransition"
+      :transitions="transitions"
       @navigate="handleNavigate"
       @toggle-overview="toggleOverview"
       @cycle-transition="cycleTransition"
+      @set-transition="setTransition"
       @reload-md="handleReloadMd"
     />
   </div>

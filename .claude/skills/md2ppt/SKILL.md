@@ -207,38 +207,35 @@ function optimize() {
 - 📊 数据分析：实时可视化监控面板
 ```
 
-## 模板套件 & 主题
+## 模板套件 & 主题（7 套）
 
-md2ppt 内置两套 PPT 模板套件（Kit），底部控制栏一键切换：
+底部控制栏**短按循环 / 长按弹出面板直达**：
 
-| 套件 | 风格 | 背景 |
-|------|------|------|
-| **Realtime Beats** | 现代科技风，WebGL 动态背景，玻璃拟态 | Aurora / Silk / Grainient |
-| **Animal Island** | 自然治愈风，暖调配色，圆角卡片 | 纯 CSS 渐变 |
+| 套件 | 风格 |
+|------|------|
+| **Realtime Beats** | 现代科技风，WebGL 动态背景，玻璃拟态 |
+| **Animal Island** | 自然治愈风，暖调配色，圆角卡片 |
+| **Holo Sci-Fi** | 全息科幻风，霓虹配色，六边形几何 |
+| **Pixel Island** | 复古像素游戏风，宝可梦 / 星露谷美学 |
+| **Water Ink** | 中国水墨风，宣纸纹理，竖排书法 |
+| **Cyberpunk 2077** | 赛博朋克风，终端 HUD，霓虹暗夜 |
+| **Pixel Retro** | 8-bit NES 美学，像素级精确边框 |
 
-每个套件自带 4 种配色主题，通过底部控制栏的 ☀️/🌙 按钮循环切换。
+每套自带 4 种配色主题。套件/主题/动画/缩放均支持短按循环 + 长按弹出面板滑动选择。
 
 ### 自定义 Kit
 
-用户可以自行添加新的模板套件：
+在 `src/kits/` 下新建目录 → `index.ts` → 注册到 `kits/index.ts`：
 
 ```
 src/kits/
-  my-kit/               # 新建套件目录
-    index.ts             # 出口文件，参考 beats/index.ts
-    templates/           # 12 个 SlideXxx.vue 模板
-    themes/              # 主题 JSON 文件
+  my-kit/
+    index.ts             # 出口文件
+    templates/           # 11 个 SlideXxx.vue
+    themes/              # 主题 JSON（4 个）
 ```
 
-1. 复制 `src/kits/beats/` 或 `src/kits/animal-island/` 作为模板
-2. 修改 `index.ts` 中的 `id`、`label`、`description`
-3. 替换 `templates/` 下的组件为你自己的设计
-4. 修改 `themes/` 下的 JSON 中 `vars` 色值
-5. 在 `src/kits/index.ts` 的 `kits` 数组中注册
-
-### 自定义主题
-
-每个套件的主题是 JSON 文件，只需覆盖 CSS 变量即可换肤：
+### 主题 JSON 格式
 
 ```json
 {
@@ -252,16 +249,12 @@ src/kits/
     "--color-muted": "#f4f4f5",
     "--color-border": "#e4e4e7",
     "--color-card": "#ffffff",
-    "--color-code-bg": "#2A2A2A",
-    "--color-code-fg": "#EFEFEF",
     "--color-heading": "#273849",
     "--color-h1-from": "#42D392",
     "--color-h1-to": "#647EFF"
   }
 }
 ```
-
-在对应套件的 `index.ts` 中 import 并加入 `themes` 数组即可。
 
 ## 转换原则
 

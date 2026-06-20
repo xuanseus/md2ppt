@@ -196,15 +196,11 @@ defineProps<{ slide: Slide }>()
   padding: 0.2rem 0.5rem;
   border-radius: 3px;
   font-size: 0.9em;
-  background: var(--color-muted);
-  color: var(--color-foreground);
   font-family: 'JetBrains Mono', 'Cascadia Code', monospace;
 }
 
 .sm-content-prose :deep(pre) {
-  border-radius: 4px;
   overflow-x: auto;
-  border: 2px solid var(--color-border);
 }
 
 .sm-content-prose :deep(h1) {
@@ -220,15 +216,13 @@ defineProps<{ slide: Slide }>()
   text-underline-offset: 2px;
 }
 
-.sm-content-prose :deep(img) {
-  max-width: 90%;
-  max-height: 60vh;
-  display: block;
-  margin: 1rem auto;
-  border-radius: 2px;
-  object-fit: contain;
-  border: 1px solid var(--color-border);
-}
+sm-content-prose :deep(img) {
+    max-width: 60%;
+    max-height: 40vh;
+    display: block;
+    margin: 1rem auto;
+    object-fit: contain;
+  }
 
 .sm-content-prose :deep(strong) {
   font-weight: 700;

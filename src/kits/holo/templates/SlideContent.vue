@@ -88,19 +88,19 @@ defineProps<{ slide: Slide }>()
 <style scoped>
 /* ===== 六边形卡片包裹 ===== */
 .holo-hex-card-wrapper {
-  width: 680px;
-  max-width: 75vw;
+  width: 720px;
+  max-width: 80vw;
   position: relative;
 }
 
 /* ===== 六边形卡片 ===== */
 .holo-hex-card {
-  padding: 2.5rem 3rem;
+  padding: 2.5rem 4rem 6.5rem;
   background: var(--color-card);
   clip-path: polygon(
-    50% 0%, 95% 10%, 100% 40%, 100% 70%,
-    95% 100%, 50% 100%, 5% 100%, 0% 70%,
-    0% 40%, 5% 10%
+    30% 2%, 70% 2%, 95% 12%, 98% 40%, 98% 70%,
+    95% 88%, 70% 98%, 30% 98%, 5% 88%, 2% 70%,
+    2% 40%, 5% 12%
   );
   border: none;
   position: relative;
@@ -111,9 +111,9 @@ defineProps<{ slide: Slide }>()
   position: absolute;
   inset: 2px;
   clip-path: polygon(
-    50% 0%, 95% 10%, 100% 40%, 100% 70%,
-    95% 100%, 50% 100%, 5% 100%, 0% 70%,
-    0% 40%, 5% 10%
+    30% 2%, 70% 2%, 95% 12%, 98% 40%, 98% 70%,
+    95% 88%, 70% 98%, 30% 98%, 5% 88%, 2% 70%,
+    2% 40%, 5% 12%
   );
   background: linear-gradient(135deg,
     color-mix(in srgb, var(--color-accent) 15%, transparent) 0%,
@@ -279,6 +279,7 @@ defineProps<{ slide: Slide }>()
 .holo-content-prose :deep(h2) {
   font-size: var(--fs-h2);
   font-weight: 700;
+  margin-top: 0;
   margin-bottom: 1.5rem;
   text-align: center;
   line-height: 1.2;
@@ -290,7 +291,9 @@ defineProps<{ slide: Slide }>()
 .holo-content-prose :deep(h3) {
   font-size: var(--fs-h3);
   font-weight: 600;
+  margin-top: 0;
   margin-bottom: 1.25rem;
+  text-align: center;
   color: var(--color-heading);
   font-family: 'JetBrains Mono', monospace;
 }
@@ -320,7 +323,7 @@ defineProps<{ slide: Slide }>()
   content: '\25B6';
   position: absolute;
   left: 0;
-  top: 0;
+  top: 0.35em;
   font-size: 0.6em;
   color: var(--color-accent);
 }
@@ -337,15 +340,11 @@ defineProps<{ slide: Slide }>()
 .holo-content-prose :deep(code) {
   padding: 0.2rem 0.5rem;
   font-size: 0.9em;
-  background: var(--color-code-bg);
-  color: var(--color-code-fg);
   font-family: 'JetBrains Mono', monospace;
 }
 
 .holo-content-prose :deep(pre) {
   overflow-x: auto;
-  border: 1px solid var(--color-border);
-  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
 }
 
 .holo-content-prose :deep(h1) {
@@ -353,6 +352,7 @@ defineProps<{ slide: Slide }>()
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-align: center;
 }
 
 .holo-content-prose :deep(a) {
@@ -361,13 +361,13 @@ defineProps<{ slide: Slide }>()
   border-bottom: 1px dashed var(--color-accent);
 }
 
-.holo-content-prose :deep(img) {
-  max-width: 80%;
-  max-height: 45vh;
-  display: block;
-  margin: 1rem auto;
-  object-fit: contain;
-}
+holo-content-prose :deep(img) {
+    max-width: 60%;
+    max-height: 40vh;
+    display: block;
+    margin: 1rem auto;
+    object-fit: contain;
+  }
 
 @keyframes holo-dot-blink {
   0%, 100% { opacity: 1; }

@@ -5,7 +5,7 @@ defineProps<{ slide: Slide }>()
 </script>
 
 <template>
-  <div class="px-cover flex items-center justify-center w-full h-full" style="background: linear-gradient(180deg, #0a0a2e 0%, #1a0a3e 30%, #0a0a2e 60%, #1a0a3e 100%)">
+  <div class="px-cover flex items-center justify-center w-full h-full" style="background: var(--color-background)">
     <!-- 像素星空背景 -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
       <span

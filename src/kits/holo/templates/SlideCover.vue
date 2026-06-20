@@ -20,27 +20,8 @@ defineProps<{ slide: Slide }>()
       </svg>
     </div>
 
-    <!-- ============ 对角线分割线（从左上到右下） ============ -->
-    <div class="absolute inset-0 pointer-events-none" style="
-      background: linear-gradient(135deg,
-        color-mix(in srgb, var(--color-accent) 8%, transparent) 0%,
-        color-mix(in srgb, var(--color-accent) 3%, transparent) 49.5%,
-        transparent 50.5%,
-        color-mix(in srgb, var(--color-h1-to) 3%, transparent) 50.5%,
-        color-mix(in srgb, var(--color-h1-to) 8%, transparent) 100%);
-      clip-path: none;
-    "></div>
-
-    <!-- 对角线发光扫描线 -->
-    <div class="absolute top-[50%] left-0 w-full h-[2px] pointer-events-none" style="
-      background: linear-gradient(90deg, transparent, var(--color-accent) 20%, var(--color-accent) 80%, transparent);
-      transform: rotate(-45deg) scaleX(2);
-      opacity: 0.15;
-      animation: holo-diag-scan 4s ease-in-out infinite;
-    "></div>
-
-    <!-- 左上三角区域：系统标识 + 标题 -->
-    <div class="absolute z-10" style="top: 12%; left: 8%; width: 45%; max-width: 600px; clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%)">
+    <!-- 左上标题区域 -->
+    <div class="absolute z-20" style="top: 12%; left: 8%; width: 50%; max-width: 640px">
       <!-- 系统状态条 -->
       <div class="flex items-center gap-3 mb-10">
         <span class="holo-sys-tag">SYS.ONLINE</span>
@@ -61,8 +42,8 @@ defineProps<{ slide: Slide }>()
       </div>
     </div>
 
-    <!-- 右下三角区域：副标题内容 -->
-    <div class="absolute z-10 flex flex-col justify-end" style="bottom: 10%; right: 6%; width: 42%; text-align: right; clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%)">
+    <!-- 右下副标题区域 -->
+    <div class="absolute z-20 flex flex-col justify-end" style="bottom: 10%; right: 6%; width: 45%; text-align: right">
       <div v-html="slide.html" class="holo-cover-sub"></div>
 
       <!-- 底部数据流线 -->
@@ -210,11 +191,6 @@ defineProps<{ slide: Slide }>()
   background: linear-gradient(90deg, transparent 0%, var(--color-accent) 20%, var(--color-accent) 80%, transparent 100%);
   opacity: 0.3;
   animation: holo-bottom-glow 3s ease-in-out infinite;
-}
-
-@keyframes holo-diag-scan {
-  0%, 100% { opacity: 0.08; }
-  50% { opacity: 0.25; }
 }
 
 @keyframes holo-bottom-glow {

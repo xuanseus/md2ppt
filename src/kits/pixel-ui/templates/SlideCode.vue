@@ -6,7 +6,7 @@ defineProps<{ slide: Slide }>()
 
 <template>
   <!-- NES Password Entry Screen — code in bordered box with character grid spacing -->
-  <div class="px-code flex items-center justify-center w-full h-full" :style="{ background: 'var(--color-code-bg)' }">
+  <div class="px-code flex items-center justify-center w-full h-full" :style="{ background: '#282a36' }">
     <!-- CRT scanline -->
     <div class="absolute inset-0 pointer-events-none pixel-scanline" />
 
@@ -30,7 +30,7 @@ defineProps<{ slide: Slide }>()
     <div class="relative z-10 w-full max-w-4xl px-10">
       <!-- Password window — like Mega Man / Metroid password screen -->
       <div class="px-password-window" :style="{
-        background: 'var(--color-code-bg)',
+        background: '#282a36',
         border: '4px solid var(--color-accent)',
         boxShadow: '6px 6px 0 var(--pixel-shadow)',
         imageRendering: 'pixelated',
@@ -194,14 +194,11 @@ defineProps<{ slide: Slide }>()
   margin: 0.5rem 0;
   image-rendering: pixelated;
   padding: 1rem 1.5rem;
-  background: var(--color-muted);
-  border: 3px solid var(--color-border);
 }
 .px-code-prose :deep(code) {
   font-family: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', monospace;
   font-size: var(--fs-caption);
   line-height: 1.7;
-  color: var(--color-code-fg);
 }
 .px-code-prose :deep(p) {
   font-size: var(--fs-body-sm);

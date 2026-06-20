@@ -42,7 +42,7 @@ defineProps<{ slide: Slide }>()
           border: '4px solid var(--color-accent)',
           boxShadow: '6px 6px 0 var(--pixel-shadow)',
           imageRendering: 'pixelated',
-          background: 'var(--color-code-bg)',
+          background: 'var(--color-card)',
         }">
           <!-- Media content -->
           <div v-html="slide.html" class="px-media-content" />
@@ -56,7 +56,7 @@ defineProps<{ slide: Slide }>()
           imageRendering: 'pixelated',
         }">
           <span class="status-pixel">▌</span>
-          <span class="status-text">640 x 480 — 256 COLORS</span>
+          <span class="status-text">MEDIA</span>
           <span class="status-pixel">▐</span>
         </div>
       </div>
@@ -136,7 +136,6 @@ defineProps<{ slide: Slide }>()
 
 /* Content frame */
 .px-media-frame {
-  overflow: hidden;
   position: relative;
 }
 

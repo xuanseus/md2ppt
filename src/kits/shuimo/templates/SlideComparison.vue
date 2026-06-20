@@ -57,14 +57,14 @@ const parsed = computed(() => {
     <div class="sm-paper-texture absolute inset-0 pointer-events-none" />
 
     <!-- 标题区 -->
-    <div v-if="slide.title" class="absolute top-6 left-1/2 -translate-x-1/2 z-20">
+    <div v-if="slide.title" class="absolute top-12 left-1/2 -translate-x-1/2 z-20">
       <h2 class="text-center"
         style="font-size: var(--fs-h2); font-weight: 700; color: var(--color-heading); font-family: 'Noto Serif SC', 'STSong', Georgia, serif; letter-spacing: 0.08em;">
         {{ slide.title }}
       </h2>
     </div>
 
-    <div v-if="parsed.subtitle" class="absolute top-20 left-1/2 -translate-x-1/2 z-20" v-html="parsed.subtitle"
+    <div v-if="parsed.subtitle" class="absolute top-40 left-1/2 -translate-x-1/2 z-20" v-html="parsed.subtitle"
       style="font-size: var(--fs-body-sm); color: var(--color-muted-foreground); font-family: 'Noto Serif SC', 'STKaiti', 'KaiTi', Georgia, serif; opacity: 0.6;" />
 
     <!-- 双卷轴对比布局 -->
@@ -115,10 +115,9 @@ const parsed = computed(() => {
         </div>
         <div class="sm-scroll-bottom-rod" />
       </div>
-    </div>
 
-    <div v-if="parsed.afterText" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20" v-html="parsed.afterText"
-      style="font-size: var(--fs-caption); color: var(--color-muted-foreground); font-family: 'Noto Serif SC', 'STKaiti', 'KaiTi', Georgia, serif; opacity: 0.5;" />
+      <div v-if="parsed.afterText" class="text-center mt-4" style="grid-column: 1 / -1; font-size: var(--fs-caption); color: var(--color-muted-foreground); font-family: 'Noto Serif SC', 'STKaiti', 'KaiTi', Georgia, serif; opacity: 0.5;" v-html="parsed.afterText" />
+    </div>
   </div>
 </template>
 
@@ -136,11 +135,11 @@ const parsed = computed(() => {
 /* 双卷轴布局 */
 .sm-comp-layout {
   position: absolute;
-  inset: 10% 6% 8% 6%;
+  inset: 24% 8% 14% 8%;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 1.5rem;
-  align-items: center;
+  align-items: start;
 }
 
 /* 左卷轴 — 顶部固定、内容向下展开 */
@@ -148,8 +147,6 @@ const parsed = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  height: 100%;
-  justify-content: flex-start;
 }
 
 .sm-scroll-top-rod {
@@ -166,7 +163,6 @@ const parsed = computed(() => {
 }
 
 .sm-scroll-left-body {
-  flex: 1;
   background: var(--color-card);
   border: 1px solid var(--color-border);
   border-top: none;
@@ -185,12 +181,9 @@ const parsed = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  height: 100%;
-  justify-content: flex-end;
 }
 
 .sm-scroll-right-body {
-  flex: 1;
   background: var(--color-card);
   border: 1px solid var(--color-border);
   border-bottom: none;

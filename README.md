@@ -15,7 +15,7 @@
 
 ## 这是什么
 
-**MD2PPT** 是一个把 Markdown 实时渲染为横向翻页网页 PPT 的工具。写 MD，浏览器里看效果，构建后是单个 HTML 文件，双击就能打开。
+**MD2PPT** 是一个把 Markdown 实时渲染为横向翻页网页 PPT 的工具。写 MD，浏览器里看效果，构建后双击打开。
 
 **核心亮点**：内置 `/md2ppt` skill，把演讲稿扔给 AI，自动提炼要点并生成带布局标记的 PPT。PPT 是视觉锚点，不是提词器。
 
@@ -27,7 +27,7 @@
 
 ### 第一步：准备演讲稿
 
-写一份纯文本 Markdown 演讲稿，不需要任何布局标记：
+写一份纯文本 Markdown，不需要任何布局标记：
 
 ```markdown
 # 我的演讲标题
@@ -39,18 +39,14 @@
 ## 核心数据
 
 用户增长 80%，收入翻倍...
-
-## 技术架构
-
-采用了微服务架构...
 ```
 
 ### 第二步：AI 自动生成
 
-在 Claude Code 中输入 `/md2ppt`，把演讲稿内容粘贴进去。AI 会自动：
+在 Claude Code 中输入 `/md2ppt`，粘贴演讲稿。AI 自动：
 
 - 🔍 分析内容结构（封面、章节、数据、代码、对比…）
-- ✂️ **提炼要点**：长句变短语，段落变关键词，演讲稿 → 展示稿
+- ✂️ **提炼要点**：长句变短语，段落变关键词
 - 🏷️ 添加 `{layout: xxx}` 布局标记
 - 📝 输出 `xxx-ppt.md` 文件
 
@@ -63,7 +59,7 @@
 npm run dev
 ```
 
-浏览器打开 `http://localhost:5173`，用 ← → 键翻页查看效果。
+浏览器打开 `http://localhost:5173`，用 ← → 键翻页查看。
 
 ## 快速开始
 
@@ -81,8 +77,6 @@ npm run preview    # 预览构建结果
 
 ## 打包后使用
 
-构建产物在 `dist/` 目录，根据需求选择使用方式：
-
 ### 方式一：需要继续编辑内容 → 用 BAT 启动
 
 **双击 `dist/start.bat`**（PowerShell 零依赖本地服务器）
@@ -98,11 +92,11 @@ dist/
 ```
 
 1. 双击 `start.bat` → PowerShell 起本地服务器 + 自动打开浏览器
-2. 编辑 `dist/slides-ppt.md` 并保存 → 500ms 内浏览器自动刷新
+2. 编辑 `dist/slides-ppt.md` 并保存 → 500ms 内自动刷新
 3. 关闭终端窗口 → 服务器自动停止
-4. 再次双击 `start.bat` → 检测到已运行则只打开浏览器，不重复启动
+4. 再次双击 `start.bat` → 检测到已运行则只打开浏览器
 
-> 💡 原理：页面每 500ms `fetch('./slides-ppt.md')` 检测变化，有改动自动重新渲染。
+> 💡 原理：页面每 500ms `fetch('./slides-ppt.md')` 检测变化，自动重新渲染。
 
 ### 方式二：内容已定稿 → 只保留 HTML
 
@@ -134,21 +128,21 @@ VITE_ASSETS_PATH=md/assets
 | `<video>` / `<img>` | 单独抽出全屏页，行末加 `{layout: media-hero}` |
 | ` ``` ` 代码块 | 内部不受分页影响 |
 
-## 布局类型
+## 布局类型（11 种）
 
-在标题后加 `{layout: xxx}` 指定布局，共 11 种：
+在标题后加 `{layout: xxx}` 指定布局：
 
 | 布局 | 用途 |
 |------|------|
 | `cover` | 封面 / 结束页 |
 | `section` | 章节过渡 |
 | `content` | 标准内容 |
-| `two-column` | 左右两列（`**粗体**` 标记列） |
+| `two-column` | 左右两列（`**粗体**` 标记列标题） |
 | `stats` | 数据大字报 |
 | `quote` | 大段引用 |
 | `code-full` | 代码展示 |
 | `media-hero` | 视频 / 大图 |
-| `comparison` | 方案对比（`**粗体**`+`- 列表`） |
+| `comparison` | 方案对比（`**粗体**` + `- 列表`） |
 | `timeline` | 时间线 |
 | `list` | 特性列表 |
 
@@ -162,17 +156,7 @@ VITE_ASSETS_PATH=md/assets
 用户增长率，较去年同期翻倍
 ```
 
-示例：
-
-```markdown
-### 核心数据 {layout: stats}
-
-**80%**
-
-用户增长率，较去年同期翻倍
-```
-
-两列 / 对比示例（`**粗体**` 标记列，**禁止 `---`**）：
+两列 / 对比示例（`**粗体**` 标记列标题）：
 
 ```markdown
 ### 方案对比 {layout: comparison}
@@ -186,26 +170,34 @@ VITE_ASSETS_PATH=md/assets
 - ✅ 自动化运维
 ```
 
-媒体示例（标题 + `---` 分页 + 媒体行末尾标签）：
+媒体示例：
 
 ```markdown
-## 演示视频
-
----
-
-<video src="./assets/demo.mp4" controls></video> {layout: media-hero}
+<video src="./assets/demo.mp4" controls></video>
 ```
 
-## 模板套件 & 主题
+## 模板套件 & 主题（7 套）
 
-项目内置两套 **PPT 模板套件（Kit）**，底部控制栏一键切换：
+底部控制栏短按循环 / 长按弹出面板直达：
 
-| 套件 | 风格 | 背景 |
-|------|------|------|
-| **Realtime Beats** | 现代科技风，WebGL 动态背景，玻璃拟态 | Aurora / Silk / Grainient |
-| **Animal Island** | 自然治愈风，暖调配色，圆角卡片 | 纯 CSS 渐变 |
+| 套件 | 风格 |
+|------|------|
+| **Realtime Beats** | 现代科技风，WebGL 动态背景，玻璃拟态 |
+| **Animal Island** | 自然治愈风，暖调配色，圆角卡片 |
+| **Holo Sci-Fi** | 全息科幻风，霓虹配色，六边形几何 |
+| **Pixel Island** | 复古像素游戏风，宝可梦 / 星露谷美学 |
+| **Water Ink** | 中国水墨风，宣纸纹理，竖排书法 |
+| **Cyberpunk 2077** | 赛博朋克风，终端 HUD，霓虹暗夜 |
+| **Pixel Retro** | 8-bit NES 美学，像素级精确边框 |
 
-每个套件自带 4 种配色主题，底部控制栏循环切换。新增套件：`src/kits/` 下新建目录 → `index.ts` 出口 → 注册到 `kits/index.ts`。
+每套自带 4 种配色主题。新增套件：`src/kits/` 下新建目录 → `index.ts` → 注册到 `kits/index.ts`。
+
+### 套件预览 / Kit Preview
+
+| Animal Island | Realtime Beats | Holo Sci-Fi |
+|:---:|:---:|:---:|
+| ![Animal Island](docs/animal-island.png) | ![Beats](docs/beats.png) | ![Holo](docs/holo.png) |
+| 自然治愈风 | 现代科技风 | 全息科幻风 |
 
 ## 快捷键
 
@@ -213,17 +205,27 @@ VITE_ASSETS_PATH=md/assets
 |----|------|
 | `←` `→` 空格 PageUp/Down | 翻页 |
 | Home / End | 首尾页 |
-| ESC | 全局预览 |
+| Tab | 全局预览 |
 | F | 全屏 |
 | 数字键 | 跳转指定页 |
 | 鼠标滚轮 / 触摸滑动 | 翻页 |
+| P | 自动播放 |
+| K / T / A / S | 套件 / 主题 / 动画 / 缩放 |
+
+## Dock 控制栏
+
+- 翻页 / 全屏 / 预览 / **自动播放（3s 间隔）** / 套件 / 主题 / 翻页动画 / 内容缩放
+- 非全屏始终显示，全屏 3s 无操作自动隐藏
+- 套件/主题/动画/缩放：短按循环，**长按弹出面板滑动选择**
+- 7 种翻页动画：slide / fade / zoom / flip / pixel / reveal / none
+- 3 档缩放：1x / 1.25x / 1.5x
 
 ## 技术栈
 
 - **Vue 3** Composition API `<script setup>`
-- **TypeScript** + **Vite 8**
+- **TypeScript** + **Vite**
 - **Tailwind CSS v4** `@tailwindcss/vite`
-- **marked** + **shiki** — MD 解析 & 代码高亮
+- **marked** + **shiki** — MD 解析 & Dracula 代码高亮
 - **自定义 Vite 插件** — `virtual:slides` 虚拟模块 + HMR
 - **unplugin-auto-import / unplugin-vue-components** — 自动导入
 - **vite-plugin-singlefile** — 单文件打包
