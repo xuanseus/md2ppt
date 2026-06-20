@@ -141,10 +141,10 @@ Tap to cycle, long-press for popup panel:
 
 ### Kit Preview
 
-| Animal Island | Realtime Beats | Holo Sci-Fi |
+| Animal Island | Realtime Beats | Pixel Island |
 |:---:|:---:|:---:|
-| ![Animal Island](docs/animal-island.png) | ![Beats](docs/beats.png) | ![Holo](docs/holo.png) |
-| Natural Warm | Modern Tech | Holographic Sci-Fi |
+| ![Animal Island](docs/animal-island.png) | ![Beats](docs/beats.png) | ![Pixel Island](docs/pixelium.png) |
+| Natural Warm | Modern Tech | Retro Pixel Game |
 
 ## Shortcuts
 

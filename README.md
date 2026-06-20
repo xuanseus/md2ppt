@@ -194,10 +194,10 @@ VITE_ASSETS_PATH=md/assets
 
 ### 套件预览 / Kit Preview
 
-| Animal Island | Realtime Beats | Holo Sci-Fi |
+| Animal Island | Realtime Beats | Pixel Island |
 |:---:|:---:|:---:|
-| ![Animal Island](docs/animal-island.png) | ![Beats](docs/beats.png) | ![Holo](docs/holo.png) |
-| 自然治愈风 | 现代科技风 | 全息科幻风 |
+| ![Animal Island](docs/animal-island.png) | ![Beats](docs/beats.png) | ![Pixel Island](docs/pixelium.png) |
+| 自然治愈风 | 现代科技风 | 复古像素游戏风 |
 
 ## 快捷键
 
