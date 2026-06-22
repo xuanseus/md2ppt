@@ -178,9 +178,6 @@ async function handleReloadMd() {
         />
       </div>
 
-      <!-- 半透遮罩（仅 WebGL 套件需要，压暗背景使其不喧宾夺主） -->
-      <div v-if="useWebGL" class="absolute inset-0 z-[2] pointer-events-none" style="background: var(--color-background); opacity: 0.3" />
-
       <Transition
         v-if="!isOverview && currentSlide"
         :name="currentTransition"

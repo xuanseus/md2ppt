@@ -67,8 +67,12 @@ onUnmounted(() => {
 
 <style scoped>
 .section-card {
-  background: color-mix(in srgb, var(--color-background) 85%, transparent);
-  backdrop-filter: blur(20px);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--color-muted) 95%, var(--color-accent) 5%),
+    color-mix(in srgb, var(--color-muted) 85%, var(--color-background) 15%)
+  );
+  border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--color-foreground) 6%, transparent);
 }
 
 .section-title :deep(h2) {
