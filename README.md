@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
   <img src="public/favicon.png" width="80" alt="Logo" />
 </p>
 
@@ -9,6 +9,10 @@
   <img src="https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vuedotjs" />
   <img src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite" />
   <img src="https://img.shields.io/badge/Tailwind-v4-06B6D4?logo=tailwindcss" />
+</p>
+
+<p align="center">
+  🌐 <a href="./README.en.md">English Version</a>
 </p>
 
 ---
@@ -77,24 +81,30 @@ npm run preview    # 预览构建结果
 
 ## 打包后使用
 
-### 方式一：需要继续编辑内容 → 用 BAT 启动
+### 方式一：需要继续编辑内容 → 启动本地服务器
 
-**双击 `dist/start.bat`**（PowerShell 零依赖本地服务器）
+| 平台 | 启动方式 | 依赖 |
+|------|---------|------|
+| **Windows** | 双击 `dist/start.bat` | PowerShell（系统自带） |
+| **macOS** | 双击 `dist/start.command` | Perl（系统自带） |
+| **Linux** | 终端执行 `bash dist/start.sh` | Perl（系统自带） |
+
+> 全部单文件零依赖。`start.bat` 内嵌 PowerShell 服务器，`start.command` / `start.sh` 内嵌 Perl 服务器。
+
+> 构建时根据当前系统自动选择对应脚本，无需手动挑选。
 
 ```
 dist/
-├── start.bat           ← 双击启动
-├── slides-ppt.md       ← 编辑这个
+├── start.bat / .command / .sh  ← 对应平台的启动脚本（单文件内嵌服务器）
+├── slides-ppt.md               ← 编辑这个
 └── assets/
     ├── index.html
-    ├── serve.ps1
     └── favicon.png
 ```
 
-1. 双击 `start.bat` → PowerShell 起本地服务器 + 自动打开浏览器
+1. 双击对应平台的启动脚本 → 自动打开浏览器
 2. 编辑 `dist/slides-ppt.md` 并保存 → 500ms 内自动刷新
-3. 关闭终端窗口 → 服务器自动停止
-4. 再次双击 `start.bat` → 检测到已运行则只打开浏览器
+3. 关闭终端 → 服务器自动停止
 
 > 💡 原理：页面每 500ms `fetch('./slides-ppt.md')` 检测变化，自动重新渲染。
 
@@ -180,15 +190,15 @@ VITE_ASSETS_PATH=md/assets
 
 底部控制栏短按循环 / 长按弹出面板直达：
 
-| 套件 | 风格 |
-|------|------|
-| **Realtime Beats** | 现代科技风，WebGL 动态背景，玻璃拟态 |
-| **Animal Island** | 自然治愈风，暖调配色，圆角卡片 |
-| **Holo Sci-Fi** | 全息科幻风，霓虹配色，六边形几何 |
-| **Pixel Island** | 复古像素游戏风，宝可梦 / 星露谷美学 |
-| **Water Ink** | 中国水墨风，宣纸纹理，竖排书法 |
-| **Cyberpunk 2077** | 赛博朋克风，终端 HUD，霓虹暗夜 |
-| **Pixel Retro** | 8-bit NES 美学，像素级精确边框 |
+| 套件 | 风格 | 开源地址 |
+|------|------|---------|
+| **Realtime Beats** | 现代科技风，WebGL 动态背景，玻璃拟态 | [GitHub](https://github.com/anggiedimasta/ui) |
+| **Animal Island** | 自然治愈风，暖调配色，圆角卡片 | [GitHub](https://github.com/guokaigdg/animal-island-vue) |
+| **Holo Sci-Fi** | 全息科幻风，霓虹配色，六边形几何 | [GitHub](https://github.com/OviOvocny/Holo) |
+| **Pixel Island** | 复古像素游戏风，宝可梦 / 星露谷美学 | [GitHub](https://github.com/shika-works/pixelium-design) |
+| **Water Ink** | 中国水墨风，宣纸纹理，竖排书法 | [GitHub](https://github.com/shuimo-design/shuimo-ui) |
+| **Cyberpunk 2077** | 赛博朋克风，终端 HUD，霓虹暗夜 | [GitHub](https://github.com/xuanseus/md2ppt) |
+| **Pixel Retro** | 8-bit NES 美学，像素级精确边框 | [GitHub](https://github.com/maomentai817/pixel-ui) |
 
 每套自带 4 种配色主题。新增套件：`src/kits/` 下新建目录 → `index.ts` → 注册到 `kits/index.ts`。
 
@@ -233,3 +243,4 @@ VITE_ASSETS_PATH=md/assets
 ---
 
 <p align="center">MIT</p>
+

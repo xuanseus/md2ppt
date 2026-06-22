@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
   <img src="public/favicon.png" width="80" alt="Logo" />
 </p>
 
@@ -9,6 +9,10 @@
   <img src="https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vuedotjs" />
   <img src="https://img.shields.io/badge/Vite-8-646CFF?logo=vite" />
   <img src="https://img.shields.io/badge/Tailwind-v4-06B6D4?logo=tailwindcss" />
+</p>
+
+<p align="center">
+  🌐 <a href="./README.md">中文版本</a>
 </p>
 
 ---
@@ -69,19 +73,32 @@ npm run preview    # preview build output
 
 ## Distributable Output
 
-### Option A: Continue editing → Use BAT launcher
+### Option A: Continue editing → Launch local server
 
-**Double-click `dist/start.bat`** (zero-dependency PowerShell server)
+| Platform | How to launch | Requirement |
+|----------|--------------|-------------|
+| **Windows** | Double-click `dist/start.bat` | PowerShell (built-in) |
+| **macOS** | Double-click `dist/start.command` | Perl (built-in) |
+| **Linux** | Run `bash dist/start.sh` | Perl (built-in) |
+
+> All single-file, zero dependencies. `start.bat` embeds a PowerShell server; `start.command` / `start.sh` embed a Perl server.
+
+> The build auto-selects the script for the current platform. To ship cross-platform, manually copy other scripts from `scripts/`.
 
 ```
 dist/
-├── start.bat           ← double-click to launch
-├── slides-ppt.md       ← edit this file
+├── start.bat / .command / .sh  ← platform-specific launcher (single-file, embedded server)
+├── slides-ppt.md               ← edit this
 └── assets/
     ├── index.html
-    ├── serve.ps1
     └── favicon.png
 ```
+
+1. Double-click the script for your platform → browser opens automatically
+2. Edit `dist/slides-ppt.md` and save → auto-refresh within 500ms
+3. Close the terminal → server stops
+
+> 💡 The page polls `slides-ppt.md` every 500ms for changes.
 
 ### Option B: Content finalized → HTML only
 
@@ -127,15 +144,15 @@ VITE_ASSETS_PATH=md/assets
 
 Tap to cycle, long-press for popup panel:
 
-| Kit | Style |
-|-----|-------|
-| **Realtime Beats** | Modern tech, WebGL backgrounds, glassmorphism |
-| **Animal Island** | Natural warm, rounded cards |
-| **Holo Sci-Fi** | Holographic, neon colors, hexagonal geometry |
-| **Pixel Island** | Retro pixel game, Pokémon / Stardew aesthetic |
-| **Water Ink** | Chinese ink painting, rice paper texture, vertical text |
-| **Cyberpunk 2077** | Cyberpunk, terminal HUD, neon night |
-| **Pixel Retro** | 8-bit NES aesthetic, pixel-precise borders |
+| Kit | Style | Source |
+|-----|-------|--------|
+| **Realtime Beats** | Modern tech, WebGL backgrounds, glassmorphism | [GitHub](https://github.com/anggiedimasta/ui) |
+| **Animal Island** | Natural warm, rounded cards | [GitHub](https://github.com/guokaigdg/animal-island-vue) |
+| **Holo Sci-Fi** | Holographic, neon colors, hexagonal geometry | [GitHub](https://github.com/OviOvocny/Holo) |
+| **Pixel Island** | Retro pixel game, Pokémon / Stardew aesthetic | [GitHub](https://github.com/shika-works/pixelium-design) |
+| **Water Ink** | Chinese ink painting, rice paper texture, vertical text | [GitHub](https://github.com/shuimo-design/shuimo-ui) |
+| **Cyberpunk 2077** | Cyberpunk, terminal HUD, neon night | [GitHub](https://github.com/xuanseus/md2ppt) |
+| **Pixel Retro** | 8-bit NES aesthetic, pixel-precise borders | [GitHub](https://github.com/maomentai817/pixel-ui) |
 
 4 color themes per kit. Add kits: create folder under `src/kits/` → `index.ts` → register in `kits/index.ts`.
 

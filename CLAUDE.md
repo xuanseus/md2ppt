@@ -25,19 +25,26 @@ npm run preview  # 预览构建结果
 
 ### 打包后使用
 
-**双击 `dist/start.bat`**（PowerShell 零依赖本地服务器）
+| 平台 | 启动方式 | 依赖 |
+|------|---------|------|
+| **Windows** | 双击 `dist/start.bat` | PowerShell（系统自带） |
+| **macOS** | 双击 `dist/start.command` | Perl（系统自带） |
+| **Linux** | 终端执行 `bash dist/start.sh` | Perl（系统自带） |
+
+> 全部单文件零依赖。`start.bat` 内嵌 PowerShell 服务器，`start.command` / `start.sh` 内嵌 Perl 服务器。
+
+> 构建时根据当前系统自动选择对应脚本。如需跨平台分发，手动复制 `scripts/` 下其他脚本即可。
 
 ```
 dist/
-├── start.bat           ← 双击启动
-├── slides-ppt.md       ← 编辑这个
+├── start.bat / .command / .sh  ← 对应平台的启动脚本（单文件内嵌服务器）
+├── slides-ppt.md               ← 编辑这个
 └── assets/
     ├── index.html
-    ├── serve.ps1
     └── favicon.png
 ```
 
-1. 双击 `start.bat` → 自动打开浏览器
+1. 双击对应平台的启动脚本 → 自动打开浏览器
 2. 编辑 `dist/slides-ppt.md` 并保存 → 500ms 内自动刷新
 3. 关闭终端 → 服务器自动停止
 
