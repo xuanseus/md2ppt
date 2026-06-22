@@ -88,16 +88,18 @@ export default defineConfig(({mode}) => {
                     if (fs.existsSync(f)) fs.unlinkSync(f)
                 }
 
-                // 复制 serve.ps1 到 dist/assets/
-                const ps1Src = path.resolve(__dirname, 'scripts/serve.ps1')
-                if (fs.existsSync(ps1Src)) {
-                    fs.copyFileSync(ps1Src, path.join(assetsDir, 'serve.ps1'))
+                // 按构建平台复制对应的单文件启动脚本
+                const platformScripts: Record<string, string> = {
+                    win32: 'start.bat',     // 内嵌 PowerShell
+                    darwin: 'start.command', // 内嵌 Perl
+                    linux: 'start.sh',       // 内嵌 Perl
                 }
-
-                // 复制 start.bat 到 dist/
-                const batSrc = path.resolve(__dirname, 'scripts/start.bat')
-                if (fs.existsSync(batSrc)) {
-                    fs.copyFileSync(batSrc, path.join(distRoot, 'start.bat'))
+                const scriptName = platformScripts[process.platform]
+                if (scriptName) {
+                    const src = path.resolve(__dirname, 'scripts', scriptName)
+                    if (fs.existsSync(src)) {
+                        fs.copyFileSync(src, path.join(distRoot, scriptName))
+                    }
                 }
             },
         }
