@@ -13,35 +13,17 @@ defineProps<{ slide: Slide }>()
       }"></div>
     </div>
 
-    <!-- ============ 中央内容组（环 + 标题）flex 上下居中 ============ -->
-    <div class="relative z-10 flex flex-col items-center">
-      <!-- 全息环 + 轨道字符 -->
-      <div class="relative pointer-events-none" style="width: 260px; height: 260px;">
-        <!-- 外环 -->
+    <!-- ============ 标题 + 环绕环圈 ============ -->
+    <div class="relative z-10 flex items-center justify-center" style="min-width: 50vw; min-height: 50vh;">
+      <!-- 环圈围绕文字 -->
+      <div class="holo-rings-wrapper">
         <div class="holo-ring holo-ring-1"></div>
         <div class="holo-ring holo-ring-2"></div>
         <div class="holo-ring holo-ring-3"></div>
-        <!-- 六边形内核 -->
-        <div class="holo-hex-core">
-          <div class="holo-hex-inner">
-            <span class="holo-chapter-num">{{ String(slide.index + 1).padStart(2, '0') }}</span>
-          </div>
-        </div>
-        <!-- 轨道字符 -->
-        <div class="holo-orbit-group">
-          <span class="holo-orbit-num" style="--orbit-angle: 0deg; --orbit-dist: 130px;">{{ String(slide.index + 1).padStart(2, '0') }}</span>
-          <span class="holo-orbit-num" style="--orbit-angle: 45deg; --orbit-dist: 130px; opacity: 0.3">S</span>
-          <span class="holo-orbit-num" style="--orbit-angle: 90deg; --orbit-dist: 130px; opacity: 0.2">E</span>
-          <span class="holo-orbit-num" style="--orbit-angle: 135deg; --orbit-dist: 130px; opacity: 0.3">C</span>
-          <span class="holo-orbit-num" style="--orbit-angle: 180deg; --orbit-dist: 130px; opacity: 0.2">T</span>
-          <span class="holo-orbit-num" style="--orbit-angle: 225deg; --orbit-dist: 130px; opacity: 0.25">I</span>
-          <span class="holo-orbit-num" style="--orbit-angle: 270deg; --orbit-dist: 130px; opacity: 0.2">O</span>
-          <span class="holo-orbit-num" style="--orbit-angle: 315deg; --orbit-dist: 130px; opacity: 0.25">N</span>
-        </div>
       </div>
 
-      <!-- 标题 -->
-      <div class="text-center mt-6" style="width: 80vw; max-width: 800px;">
+      <!-- 标题文字（在环圈上层） -->
+      <div class="relative z-10 text-center px-8">
         <h2 v-if="slide.title" class="holo-section-title">{{ slide.title }}</h2>
         <div class="holo-section-beam"></div>
         <div v-if="slide.html" v-html="slide.html" class="holo-section-sub"></div>
@@ -66,95 +48,50 @@ defineProps<{ slide: Slide }>()
   transform-origin: center top;
 }
 
+/* ===== 环圈容器 —— 与文字重叠，居中 ===== */
+.holo-rings-wrapper {
+  position: absolute;
+  inset: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* ===== 全息环 ===== */
 .holo-ring {
   position: absolute;
-  top: 50%;
-  left: 50%;
   border-radius: 50%;
   border: 1px solid transparent;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .holo-ring-1 {
-  width: 220px;
-  height: 220px;
+  width: min(52vw, 480px);
+  height: min(52vw, 480px);
   border-top-color: var(--color-accent);
   border-right-color: var(--color-accent);
-  opacity: 0.25;
-  animation: holo-ring-spin 12s linear infinite;
+  opacity: 0.2;
+  animation: holo-ring-spin 14s linear infinite;
 }
 
 .holo-ring-2 {
-  width: 180px;
-  height: 180px;
+  width: min(42vw, 380px);
+  height: min(42vw, 380px);
   border-bottom-color: var(--color-h1-to);
   border-left-color: var(--color-h1-to);
-  opacity: 0.2;
-  animation: holo-ring-spin-reverse 8s linear infinite;
+  opacity: 0.18;
+  animation: holo-ring-spin-reverse 9s linear infinite;
 }
 
 .holo-ring-3 {
-  width: 260px;
-  height: 260px;
-  border: 1px dashed color-mix(in srgb, var(--color-accent) 20%, transparent);
-  opacity: 0.35;
-  animation: holo-ring-pulse 3s ease-in-out infinite;
-}
-
-/* ===== 六边形内核 ===== */
-.holo-hex-core {
-  width: 100px;
-  height: 115px;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 30px color-mix(in srgb, var(--color-accent) 15%, transparent);
-}
-
-.holo-hex-inner {
-  width: 60px;
-  height: 69px;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background: color-mix(in srgb, var(--color-accent) 20%, transparent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.holo-chapter-num {
-  font-size: 1.5rem;
-  font-weight: 800;
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--color-accent);
-  text-shadow: var(--holo-glow);
-}
-
-/* ===== 轨道字符 ===== */
-.holo-orbit-group {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  animation: holo-orbit-rotate 20s linear infinite;
-}
-.holo-orbit-num {
-  position: absolute;
-  font-size: 0.7rem;
-  font-weight: 700;
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--color-accent);
-  text-shadow: var(--holo-glow);
-  transform: translate(
-    calc(cos(var(--orbit-angle)) * var(--orbit-dist)),
-    calc(sin(var(--orbit-angle)) * var(--orbit-dist))
-  ) translate(-50%, -50%);
+  width: min(62vw, 560px);
+  height: min(62vw, 560px);
+  border: 1px dashed color-mix(in srgb, var(--color-accent) 18%, transparent);
+  opacity: 0.3;
+  animation: holo-ring-pulse 4s ease-in-out infinite;
 }
 
 /* ===== 标题 ===== */
@@ -167,6 +104,8 @@ defineProps<{ slide: Slide }>()
   text-transform: uppercase;
   text-shadow: var(--holo-glow);
   margin: 0;
+  position: relative;
+  z-index: 10;
 }
 
 .holo-section-beam {
@@ -175,6 +114,8 @@ defineProps<{ slide: Slide }>()
   margin: 1rem auto;
   background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
   clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+  position: relative;
+  z-index: 10;
 }
 
 /* ===== 副标题 ===== */
@@ -191,6 +132,8 @@ defineProps<{ slide: Slide }>()
   line-height: 1.7;
   font-family: 'JetBrains Mono', monospace;
   margin: 0;
+  position: relative;
+  z-index: 10;
 }
 
 /* ===== 扫描线 ===== */
@@ -214,10 +157,6 @@ defineProps<{ slide: Slide }>()
 }
 @keyframes holo-ring-pulse {
   0%, 100% { opacity: 0.2; scale: 1; }
-  50% { opacity: 0.4; scale: 1.05; }
-}
-@keyframes holo-orbit-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  50% { opacity: 0.4; scale: 1.06; }
 }
 </style>

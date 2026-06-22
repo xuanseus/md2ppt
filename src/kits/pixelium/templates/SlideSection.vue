@@ -13,15 +13,6 @@ defineProps<{ slide: Slide }>()
     <div class="relative z-10 max-w-3xl">
       <div style="background: var(--color-card); border: 3px solid var(--color-border); box-shadow: 6px 6px 0 #0006; padding: 2.5rem 3rem; position: relative;">
         <!-- 对话框顶部装饰栏 -->
-        <div class="flex items-center justify-between mb-6 pb-4" style="border-bottom: 2px dashed var(--color-border)">
-          <span class="text-xs tracking-widest uppercase" style="color: var(--color-muted-foreground); font-family: var(--px-font)">
-            ▶ Chapter {{ String(slide.index + 1).padStart(2, '0') }}
-          </span>
-          <div class="flex gap-1">
-            <span style="width: 6px; height: 6px; background: var(--color-accent); display: inline-block"></span>
-            <span style="width: 6px; height: 6px; background: var(--color-accent); opacity: 0.4; display: inline-block"></span>
-          </div>
-        </div>
 
         <!-- 章节标题 -->
         <h2 v-if="slide.title" class="px-section-title">{{ slide.title }}</h2>

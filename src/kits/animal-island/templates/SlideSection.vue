@@ -14,11 +14,6 @@ defineProps<{ slide: Slide }>()
     <div class="absolute bottom-12 left-12 text-5xl opacity-[0.05] pointer-events-none select-none">🌱</div>
 
     <div class="relative z-10 w-full max-w-6xl px-12 text-center">
-      <!-- 小章节编号 -->
-      <div class="inline-flex items-center gap-2 mb-8 opacity-50">
-        <span class="chapter-badge">Chapter {{ String(slide.index + 1).padStart(2, '0') }}</span>
-      </div>
-
       <!-- 原生 h2 — 不用 Title 组件，避免 scoped style 冲突 -->
       <h2 v-if="slide.title" class="ai-section-title">{{ slide.title }}</h2>
 
@@ -29,14 +24,6 @@ defineProps<{ slide: Slide }>()
 </template>
 
 <style scoped>
-.chapter-badge {
-  font-size: var(--fs-caption);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-muted-foreground);
-  font-family: var(--animal-font-family, inherit);
-}
-
 .ai-section-title {
   font-size: calc(4.5rem * var(--content-scale));
   font-weight: 700;

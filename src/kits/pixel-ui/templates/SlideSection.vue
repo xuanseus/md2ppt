@@ -36,12 +36,6 @@ defineProps<{ slide: Slide }>()
     </div>
 
     <div class="relative z-10 w-full max-w-5xl px-12 text-center">
-      <!-- Chapter badge — styled like "WORLD 1-1" card -->
-      <div class="inline-block mb-6 px-section-badge">
-        <div class="badge-label">CHAPTER</div>
-        <div class="badge-number">{{ String(slide.index + 1).padStart(2, '0') }}</div>
-      </div>
-
       <!-- Main title — large chapter name -->
       <h2 v-if="slide.title" class="px-section-title">{{ slide.title }}</h2>
 
@@ -126,33 +120,6 @@ defineProps<{ slide: Slide }>()
   background: transparent;
   border: 4px solid var(--color-accent);
   image-rendering: pixelated;
-}
-
-/* Chapter badge */
-.px-section-badge {
-  background: var(--color-card);
-  border: 4px solid var(--color-accent);
-  padding: 0.75rem 2.5rem 0.5rem;
-  image-rendering: pixelated;
-  box-shadow: 4px 4px 0 var(--pixel-shadow);
-}
-.badge-label {
-  font-size: var(--fs-caption);
-  font-weight: 700;
-  letter-spacing: 0.35em;
-  color: var(--color-muted-foreground);
-  font-family: var(--pixel-font, 'Press Start 2P', monospace);
-  image-rendering: pixelated;
-}
-.badge-number {
-  font-size: calc(2.5rem * var(--content-scale));
-  font-weight: 900;
-  line-height: 1;
-  color: var(--color-accent);
-  font-family: var(--pixel-font, 'Press Start 2P', monospace);
-  text-shadow: 3px 3px 0 var(--pixel-shadow);
-  image-rendering: pixelated;
-  margin-top: 0.25rem;
 }
 
 /* Title */

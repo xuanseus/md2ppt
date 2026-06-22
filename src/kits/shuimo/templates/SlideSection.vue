@@ -27,14 +27,6 @@ defineProps<{ slide: Slide }>()
 
       <div class="relative h-full flex items-center" style="writing-mode: vertical-rl; text-orientation: mixed; flex-direction: column; gap: 4rem;">
 
-        <!-- 竖排印章（章节号） -->
-        <div class="sm-seal absolute left-[-24px] top-1/2 -translate-y-1/2 flex items-center justify-center select-none shrink-0"
-          style="border: 2px solid var(--color-seal); width: 52px; height: 52px; color: var(--color-seal); font-family: 'KaiTi', 'STKaiti', serif; writing-mode: horizontal-tb; font-size: 0.65rem; transform: rotate(-3deg); opacity: 0.6; flex-direction: column; line-height: 1.2; text-align: center;">
-          <span>第</span>
-          <span>{{ String(slide.index + 1).padStart(2, '0') }}</span>
-          <span>章</span>
-        </div>
-
         <!-- 第一列：竖排标题 -->
         <h2 v-if="slide.title" class="sm-section-title">
           {{ slide.title }}

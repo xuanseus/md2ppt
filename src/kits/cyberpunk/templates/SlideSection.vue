@@ -13,7 +13,7 @@ defineProps<{ slide: Slide }>()
     <div class="absolute bottom-0 left-0 right-0 z-20 cp-statusbar" style="height: 32px; background: color-mix(in srgb, var(--color-card) 90%, transparent); border-top: 1px solid var(--color-border)">
       <div class="flex items-center justify-between h-full px-4" style="font-family: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', ui-monospace, monospace">
         <div class="flex items-center gap-4">
-          <span class="text-xs" style="color: var(--color-accent)">SECT_{{ String(slide.index + 1).padStart(2, '0') }}</span>
+          <span class="text-xs" style="color: var(--color-accent)">SECT</span>
           <span class="text-xs opacity-50" style="color: var(--color-muted-foreground)">PROGRESS</span>
           <!-- 进度条 -->
           <div class="cp-progress-track" style="width: 120px">
@@ -29,14 +29,6 @@ defineProps<{ slide: Slide }>()
       </div>
     </div>
 
-    <!-- ═══ 六边形章节编号（右上角） ═══ -->
-    <div class="absolute top-6 right-6 z-20 pointer-events-none cp-hex-container">
-      <div class="cp-hexagon-big">
-        <span class="cp-hex-number">{{ String(slide.index + 1).padStart(2, '0') }}</span>
-      </div>
-    </div>
-
-    <!-- ═══ 终端提示风格标题区 ═══ -->
     <div class="absolute z-10" style="top: 15%; left: 10%; right: 10%">
       <!-- 终端 prompt 行 -->
       <div class="cp-terminal-prompt mb-8">
@@ -44,7 +36,7 @@ defineProps<{ slide: Slide }>()
         <span class="cp-mono" style="color: var(--color-foreground)">:</span>
         <span class="cp-mono" style="color: var(--color-accent)">~/chapters</span>
         <span class="cp-mono" style="color: var(--color-foreground)">$ </span>
-        <span class="cp-mono" style="color: var(--color-heading)">cat CHAPTER_{{ String(slide.index + 1).padStart(2, '0') }}</span>
+        <span class="cp-mono" style="color: var(--color-heading)">cat chapter</span>
         <span class="cp-cursor-blink cp-mono" style="color: var(--color-accent)">█</span>
       </div>
 
@@ -164,30 +156,6 @@ defineProps<{ slide: Slide }>()
 @keyframes cp-blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
-}
-
-/* 六边形章节编号 */
-.cp-hex-container {
-  width: 70px; height: 80px;
-}
-
-.cp-hexagon-big {
-  width: 100%; height: 100%;
-  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--color-accent);
-  box-shadow: 0 0 25px color-mix(in srgb, var(--color-accent) 30%, transparent), inset 0 0 15px color-mix(in srgb, var(--color-accent) 8%, transparent);
-}
-
-.cp-hex-number {
-  font-family: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', ui-monospace, monospace;
-  font-size: calc(1.4rem * var(--content-scale));
-  font-weight: 900;
-  color: var(--color-accent);
-  text-shadow: 0 0 15px var(--color-accent);
 }
 
 .cp-fade-dot { animation: cp-dot-fade 3s ease-in-out infinite; }
