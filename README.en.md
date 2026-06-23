@@ -124,25 +124,35 @@ VITE_ASSETS_PATH=md/assets
 | `<video>` / `<img>` tags | Extracted as full-screen slide |
 | ` ``` ` code blocks | Protected from splitting |
 
-## Layout Types (11)
+## Layouts (28 types)
 
-| Layout | Use case |
-|--------|----------|
-| `cover` | Title / ending slide |
-| `section` | Chapter transition |
-| `content` | Standard content |
-| `two-column` | Side-by-side columns (`**bold**` marks column titles) |
-| `stats` | Big number showcase |
-| `quote` | Block quote |
-| `code-full` | Code display |
-| `media-hero` | Video / large image |
-| `comparison` | A/B comparison (`**bold**` + `- list`) |
-| `timeline` | Timeline |
-| `list` | Feature list |
+Add `{layout: xxx}` after headings, with optional `{anim: xxx}` for GSAP animations:
+
+| Category | Layouts | Use |
+|----------|---------|-----|
+| **Cover** | `cover` `cover-split` `cover-minimal` | Standard / split-screen / minimal |
+| **Section** | `section` `section-icon` `section-number` | Card / icon / numbered |
+| **Content** | `content` `content-centered` `content-cards` | Standard / centered / card wrap |
+| **Two-Col** | `two-column` `two-top-bottom` `two-asymmetric` | Side-by-side / stacked / ratio |
+| **Stats** | `stats` `stats-grid` `stats-inline` | Single / grid / inline |
+| **Quote** | `quote` `quote-large` | Standard / fullscreen |
+| **Code** | `code-full` | Full-screen code highlight |
+| **Comparison** | `comparison` `comparison-cards` | Binary / card style |
+| **Timeline** | `timeline` `timeline-horizontal` | Vertical / horizontal |
+| **List** | `list` `list-numbered` `list-checklist` | Icon / numbered / checklist |
+| **Media** | `media-hero` `media-grid` | Full bleed / image grid |
+
+## Animations (20 presets)
+
+| Type | Presets |
+|------|---------|
+| **Entry** | `fade-in` `fade-in-up/down/left/right` `slide-in-up/left/right` `zoom-in` `zoom-out` `bounce-in` `flip-in-x/y` |
+| **Stagger** | `stagger-fade-up/left/right` `stagger-scale` `stagger-bounce` |
+| **Exit** | `fade-out` `slide-out-left` |
 
 ## Kit Themes (7 Kits)
 
-Tap to cycle, long-press for popup panel:
+Tap to cycle, long-press for popup panel. 6 color themes per kit:
 
 | Kit | Style | Source |
 |-----|-------|--------|
@@ -154,7 +164,7 @@ Tap to cycle, long-press for popup panel:
 | **Cyberpunk 2077** | Cyberpunk, terminal HUD, neon night | [GitHub](https://github.com/xuanseus/md2ppt) |
 | **Pixel Retro** | 8-bit NES aesthetic, pixel-precise borders | [GitHub](https://github.com/maomentai817/pixel-ui) |
 
-4 color themes per kit. Add kits: create folder under `src/kits/` → `index.ts` → register in `kits/index.ts`.
+6 color themes per kit. Add kits: create folder under `src/kits/` → `index.ts` → register in `kits/index.ts`.
 
 ### Kit Preview
 

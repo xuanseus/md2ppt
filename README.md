@@ -138,38 +138,38 @@ VITE_ASSETS_PATH=md/assets
 | `<video>` / `<img>` | 单独抽出全屏页，行末加 `{layout: media-hero}` |
 | ` ``` ` 代码块 | 内部不受分页影响 |
 
-## 布局类型（11 种）
+## 布局类型（28 种）
 
-在标题后加 `{layout: xxx}` 指定布局：
+在标题后加 `{layout: xxx}` 指定布局，支持 `{anim: xxx}` 动画标记：
 
-| 布局 | 用途 |
-|------|------|
-| `cover` | 封面 / 结束页 |
-| `section` | 章节过渡 |
-| `content` | 标准内容 |
-| `two-column` | 左右两列（`**粗体**` 标记列标题） |
-| `stats` | 数据大字报 |
-| `quote` | 大段引用 |
-| `code-full` | 代码展示 |
-| `media-hero` | 视频 / 大图 |
-| `comparison` | 方案对比（`**粗体**` + `- 列表`） |
-| `timeline` | 时间线 |
-| `list` | 特性列表 |
+| 类别 | 布局 | 用途 |
+|------|------|------|
+| **封面** | `cover` `cover-split` `cover-minimal` | 标准 / 左右分屏 / 极简 |
+| **章节** | `section` `section-icon` `section-number` | 卡片过渡 / 图标章节 / 编号章节 |
+| **内容** | `content` `content-centered` `content-cards` | 标准 / 居中 / 卡片包裹 |
+| **双列** | `two-column` `two-top-bottom` `two-asymmetric` | 左右 / 上下 / 非对称比例 |
+| **数据** | `stats` `stats-grid` `stats-inline` | 大字报 / 网格 / 内嵌正文 |
+| **引用** | `quote` `quote-large` | 标准引用 / 全屏大字 |
+| **代码** | `code-full` | 全屏代码高亮 |
+| **对比** | `comparison` `comparison-cards` | 二元对比 / 卡片对比 |
+| **时间线** | `timeline` `timeline-horizontal` | 纵向 / 横向里程碑 |
+| **列表** | `list` `list-numbered` `list-checklist` | 图标 / 编号步骤 / 勾选清单 |
+| **媒体** | `media-hero` `media-grid` | 全屏大图 / 网格图片 |
 
 示例：
 
 ```markdown
-### 核心数据 {layout: stats}
+### 核心数据 {layout: stats, anim: zoom-in}
 
 **80%**
 
 用户增长率，较去年同期翻倍
 ```
 
-两列 / 对比示例（`**粗体**` 标记列标题）：
+对比示例（`**粗体**` 标记列标题）：
 
 ```markdown
-### 方案对比 {layout: comparison}
+### 方案对比 {layout: comparison, anim: fade-in-up}
 
 **传统方案**
 - ❌ 部署复杂
@@ -180,11 +180,13 @@ VITE_ASSETS_PATH=md/assets
 - ✅ 自动化运维
 ```
 
-媒体示例：
+## 动画预设（20 种）
 
-```markdown
-<video src="./assets/demo.mp4" controls></video>
-```
+| 类别 | 预设 |
+|------|------|
+| **Entry** | `fade-in` `fade-in-up/down/left/right` `slide-in-up/left/right` `zoom-in` `zoom-out` `bounce-in` `flip-in-x/y` |
+| **Stagger** | `stagger-fade-up/left/right` `stagger-scale` `stagger-bounce` |
+| **Exit** | `fade-out` `slide-out-left` |
 
 ## 模板套件 & 主题（7 套）
 
@@ -200,7 +202,7 @@ VITE_ASSETS_PATH=md/assets
 | **Cyberpunk 2077** | 赛博朋克风，终端 HUD，霓虹暗夜 | [GitHub](https://github.com/xuanseus/md2ppt) |
 | **Pixel Retro** | 8-bit NES 美学，像素级精确边框 | [GitHub](https://github.com/maomentai817/pixel-ui) |
 
-每套自带 4 种配色主题。新增套件：`src/kits/` 下新建目录 → `index.ts` → 注册到 `kits/index.ts`。
+每套各 6 种配色。新增套件：`src/kits/` 下新建目录 → `index.ts` → 注册到 `kits/index.ts`。
 
 ### 套件预览 / Kit Preview
 

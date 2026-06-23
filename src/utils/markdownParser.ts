@@ -186,8 +186,8 @@ export async function splitIntoSlides(rawMd: string): Promise<Slide[]> {
       continue
     }
 
-    // Check for layout marker: # Title {layout: cover} or ## Title {layout: section}
-    const layoutMatch = line.match(/^(#{1,6}\s.+?)\s*\{layout:\s*([\w-]+)\}/i)
+    // Check for layout marker: # Title {layout: cover} or ## Title {layout: section, anim: xxx}
+    const layoutMatch = line.match(/^(#{1,6}\s.+?)\s*\{layout:\s*([\w-]+)[^}]*\}/i)
     if (layoutMatch) {
       const newLayout = layoutMatch[2]
       const cleanLine = layoutMatch[1]
@@ -262,6 +262,7 @@ export async function splitIntoSlides(rawMd: string): Promise<Slide[]> {
         layout,
         title: extractTitle(rawMd),
         index: i,
+        anim: extractAnim(rawMd),
       }
     })
   )).filter((s) => s.rawMd.length > 0)
@@ -270,6 +271,11 @@ export async function splitIntoSlides(rawMd: string): Promise<Slide[]> {
 function extractTitle(rawMd: string): string {
   const match = rawMd.match(/^#{1,6}\s+(.+)$/m)
   if (!match) return ''
-  // 去掉 {layout: xxx} / {class: xxx} 等标记
+  // 去掉 {layout: xxx} / {class: xxx} / {anim: xxx} 等标记
   return match[1].replace(/\s*\{[^}]+\}\s*$/g, '').trim()
+}
+
+function extractAnim(rawMd: string): string | undefined {
+  const m = rawMd.match(/\{anim:\s*([\w-]+)\}/i)
+  return m ? m[1] : undefined
 }

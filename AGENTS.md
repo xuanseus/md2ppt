@@ -8,7 +8,7 @@
 
 将生成的 `-ppt.md` 设为 `.env` 中的 `VITE_MD_FILE_PATH`，然后 `npm run dev` 预览效果。
 
-> 💡 **演讲稿 ≠ 展示稿**：PPT 是视觉锚点不是提词器。11 种布局自动匹配：cover / section / content / two-column / stats / quote / code-full / media-hero / comparison / timeline / list
+> 💡 **演讲稿 ≠ 展示稿**：PPT 是视觉锚点不是提词器。28 种布局 + 20 种 GSAP 动画预设。每套 6 种配色主题。
 
 ## 快速开始
 
@@ -65,7 +65,39 @@ VITE_ASSETS_PATH=md/assets           # 资源目录路径
 | **Cyberpunk 2077** | 赛博朋克风，终端 HUD，霓虹暗夜 |
 | **Pixel Retro** | 8-bit NES 美学，像素级精确边框 |
 
-每套自带 4 种配色主题。底部控制栏短按循环 / 长按面板直达。
+每套各 6 种配色。底部控制栏短按循环 / 长按面板直达。
+
+## 布局类型（28 种）
+
+在标题后加 `{layout: xxx}`，可附带 `{anim: xxx}` 动画标记：
+
+| 类别 | 布局 | 用途 |
+|------|------|------|
+| **封面** | `cover` `cover-split` `cover-minimal` | 标准 / 分屏 / 极简 |
+| **章节** | `section` `section-icon` `section-number` | 卡片 / 图标 / 编号 |
+| **内容** | `content` `content-centered` `content-cards` | 标准 / 居中 / 卡片 |
+| **双列** | `two-column` `two-top-bottom` `two-asymmetric` | 左右 / 上下 / 非对称 |
+| **数据** | `stats` `stats-grid` `stats-inline` | 大字报 / 网格 / 内嵌 |
+| **引用** | `quote` `quote-large` | 标准 / 全屏大字 |
+| **代码** | `code-full` | 全屏代码 |
+| **对比** | `comparison` `comparison-cards` | 二元 / 卡片 |
+| **时间线** | `timeline` `timeline-horizontal` | 纵向 / 横向 |
+| **列表** | `list` `list-numbered` `list-checklist` | 图标 / 编号 / 勾选 |
+| **媒体** | `media-hero` `media-grid` | 全屏 / 网格 |
+
+## 动画预设（20 种）
+
+| 类别 | 预设 |
+|------|------|
+| **Entry** | `fade-in` `fade-in-up/down/left/right` `slide-in-up/left/right` `zoom-in` `zoom-out` `bounce-in` `flip-in-x/y` |
+| **Stagger** | `stagger-fade-up/left/right` `stagger-scale` `stagger-bounce` |
+| **Exit** | `fade-out` `slide-out-left` |
+
+## Dock 控制栏
+
+- 翻页 / 全屏 / 预览 / **自动播放（3s）** / 套件 / 主题 / 动画 / 缩放
+- 非全屏始终显示，全屏 3s 无操作自动隐藏
+- 套件/主题/动画/缩放：短按循环下一个，长按弹出面板滑动选择
 
 ## 快捷键
 

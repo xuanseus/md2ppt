@@ -10,7 +10,7 @@
 4. 将生成的 `-ppt.md` 设为 `.env` 中的 `VITE_MD_FILE_PATH`
 5. `npm run dev` 预览效果
 
-> 💡 **演讲稿 ≠ 展示稿**：PPT 是视觉锚点不是提词器。11 种布局自动匹配：cover / section / content / two-column / stats / quote / code-full / media-hero / comparison / timeline / list
+> 💡 **演讲稿 ≠ 展示稿**：PPT 是视觉锚点不是提词器。28 种布局自动匹配 + 20 种 GSAP 动画预设。
 
 ## 使用方式
 
@@ -72,26 +72,28 @@ VITE_ASSETS_PATH=md/assets
 | `<video>` / `<img>` 标签 | 单独抽出全屏页 |
 | ` ``` ` 代码块 | 内部不受分页影响 |
 
-## 布局类型（11 种）
+## 布局类型（28 种）
 
-| 布局 | 用途 |
-|------|------|
-| `cover` | 封面 / 结束页 |
-| `section` | 章节过渡 |
-| `content` | 标准内容 |
-| `two-column` | 左右两列（`**粗体**` 标记列标题） |
-| `stats` | 数据大字报 |
-| `quote` | 大段引用 |
-| `code-full` | 代码展示 |
-| `media-hero` | 视频 / 大图 |
-| `comparison` | 方案对比（`**粗体**` + `- 列表`） |
-| `timeline` | 时间线 |
-| `list` | 特性列表 |
+在标题后加 `{layout: xxx}`，可附带 `{anim: xxx}` 动画标记：
+
+| 类别 | 布局 | 用途 |
+|------|------|------|
+| **封面** | `cover` `cover-split` `cover-minimal` | 标准 / 分屏 / 极简 |
+| **章节** | `section` `section-icon` `section-number` | 卡片 / 图标 / 编号 |
+| **内容** | `content` `content-centered` `content-cards` | 标准 / 居中 / 卡片 |
+| **双列** | `two-column` `two-top-bottom` `two-asymmetric` | 左右 / 上下 / 非对称 |
+| **数据** | `stats` `stats-grid` `stats-inline` | 大字报 / 网格 / 内嵌 |
+| **引用** | `quote` `quote-large` | 标准 / 全屏大字 |
+| **代码** | `code-full` | 全屏代码 |
+| **对比** | `comparison` `comparison-cards` | 二元 / 卡片 |
+| **时间线** | `timeline` `timeline-horizontal` | 纵向 / 横向 |
+| **列表** | `list` `list-numbered` `list-checklist` | 图标 / 编号 / 勾选 |
+| **媒体** | `media-hero` `media-grid` | 全屏 / 网格 |
 
 示例：
 
 ```markdown
-### 核心数据 {layout: stats}
+### 核心数据 {layout: stats, anim: zoom-in}
 
 **80%**
 
@@ -99,7 +101,7 @@ VITE_ASSETS_PATH=md/assets
 ```
 
 ```markdown
-### 方案对比 {layout: comparison}
+### 方案对比 {layout: comparison, anim: fade-in-up}
 
 **传统方案**
 - ❌ 部署复杂
@@ -109,6 +111,14 @@ VITE_ASSETS_PATH=md/assets
 - ✅ 一键部署
 - ✅ 自动化运维
 ```
+
+## 动画预设（20 种）
+
+| 类别 | 预设 |
+|------|------|
+| **Entry** | `fade-in` `fade-in-up/down/left/right` `slide-in-up/left/right` `zoom-in` `zoom-out` `bounce-in` `flip-in-x/y` |
+| **Stagger** | `stagger-fade-up/left/right` `stagger-scale` `stagger-bounce` |
+| **Exit** | `fade-out` `slide-out-left` |
 
 ## 模板套件 & 主题（7 套）
 
@@ -124,7 +134,7 @@ VITE_ASSETS_PATH=md/assets
 | **Cyberpunk 2077** | 赛博朋克风，终端 HUD，霓虹暗夜 |
 | **Pixel Retro** | 8-bit NES 美学，像素级精确边框 |
 
-每套自带 4 种配色主题。新增套件：`src/kits/` 下新建目录 → `index.ts` → 注册到 `kits/index.ts`。
+每套各 6 种配色。新增套件：`src/kits/` 下新建目录 → `index.ts` → 注册到 `kits/index.ts`。
 
 ## 快捷键
 
