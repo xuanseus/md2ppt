@@ -1,0 +1,19 @@
+{
+  "name": "crimson-dystopia",
+  "label": "猩红反乌托邦",
+  "dark": true,
+  "vars": {
+    "--color-background": "#080408",
+    "--color-foreground": "#ffd0d0",
+    "--color-muted": "#140c10",
+    "--color-muted-foreground": "#aa6868",
+    "--color-border": "#3a1020",
+    "--color-accent": "#ff2244",
+    "--color-accent-foreground": "#080408",
+    "--color-card": "#0e0810",
+    "--color-blockquote-border": "#ff2244",
+    "--color-heading": "#ff6688",
+    "--color-h1-from": "#ff2244",
+    "--color-h1-to": "#ff6600"
+  }
+}

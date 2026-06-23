@@ -1,0 +1,58 @@
+<script setup lang="ts">
+import type { Slide } from '../../../types/slides'
+import { computed } from 'vue'
+import { marked } from 'marked'
+import FadeContent from '../../../components/transitions/FadeContent.vue'
+
+const props = defineProps<{ slide: Slide }>()
+interface TLI { date:string; content:string }
+const entries = computed(() => {
+  const body = props.slide.rawMd.replace(/^#{1,6}\s+.+(\n|$)/m, '').trim()
+  const r: TLI[] = []
+  for (const line of body.split('\n')) {
+    const m = line.replace(/\r$/,'').match(/^\s*-\s+\*\*(.+?)\*\*[：:]\s*(.+)$/)
+    if (m) r.push({ date:m[1], content:m[2] })
+  }
+  return r
+})
+const subtitle = computed(() => {
+  const body = props.slide.rawMd.replace(/^#{1,6}\s+.+(\n|$)/m, '').trim()
+  const before: string[] = []
+  for (const line of body.split('\n')) { const t=line.trim(); if(t&&!t.startsWith('-')) before.push(t); else break }
+  return before.length?marked.parse(before.join('\n')) as string:''
+})
+</script>
+
+<template>
+  <div class="root">
+    <div class="wrap">
+      <h3 v-if="slide.title" class="title">{{ slide.title }}</h3>
+      <div v-if="subtitle" class="subtitle mb-8" v-html="subtitle" />
+      <div v-if="entries.length" class="timeline">
+        <div class="track" />
+        <div class="nodes">
+          <FadeContent v-for="(e,i) in entries" :key="i" :blur="true" :duration="600" :delay="200+i*150" class="node">
+            <div class="dot" />
+            <div class="date">{{ e.date }}</div>
+            <div class="content">{{ e.content }}</div>
+          </FadeContent>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:3rem; }
+.wrap { display:flex; flex-direction:column; align-items:center; max-width:64rem; width:100%; }
+.title { font-size:var(--fs-h3); font-weight:600; text-align:center; }
+.subtitle :deep(p) { font-size:var(--fs-body-sm); color:var(--color-muted-foreground); text-align:center; }
+.timeline { position:relative; width:100%; padding:3rem 0 1rem; }
+.track { position:absolute; top:4rem; left:5%; right:5%; height:2px; background:linear-gradient(90deg,transparent,var(--color-accent),transparent); opacity:0.4; }
+.nodes { display:flex; justify-content:space-between; position:relative; z-index:1; }
+.node { display:flex; flex-direction:column; align-items:center; text-align:center; gap:0.75rem; flex:1; max-width:10rem; }
+.dot { width:1rem; height:1rem; border-radius:9999px; background:var(--color-accent); box-shadow:0 0 0 4px color-mix(in srgb,var(--color-accent) 20%,transparent); margin-bottom:0.5rem; }
+.date { font-size:var(--fs-caption); font-weight:700; color:var(--color-accent); }
+.content { font-size:var(--fs-small); color:var(--color-muted-foreground); line-height:1.5; }
+.prose-quote :deep(h1), .prose-quote :deep(h2), .prose-quote :deep(h3), .prose-quote :deep(h4), .prose-stats :deep(h1), .prose-stats :deep(h2), .prose-stats :deep(h3), .prose-stats :deep(h4), .prose-list :deep(h1), .prose-list :deep(h2), .prose-list :deep(h3), .prose-list :deep(h4), .prose-timeline :deep(h1), .prose-timeline :deep(h2), .prose-timeline :deep(h3), .prose-timeline :deep(h4), .prose-comparison :deep(h1), .prose-comparison :deep(h2), .prose-comparison :deep(h3), .prose-comparison :deep(h4), .prose-content :deep(h1), .prose-content :deep(h2) { display:none; }
+</style>

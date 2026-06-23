@@ -1,0 +1,23 @@
+{
+  "name": "neon-violet",
+  "label": "全息·紫晶协议",
+  "dark": true,
+  "vars": {
+    "--color-background": "#0d0a14",
+    "--color-foreground": "#e0d4f8",
+    "--color-muted": "#14101e",
+    "--color-muted-foreground": "#7a6898",
+    "--color-border": "#281a40",
+    "--color-accent": "#b44dff",
+    "--color-accent-foreground": "#0d0a14",
+    "--color-card": "#100e1a",
+    "--color-blockquote-border": "#b44dff",
+    "--color-heading": "#b44dff",
+    "--color-h1-from": "#b44dff",
+    "--color-h1-to": "#ff4d94",
+    "--holo-glow": "0 0 20px rgba(180, 77, 255, 0.4), 0 0 60px rgba(180, 77, 255, 0.1)",
+    "--holo-glow-amber": "0 0 20px rgba(255, 180, 0, 0.4), 0 0 60px rgba(255, 180, 0, 0.1)",
+    "--holo-glow-green": "0 0 20px rgba(0, 255, 100, 0.4), 0 0 60px rgba(0, 255, 100, 0.1)",
+    "--holo-border-glow": "0 0 8px rgba(180, 77, 255, 0.3)"
+  }
+}

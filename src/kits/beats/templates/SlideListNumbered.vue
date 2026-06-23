@@ -1,0 +1,46 @@
+<script setup lang="ts">
+import type { Slide } from '../../../types/slides'
+import { computed } from 'vue'
+import { marked } from 'marked'
+import FadeContent from '../../../components/transitions/FadeContent.vue'
+
+const props = defineProps<{ slide: Slide }>()
+const parsed = computed(() => {
+  const body = props.slide.rawMd.replace(/^#{1,6}\s+.+(\n|$)/m, '').trim()
+  const items: string[] = []; const before: string[] = []
+  let hit = false
+  for (const line of body.split('\n')) {
+    const m = line.replace(/\r$/,'').match(/^\s*-\s+(.+)$/)
+    if (m) { hit=true; items.push(m[1]) }
+    else { const t=line.trim(); if(t&&!hit) before.push(t) }
+  }
+  return { subtitle: before.length?marked.parse(before.join('\n')) as string:'', items }
+})
+</script>
+
+<template>
+  <div class="root">
+    <div class="wrap">
+      <h3 v-if="slide.title" class="title">{{ slide.title }}</h3>
+      <div v-if="parsed.subtitle" class="subtitle mb-6" v-html="parsed.subtitle" />
+      <div v-if="parsed.items.length" class="list">
+        <FadeContent v-for="(item,i) in parsed.items" :key="i" :blur="true" :duration="500" :delay="150+i*120" class="item">
+          <span class="num">{{ String(i+1).padStart(2,'0') }}</span>
+          <span class="text" v-html="(marked.parseInline(item) as string)" />
+        </FadeContent>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 3rem; }
+.wrap { display:flex; flex-direction:column; align-items:center; max-width:40rem; width:100%; }
+.title { font-size:var(--fs-h3); font-weight:600; text-align:center; margin-bottom:0.75rem; }
+.subtitle :deep(p) { font-size:var(--fs-body-sm); color:var(--color-muted-foreground); text-align:center; }
+.list { display:flex; flex-direction:column; gap:1rem; width:100%; }
+.item { display:flex; align-items:center; gap:1.25rem; padding:1rem 1.25rem; background:color-mix(in srgb,var(--color-muted) 30%,transparent); border:1px solid color-mix(in srgb,var(--color-border) 40%,transparent); border-radius:0.75rem; }
+.num { flex-shrink:0; font-size:1.5rem; font-weight:800; color:var(--color-accent); opacity:0.3; min-width:2.5rem; text-align:right; }
+.text { font-size:var(--fs-body-sm); color:var(--color-foreground); line-height:1.6; }
+.prose-quote :deep(h1), .prose-quote :deep(h2), .prose-quote :deep(h3), .prose-quote :deep(h4), .prose-stats :deep(h1), .prose-stats :deep(h2), .prose-stats :deep(h3), .prose-stats :deep(h4), .prose-list :deep(h1), .prose-list :deep(h2), .prose-list :deep(h3), .prose-list :deep(h4), .prose-timeline :deep(h1), .prose-timeline :deep(h2), .prose-timeline :deep(h3), .prose-timeline :deep(h4), .prose-comparison :deep(h1), .prose-comparison :deep(h2), .prose-comparison :deep(h3), .prose-comparison :deep(h4), .prose-content :deep(h1), .prose-content :deep(h2) { display:none; }
+</style>

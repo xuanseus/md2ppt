@@ -1,0 +1,23 @@
+{
+  "name": "dark-pixel",
+  "label": "Dark Pixel",
+  "dark": true,
+  "vars": {
+    "--color-background": "#180820",
+    "--color-foreground": "#e0d0f0",
+    "--color-muted": "#201030",
+    "--color-muted-foreground": "#8870a8",
+    "--color-border": "#3a2860",
+    "--color-accent": "#ec4899",
+    "--color-accent-foreground": "#180820",
+    "--color-card": "#1e0c28",
+    "--color-blockquote-border": "#f472b6",
+    "--color-heading": "#f0a0d0",
+    "--color-h1-from": "#ec4899",
+    "--color-h1-to": "#a855f7",
+    "--pixel-bg-grid": "#ec489908",
+    "--pixel-shadow": "#200838",
+    "--pixel-highlight": "#f0a0d0",
+    "--pixel-scanline": "rgba(236, 72, 153, 0.04)"
+  }
+}

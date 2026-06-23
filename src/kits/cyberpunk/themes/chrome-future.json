@@ -1,0 +1,19 @@
+{
+  "name": "chrome-future",
+  "label": "铬金未来",
+  "dark": false,
+  "vars": {
+    "--color-background": "#f0f2f5",
+    "--color-foreground": "#1a2030",
+    "--color-muted": "#e2e6ec",
+    "--color-muted-foreground": "#687080",
+    "--color-border": "#c8ced8",
+    "--color-accent": "#3b82f6",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#ffffff",
+    "--color-blockquote-border": "#3b82f6",
+    "--color-heading": "#0a1020",
+    "--color-h1-from": "#3b82f6",
+    "--color-h1-to": "#8b5cf6"
+  }
+}

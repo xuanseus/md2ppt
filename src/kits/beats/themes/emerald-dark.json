@@ -1,0 +1,25 @@
+{
+  "name": "emerald-dark",
+  "label": "翡翠暗夜",
+  "dark": true,
+  "vars": {
+    "--color-background": "#0a0f0d",
+    "--color-foreground": "#d4ede2",
+    "--color-muted": "#121a16",
+    "--color-muted-foreground": "#5a8a76",
+    "--color-border": "#1a2a22",
+    "--color-accent": "#10b981",
+    "--color-accent-foreground": "#0a0f0d",
+    "--color-card": "#0e1612",
+    "--color-blockquote-border": "#10b981",
+    "--color-heading": "#d4ede2",
+    "--color-h1-from": "#10b981",
+    "--color-h1-to": "#06b6d4",
+    "--glass-bg": "rgba(14, 22, 18, 0.6)",
+    "--glass-border": "rgba(16, 185, 129, 0.15)",
+    "--glass-blur": "12px",
+    "--beats-glow": "0 0 30px rgba(16, 185, 129, 0.15)",
+    "--beats-shadow": "0 8px 32px rgba(0, 0, 0, 0.3)",
+    "--beats-card-shadow": "0 4px 16px rgba(0, 0, 0, 0.2)"
+  }
+}

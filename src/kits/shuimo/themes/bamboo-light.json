@@ -1,0 +1,23 @@
+{
+  "name": "bamboo-light",
+  "label": "墨竹·清",
+  "dark": false,
+  "vars": {
+    "--color-background": "#f2f6ee",
+    "--color-foreground": "#2a3828",
+    "--color-muted": "#e6eee0",
+    "--color-muted-foreground": "#6a8068",
+    "--color-border": "#c8d8c0",
+    "--color-accent": "#c84c3c",
+    "--color-accent-foreground": "#f8f4f0",
+    "--color-card": "#f8faf4",
+    "--color-blockquote-border": "#8aaa80",
+    "--color-heading": "#182818",
+    "--color-h1-from": "#3a5830",
+    "--color-h1-to": "#6a9860",
+    "--color-seal": "#c84c3c",
+    "--color-ink-light": "#b0c8a8",
+    "--color-ink-wash": "#dce8d6",
+    "--color-paper-texture": "rgba(140, 180, 130, 0.05)"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "ocean-light",
+  "label": "海岛·浅海",
+  "dark": false,
+  "vars": {
+    "--color-background": "#f0f8f8",
+    "--color-foreground": "#1a4040",
+    "--color-muted": "#e0f0f0",
+    "--color-muted-foreground": "#6a9090",
+    "--color-border": "#c8e0e0",
+    "--color-accent": "#0ea5a9",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#ffffff",
+    "--color-blockquote-border": "#0ea5a9",
+    "--color-heading": "#103838",
+    "--color-h1-from": "#0ea5a9",
+    "--color-h1-to": "#f59e0b"
+  }
+}

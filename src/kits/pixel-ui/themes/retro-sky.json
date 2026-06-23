@@ -1,0 +1,23 @@
+{
+  "name": "retro-sky",
+  "label": "8-bit Sky",
+  "dark": false,
+  "vars": {
+    "--color-background": "#e8f4fd",
+    "--color-foreground": "#1a3050",
+    "--color-muted": "#d8eaf8",
+    "--color-muted-foreground": "#5a7898",
+    "--color-border": "#a0c8e8",
+    "--color-accent": "#0ea5e9",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#f8fcfe",
+    "--color-blockquote-border": "#38bdf8",
+    "--color-heading": "#0a2848",
+    "--color-h1-from": "#0ea5e9",
+    "--color-h1-to": "#7c3aed",
+    "--pixel-bg-grid": "#0ea5e912",
+    "--pixel-shadow": "#3878a8",
+    "--pixel-highlight": "#b8e0f8",
+    "--pixel-scanline": "rgba(0,0,0,0.03)"
+  }
+}

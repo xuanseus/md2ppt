@@ -1,0 +1,23 @@
+{
+  "name": "plum-dark",
+  "label": "墨梅·韵",
+  "dark": true,
+  "vars": {
+    "--color-background": "#1c1820",
+    "--color-foreground": "#d8d0d8",
+    "--color-muted": "#262228",
+    "--color-muted-foreground": "#928a98",
+    "--color-border": "#3a343c",
+    "--color-accent": "#8b5cf6",
+    "--color-accent-foreground": "#f8f4fa",
+    "--color-card": "#221e24",
+    "--color-blockquote-border": "#7a6898",
+    "--color-heading": "#f0e8f0",
+    "--color-h1-from": "#e8d8f0",
+    "--color-h1-to": "#b898d0",
+    "--color-seal": "#8b5cf6",
+    "--color-ink-light": "#504a58",
+    "--color-ink-wash": "#2c2630",
+    "--color-paper-texture": "rgba(180, 160, 200, 0.03)"
+  }
+}

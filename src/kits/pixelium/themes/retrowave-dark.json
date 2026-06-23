@@ -1,0 +1,19 @@
+{
+  "name": "retrowave-dark",
+  "label": "像素·合成波",
+  "dark": true,
+  "vars": {
+    "--color-background": "#100a20",
+    "--color-foreground": "#d0c0f0",
+    "--color-muted": "#1a1030",
+    "--color-muted-foreground": "#7a68a0",
+    "--color-border": "#3a2860",
+    "--color-accent": "#b44dff",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#180e28",
+    "--color-blockquote-border": "#b44dff",
+    "--color-heading": "#e0d0ff",
+    "--color-h1-from": "#b44dff",
+    "--color-h1-to": "#4dc9f6"
+  }
+}

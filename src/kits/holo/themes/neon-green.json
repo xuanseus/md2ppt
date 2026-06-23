@@ -1,0 +1,23 @@
+{
+  "name": "neon-green",
+  "label": "全息·翡翠协议",
+  "dark": true,
+  "vars": {
+    "--color-background": "#061410",
+    "--color-foreground": "#c8f0e0",
+    "--color-muted": "#0c1e18",
+    "--color-muted-foreground": "#4a7a68",
+    "--color-border": "#1a3828",
+    "--color-accent": "#00ff88",
+    "--color-accent-foreground": "#061410",
+    "--color-card": "#0a1a14",
+    "--color-blockquote-border": "#00ff88",
+    "--color-heading": "#00ff88",
+    "--color-h1-from": "#00ff88",
+    "--color-h1-to": "#00e5ff",
+    "--holo-glow": "0 0 20px rgba(0, 255, 136, 0.4), 0 0 60px rgba(0, 255, 136, 0.1)",
+    "--holo-glow-amber": "0 0 20px rgba(255, 180, 0, 0.4), 0 0 60px rgba(255, 180, 0, 0.1)",
+    "--holo-glow-green": "0 0 24px rgba(0, 255, 136, 0.5), 0 0 70px rgba(0, 255, 136, 0.12)",
+    "--holo-border-glow": "0 0 8px rgba(0, 255, 136, 0.3)"
+  }
+}

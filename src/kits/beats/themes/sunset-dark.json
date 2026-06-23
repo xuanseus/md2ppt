@@ -1,0 +1,25 @@
+{
+  "name": "sunset-dark",
+  "label": "落日余晖",
+  "dark": true,
+  "vars": {
+    "--color-background": "#0f0b0a",
+    "--color-foreground": "#fce8d5",
+    "--color-muted": "#1c1410",
+    "--color-muted-foreground": "#a08070",
+    "--color-border": "#2a1a14",
+    "--color-accent": "#f59e0b",
+    "--color-accent-foreground": "#0f0b0a",
+    "--color-card": "#140e0c",
+    "--color-blockquote-border": "#f59e0b",
+    "--color-heading": "#fce8d5",
+    "--color-h1-from": "#f59e0b",
+    "--color-h1-to": "#ef4444",
+    "--glass-bg": "rgba(20, 14, 12, 0.6)",
+    "--glass-border": "rgba(245, 158, 11, 0.15)",
+    "--glass-blur": "12px",
+    "--beats-glow": "0 0 30px rgba(245, 158, 11, 0.15)",
+    "--beats-shadow": "0 8px 32px rgba(0, 0, 0, 0.3)",
+    "--beats-card-shadow": "0 4px 16px rgba(0, 0, 0, 0.2)"
+  }
+}

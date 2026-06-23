@@ -53,6 +53,6 @@ defineProps<{ slide: Slide }>()
 .px-cmd-sep { color: var(--color-border); font-family: var(--px-font); }
 
 .px-stats-prose :deep(h4) { font-size: var(--fs-body-sm); font-weight: 500; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-muted-foreground); text-align: center; font-family: var(--px-font); }
-.px-stats-prose :deep(strong) { display: block; font-size: var(--fs-stat); font-weight: 700; line-height: 1; margin-bottom: 1.2rem; color: var(--color-accent); font-family: var(--px-font); text-shadow: 4px 4px 0 #0006; animation: px-stats-pop 0.6s step-end; }
+.px-stats-prose :deep(strong) { display: block; font-size: var(--fs-stat); font-weight: 700; line-height: 1; margin-bottom: 1.2rem; color: var(--color-accent); font-family: var(--px-font); text-shadow: 4px 4px 0 #0006; animation: px-stats-pop 0.6s ease-out; }
 .px-stats-prose :deep(p) { font-size: var(--fs-body); color: var(--color-muted-foreground); margin-top: 1.2rem; line-height: 1.7; font-family: var(--px-font); }
 </style>

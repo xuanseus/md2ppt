@@ -1,0 +1,19 @@
+{
+  "name": "coral-dark",
+  "label": "珊瑚·暖暗",
+  "dark": true,
+  "vars": {
+    "--color-background": "#2a1f1f",
+    "--color-foreground": "#f0e0d8",
+    "--color-muted": "#352a28",
+    "--color-muted-foreground": "#b0a098",
+    "--color-border": "#4a3a35",
+    "--color-accent": "#ff7f50",
+    "--color-accent-foreground": "#1a1a1a",
+    "--color-card": "#352a28",
+    "--color-blockquote-border": "#ff7f50",
+    "--color-heading": "#f8e8e0",
+    "--color-h1-from": "#ff7f50",
+    "--color-h1-to": "#ffb347"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "cherry-light",
+  "label": "像素·樱花",
+  "dark": false,
+  "vars": {
+    "--color-background": "#fdf0f5",
+    "--color-foreground": "#4a2a38",
+    "--color-muted": "#f8e0ea",
+    "--color-muted-foreground": "#8a5a6a",
+    "--color-border": "#e8c0d0",
+    "--color-accent": "#e84393",
+    "--color-accent-foreground": "#ffffff",
+    "--color-card": "#fef8fa",
+    "--color-blockquote-border": "#e84393",
+    "--color-heading": "#381828",
+    "--color-h1-from": "#e84393",
+    "--color-h1-to": "#f78da7"
+  }
+}

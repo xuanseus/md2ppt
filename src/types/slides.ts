@@ -24,6 +24,8 @@ export interface Slide {
   index: number         // 幻灯片索引
   leftHtml?: string     // 两列布局：左列内容
   rightHtml?: string    // 两列布局：右列内容
+  /** 动画预设名 {anim: fade-in-up} */
+  anim?: string
 }
 
 export type NavigationDirection = 'next' | 'prev' | number
