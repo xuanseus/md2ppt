@@ -41,7 +41,7 @@ const parsed = computed(() => {
   font-size: calc(2.5rem * var(--content-scale));
   font-weight: 600;
   text-align: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
   color: var(--color-heading);
   font-family: var(--px-font);
   text-shadow: 2px 2px 0 #0004;

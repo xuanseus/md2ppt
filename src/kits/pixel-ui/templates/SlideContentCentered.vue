@@ -25,7 +25,7 @@ defineProps<{ slide: Slide }>()
     </div>
 
     <!-- Dialog window -->
-    <div class="relative z-10 w-full max-w-xl px-8">
+    <div class="relative z-10 w-full max-w-5xl px-8">
       <div class="px-window" :style="{
         background: 'var(--color-card)',
         border: '4px solid var(--color-accent)',

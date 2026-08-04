@@ -6,7 +6,7 @@ defineProps<{ slide: Slide }>()
 
 <template>
   <div class="px-content-center flex items-center justify-center w-full h-full" style="background: var(--color-background)">
-    <div class="relative z-10 max-w-3xl w-full px-8 text-center">
+    <div class="relative z-10 max-w-5xl w-full px-8 text-center">
       <h3 v-if="slide.title" class="px-content-title">{{ slide.title }}</h3>
       <div v-html="slide.html" class="px-content-prose" />
     </div>

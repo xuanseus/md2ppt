@@ -26,7 +26,7 @@ defineProps<{ slide: Slide }>()
       >✦</span>
     </div>
 
-    <div class="relative z-10 max-w-2xl text-center px-8">
+    <div class="relative z-10 max-w-6xl text-center px-8">
       <!-- Double line decoration -->
       <div class="px-cover-doubleline mb-8">
         <span class="line-block" />
@@ -170,12 +170,6 @@ defineProps<{ slide: Slide }>()
 }
 
 /* Prose */
-.px-prose :deep(h1),
-.px-prose :deep(h2),
-.px-prose :deep(h3),
-.px-prose :deep(h4) {
-  display: none;
-}
 .px-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

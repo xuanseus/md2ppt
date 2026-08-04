@@ -64,8 +64,4 @@ defineProps<{ slide: Slide }>()
   font-family: var(--px-font);
 }
 
-.px-quote-prose :deep(h3),
-.px-quote-prose :deep(h4) {
-  display: none;
-}
 </style>

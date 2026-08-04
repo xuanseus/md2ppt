@@ -9,7 +9,7 @@ defineProps<{ slide: Slide }>()
     <!-- 像素网格背景 -->
     <div class="absolute inset-0 pointer-events-none opacity-3" style="background-image: repeating-linear-gradient(0deg, var(--color-foreground) 0px, var(--color-foreground) 1px, transparent 1px, transparent calc(var(--px-bit) * 3)), repeating-linear-gradient(90deg, var(--color-foreground) 0px, var(--color-foreground) 1px, transparent 1px, transparent calc(var(--px-bit) * 3))" />
 
-    <div class="relative z-10 w-full max-w-5xl px-10 slide-animate">
+    <div class="relative z-10 w-full max-w-6xl px-10 slide-animate">
       <!-- 菜单窗口 -->
       <div :style="{ background: 'var(--color-card)', border: '3px solid var(--color-border)', boxShadow: '0 0 0 1px var(--color-background), 0 0 0 4px var(--color-border), 5px 5px 0 #0006' }">
         <!-- 窗口标题栏 -->

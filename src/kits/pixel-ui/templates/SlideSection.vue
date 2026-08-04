@@ -136,13 +136,6 @@ defineProps<{ slide: Slide }>()
 }
 
 /* Subtitle prose */
-.px-section-sub :deep(h1),
-.px-section-sub :deep(h2),
-.px-section-sub :deep(h3),
-.px-section-sub :deep(h4) {
-  display: none;
-}
-
 .px-section-sub :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

@@ -188,12 +188,6 @@ defineProps<{ slide: Slide }>()
 }
 
 /* Prose */
-.px-prose :deep(h1),
-.px-prose :deep(h2),
-.px-prose :deep(h3),
-.px-prose :deep(h4) {
-  display: none;
-}
 .px-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

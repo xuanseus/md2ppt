@@ -52,13 +52,6 @@ const num = (props.slide.rawMd.match(/\{num:\s*(\d+)\}/i) || [])[1] || '01'
   text-align: center;
 }
 
-.px-section-num-sub :deep(h1),
-.px-section-num-sub :deep(h2),
-.px-section-num-sub :deep(h3),
-.px-section-num-sub :deep(h4) {
-  display: none;
-}
-
 .px-section-num-sub :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

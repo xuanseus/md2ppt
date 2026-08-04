@@ -15,7 +15,7 @@ defineProps<{ slide: Slide }>()
     <!-- 底部像素装饰横幅 -->
     <div class="absolute bottom-0 left-0 right-0 pointer-events-none" style="height: 10px; background: repeating-linear-gradient(90deg, transparent 0px, transparent 8px, var(--color-accent) 8px, var(--color-accent) 16px)" />
 
-    <div class="relative z-10 max-w-3xl w-full px-12 text-center">
+    <div class="relative z-10 max-w-6xl w-full px-12 text-center">
       <div class="inline-block px-6 py-2 mb-8" style="background: var(--color-card); border: 2px solid var(--color-border); box-shadow: 3px 3px 0 var(--color-accent)">
         <span class="text-sm font-bold tracking-widest uppercase" style="color: var(--color-accent); font-family: var(--px-font)">
           ▶ Thank You
@@ -45,18 +45,10 @@ defineProps<{ slide: Slide }>()
   color: var(--color-heading);
   margin-bottom: 1.5rem;
   font-family: var(--px-font);
+  white-space: nowrap;
   text-shadow:
     0 0 10px color-mix(in srgb, var(--color-accent) 30%, transparent),
     3px 3px 0 #0004;
-}
-
-.px-minimal-prose :deep(h1),
-.px-minimal-prose :deep(h2),
-.px-minimal-prose :deep(h3),
-.px-minimal-prose :deep(h4),
-.px-minimal-prose :deep(h5),
-.px-minimal-prose :deep(h6) {
-  display: none;
 }
 
 .px-minimal-prose :deep(p) {

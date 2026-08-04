@@ -183,13 +183,6 @@ defineProps<{ slide: Slide }>()
 }
 
 /* List items — menu style */
-.px-list-prose :deep(h1),
-.px-list-prose :deep(h2),
-.px-list-prose :deep(h3),
-.px-list-prose :deep(h4) {
-  display: none;
-}
-
 .px-list-prose :deep(ul) {
   list-style: none;
   padding: 0;

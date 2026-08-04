@@ -48,13 +48,6 @@ const icon = (props.slide.rawMd.match(/\{icon:\s*(\S+)\}/i) || [])[1] || '✦'
   text-align: center;
 }
 
-.px-section-icon-sub :deep(h1),
-.px-section-icon-sub :deep(h2),
-.px-section-icon-sub :deep(h3),
-.px-section-icon-sub :deep(h4) {
-  display: none;
-}
-
 .px-section-icon-sub :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

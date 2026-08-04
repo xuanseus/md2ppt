@@ -154,12 +154,6 @@ const num = (props.slide.rawMd.match(/\{num:\s*(\d+)\}/i) || [])[1] || '01'
 }
 
 /* Prose */
-.px-prose :deep(h1),
-.px-prose :deep(h2),
-.px-prose :deep(h3),
-.px-prose :deep(h4) {
-  display: none;
-}
 .px-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

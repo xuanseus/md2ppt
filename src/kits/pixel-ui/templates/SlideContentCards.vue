@@ -24,7 +24,7 @@ defineProps<{ slide: Slide }>()
       <span class="corner-char c1">└</span><span class="corner-char c2">─</span><span class="corner-char c2">─</span><span class="corner-char c1">┘</span>
     </div>
 
-    <div class="relative z-10 w-full max-w-2xl px-8">
+    <div class="relative z-10 w-full max-w-5xl px-8">
       <h3 v-if="slide.title" class="px-title">{{ slide.title }}</h3>
 
       <div class="px-card" :style="{
@@ -84,12 +84,6 @@ defineProps<{ slide: Slide }>()
 }
 
 /* Prose */
-.px-prose :deep(h1),
-.px-prose :deep(h2),
-.px-prose :deep(h3),
-.px-prose :deep(h4) {
-  display: none;
-}
 .px-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

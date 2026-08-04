@@ -84,15 +84,6 @@ defineProps<{ slide: Slide }>()
     3px 3px 0 #0004;
 }
 
-.px-cover-prose :deep(h1),
-.px-cover-prose :deep(h2),
-.px-cover-prose :deep(h3),
-.px-cover-prose :deep(h4),
-.px-cover-prose :deep(h5),
-.px-cover-prose :deep(h6) {
-  display: none;
-}
-
 .px-cover-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

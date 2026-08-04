@@ -110,10 +110,6 @@ defineProps<{ slide: Slide }>()
   font-family: var(--pixel-font, 'Press Start 2P', monospace);
   image-rendering: pixelated;
 }
-.px-prose :deep(h3),
-.px-prose :deep(h4) {
-  display: none;
-}
 .px-prose :deep(strong) {
   font-weight: 700;
   color: var(--color-accent);
