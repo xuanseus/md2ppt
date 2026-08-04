@@ -23,5 +23,5 @@ defineProps<{ slide: Slide }>()
 .quote-deco { font-size: 10rem; line-height: 1; font-family: Georgia, serif; color: color-mix(in srgb, var(--color-accent) 8%, transparent); user-select: none; pointer-events: none; }
 .quote-deco.bottom { transform: rotate(180deg); }
 .quote-prose :deep(blockquote), .quote-prose :deep(p) { font-size: var(--fs-quote, 2rem); font-weight: 300; line-height: 1.5; color: var(--color-muted-foreground); font-style: italic; margin: 0.75rem 0; font-family: var(--animal-font-family, inherit); }
-.quote-prose :deep(h3), .quote-prose :deep(h4) { display: none; }
+
 </style>

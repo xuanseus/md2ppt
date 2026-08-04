@@ -10,7 +10,7 @@ defineProps<{ slide: Slide }>()
     <div class="absolute left-0 top-1/4 bottom-1/4 w-1 rounded-r-full opacity-15 pointer-events-none" style="background: var(--color-accent)" />
     <div class="absolute top-1/3 right-1/4 w-32 h-32 rounded-full opacity-[0.03] pointer-events-none" style="background: var(--color-accent)" />
 
-    <div class="relative z-10 w-full max-w-3xl px-12 text-center">
+    <div class="relative z-10 w-full max-w-5xl px-12 text-center">
       <h2 v-if="slide.title" class="centered-title slide-animate">{{ slide.title }}</h2>
       <div v-html="slide.html" class="centered-prose slide-animate" style="animation-delay: 0.15s" />
     </div>

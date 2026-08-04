@@ -48,15 +48,6 @@ defineProps<{ slide: Slide }>()
   font-family: var(--animal-font-family, inherit);
 }
 
-.ai-cover-prose :deep(h1),
-.ai-cover-prose :deep(h2),
-.ai-cover-prose :deep(h3),
-.ai-cover-prose :deep(h4),
-.ai-cover-prose :deep(h5),
-.ai-cover-prose :deep(h6) {
-  display: none;
-}
-
 .ai-cover-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

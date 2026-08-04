@@ -28,6 +28,5 @@ const num = (props.slide.rawMd.match(/\{num:\s*(\d+)\}/i) || [])[1] || '01'
 .num-wrapper { margin-bottom: 0.5rem; }
 .num { display: block; font-size: 8rem; font-weight: 900; line-height: 1; color: var(--color-accent); opacity: 0.12; font-family: var(--animal-font-family, inherit); }
 .section-title { font-size: calc(4rem * var(--content-scale)); font-weight: 700; color: var(--color-heading); line-height: 1.15; margin-top: -1.5rem; margin-bottom: 1.5rem; font-family: var(--animal-font-family, inherit); }
-.section-sub :deep(h1), .section-sub :deep(h2), .section-sub :deep(h3), .section-sub :deep(h4) { display: none; }
 .section-sub :deep(p) { font-size: var(--fs-body); color: var(--color-muted-foreground); line-height: 1.7; }
 </style>

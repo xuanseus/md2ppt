@@ -10,7 +10,7 @@ defineProps<{ slide: Slide }>()
     <!-- 侧边装饰 -->
     <div class="absolute left-0 top-1/4 bottom-1/4 w-1 rounded-r-full opacity-15 pointer-events-none" style="background: var(--color-accent)" />
 
-    <div class="relative z-10 w-full max-w-5xl px-10 slide-animate">
+    <div class="relative z-10 w-full max-w-6xl px-10 slide-animate">
       <Card
         type="filled"
         color="white"

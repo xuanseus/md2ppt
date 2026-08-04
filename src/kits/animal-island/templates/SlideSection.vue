@@ -25,19 +25,12 @@ defineProps<{ slide: Slide }>()
 
 <style scoped>
 .ai-section-title {
-  font-size: calc(4.5rem * var(--content-scale));
+  font-size: var(--fs-section-title);
   font-weight: 700;
   color: var(--color-heading);
   line-height: 1.15;
   margin-bottom: 1.5rem;
   font-family: var(--animal-font-family, inherit);
-}
-
-.ai-section-sub :deep(h1),
-.ai-section-sub :deep(h2),
-.ai-section-sub :deep(h3),
-.ai-section-sub :deep(h4) {
-  display: none;
 }
 
 .ai-section-sub :deep(p) {

@@ -38,7 +38,7 @@ const parsed = computed(() => {
 
 <style scoped>
 .ai-list-numbered { position: relative; overflow: hidden; padding: 2rem 3rem; }
-.ln-title { font-size: var(--fs-h3); font-weight: 600; text-align: center; margin-bottom: 0.5rem; color: var(--color-heading); font-family: var(--animal-font-family, inherit); }
+.ln-title { font-size: var(--fs-h3); font-weight: 600; text-align: center; margin-bottom: 1rem; color: var(--color-heading); font-family: var(--animal-font-family, inherit); }
 .ln-sub :deep(p) { font-size: var(--fs-body-sm); color: var(--color-muted-foreground); text-align: center; margin-bottom: 1.5rem; }
 .ln-list { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; }
 .ln-item { display: flex; align-items: center; gap: 1.25rem; padding: 0.9rem 1.25rem; background: color-mix(in srgb, var(--color-muted) 12%, transparent); border: 2px solid var(--color-border); border-radius: var(--animal-border-radius-base, 18px); box-shadow: 0 1px 4px rgba(61, 52, 40, 0.03); }

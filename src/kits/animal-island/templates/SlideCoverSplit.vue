@@ -38,7 +38,6 @@ defineProps<{ slide: Slide }>()
 .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.2rem; border-radius: 9999px; background: color-mix(in srgb, var(--color-accent) 10%, transparent); border: 2px solid color-mix(in srgb, var(--color-accent) 20%, transparent); color: var(--color-accent); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--animal-font-family, inherit); width: fit-content; }
 .badge-dot { width: 0.375rem; height: 0.375rem; border-radius: 9999px; background: var(--color-accent); animation: dot-pulse 2s infinite; }
 .split-title { font-size: calc(3.5rem * var(--content-scale)); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; color: var(--color-heading); font-family: var(--animal-font-family, inherit); }
-.split-body :deep(h1), .split-body :deep(h2), .split-body :deep(h3) { display: none; }
 .split-body :deep(p) { font-size: var(--fs-body); color: var(--color-muted-foreground); line-height: 1.7; }
 .split-right { display: flex; align-items: center; justify-content: center; }
 .deco-box { width: 15rem; height: 15rem; border-radius: 2rem; background: color-mix(in srgb, var(--color-accent) 6%, transparent); border: 2px solid color-mix(in srgb, var(--color-accent) 12%, transparent); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 20px rgba(61, 52, 40, 0.05); }

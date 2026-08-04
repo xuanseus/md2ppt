@@ -35,14 +35,6 @@ defineProps<{ slide: Slide }>()
   padding: 2.5rem 3rem;
 }
 
-/* 隐藏 markdown 中自带的标题，避免跟模板标题重复 */
-.ai-list-prose :deep(h1),
-.ai-list-prose :deep(h2),
-.ai-list-prose :deep(h3),
-.ai-list-prose :deep(h4) {
-  display: none;
-}
-
 .ai-list-prose :deep(ul) {
   list-style: none;
   padding: 0;
@@ -53,7 +45,7 @@ defineProps<{ slide: Slide }>()
   font-size: var(--fs-body);
   line-height: 1.8;
   padding: 0.75rem 1.25rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   border-radius: var(--animal-border-radius-base, 18px);
   background: color-mix(in srgb, var(--color-accent) 5%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-accent) 10%, transparent);

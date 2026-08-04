@@ -28,6 +28,5 @@ const icon = (props.slide.rawMd.match(/\{icon:\s*(\S+)\}/i) || [])[1] || '✦'
 .icon-wrapper { display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
 .icon { display: inline-flex; align-items: center; justify-content: center; width: 5rem; height: 5rem; border-radius: 50%; background: color-mix(in srgb, var(--color-accent) 10%, transparent); border: 2px solid color-mix(in srgb, var(--color-accent) 20%, transparent); font-size: 2.5rem; opacity: 0.8; }
 .section-title { font-size: calc(4rem * var(--content-scale)); font-weight: 700; color: var(--color-heading); line-height: 1.15; margin-bottom: 1.5rem; font-family: var(--animal-font-family, inherit); }
-.section-sub :deep(h1), .section-sub :deep(h2), .section-sub :deep(h3), .section-sub :deep(h4) { display: none; }
 .section-sub :deep(p) { font-size: var(--fs-body); color: var(--color-muted-foreground); line-height: 1.7; }
 </style>
