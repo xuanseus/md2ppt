@@ -45,7 +45,7 @@ const subtitle = computed(() => {
 <style scoped>
 .root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 3rem; }
 .wrap { max-width:56rem; width:100%; display:flex; flex-direction:column; align-items:center; }
-.title { font-size:var(--fs-h3); font-weight:600; text-align:center; margin-bottom:0.5rem; }
+.title { font-size:var(--fs-h3); font-weight:600; text-align:center; margin-bottom:1rem; }
 .sub :deep(p) { font-size:var(--fs-body-sm); color:var(--color-muted-foreground); text-align:center; }
 .grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; width:100%; margin-top:1.5rem; }
 .card { display:flex; flex-direction:column; align-items:center; padding:2.5rem 2rem; border-radius:1.25rem; background:color-mix(in srgb,var(--color-muted) 20%,transparent); border:2px solid transparent; backdrop-filter:blur(10px); text-align:center; }
@@ -57,5 +57,4 @@ const subtitle = computed(() => {
 .card-title { font-size:var(--fs-h3); font-weight:700; margin-bottom:1.25rem; color:var(--color-foreground); }
 .card-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.6rem; }
 .card-list li { font-size:var(--fs-body-sm); color:var(--color-muted-foreground); line-height:1.6; }
-.prose-quote :deep(h1), .prose-quote :deep(h2), .prose-quote :deep(h3), .prose-quote :deep(h4), .prose-stats :deep(h1), .prose-stats :deep(h2), .prose-stats :deep(h3), .prose-stats :deep(h4), .prose-list :deep(h1), .prose-list :deep(h2), .prose-list :deep(h3), .prose-list :deep(h4), .prose-timeline :deep(h1), .prose-timeline :deep(h2), .prose-timeline :deep(h3), .prose-timeline :deep(h4), .prose-comparison :deep(h1), .prose-comparison :deep(h2), .prose-comparison :deep(h3), .prose-comparison :deep(h4), .prose-content :deep(h1), .prose-content :deep(h2) { display:none; }
 </style>

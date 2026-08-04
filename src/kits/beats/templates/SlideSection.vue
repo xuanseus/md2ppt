@@ -82,10 +82,6 @@ onUnmounted(() => {
   line-height: 1.2;
 }
 
-.prose-section :deep(h2) {
-  display: none;
-}
-
 .prose-section :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

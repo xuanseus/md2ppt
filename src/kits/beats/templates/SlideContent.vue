@@ -32,6 +32,7 @@ defineProps<{ slide: Slide }>()
   font-size: var(--fs-h3);
   font-weight: 600;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .prose-content :deep(p) {

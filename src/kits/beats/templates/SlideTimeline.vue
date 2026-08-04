@@ -46,7 +46,7 @@ const parsed = computed(() => {
 
     <!-- 内容 -->
     <div class="relative z-10 flex flex-col items-center justify-center h-full px-14 py-12 w-full">
-      <h4 v-if="slide.title" class="text-lg md:text-xl font-medium mb-3 text-center text-muted-foreground slide-animate">
+      <h4 v-if="slide.title" class="text-lg md:text-xl font-medium mb-6 text-center text-muted-foreground slide-animate">
         {{ slide.title }}
       </h4>
       <div v-if="parsed.subtitle" class="timeline-subtitle mb-8 text-center max-w-xl slide-animate" v-html="parsed.subtitle"></div>
@@ -113,5 +113,4 @@ const parsed = computed(() => {
   font-size: var(--fs-caption);
   color: var(--color-muted-foreground);
 }
-.prose-quote :deep(h1), .prose-quote :deep(h2), .prose-quote :deep(h3), .prose-quote :deep(h4), .prose-stats :deep(h1), .prose-stats :deep(h2), .prose-stats :deep(h3), .prose-stats :deep(h4), .prose-list :deep(h1), .prose-list :deep(h2), .prose-list :deep(h3), .prose-list :deep(h4), .prose-timeline :deep(h1), .prose-timeline :deep(h2), .prose-timeline :deep(h3), .prose-timeline :deep(h4), .prose-comparison :deep(h1), .prose-comparison :deep(h2), .prose-comparison :deep(h3), .prose-comparison :deep(h4), .prose-content :deep(h1), .prose-content :deep(h2) { display:none; }
 </style>

@@ -39,7 +39,6 @@ defineProps<{ slide: Slide }>()
 .badge-dot { width:0.375rem; height:0.375rem; border-radius:9999px; background:var(--color-accent); animation:pulse 2s infinite; }
 .title-wrap :deep(h1) { font-size:var(--fs-hero); font-weight:800; line-height:1.1; letter-spacing:-0.02em; color:var(--color-foreground); }
 .body-html :deep(p) { font-size:var(--fs-body); color:var(--color-muted-foreground); line-height:1.6; }
-.body-html :deep(h1), .body-html :deep(h2), .body-html :deep(h3) { display:none; }
 .accent-line { width:5rem; height:2px; background:linear-gradient(90deg,var(--color-accent),transparent); }
 .split-right { display:flex; align-items:center; justify-content:center; }
 .deco-box { width:16rem; height:16rem; border-radius:2rem; background:color-mix(in srgb,var(--color-accent) 8%,transparent); border:1px solid color-mix(in srgb,var(--color-accent) 15%,transparent); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; backdrop-filter:blur(10px); }

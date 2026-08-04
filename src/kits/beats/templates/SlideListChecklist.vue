@@ -33,5 +33,4 @@ const items = computed(() => {
 .item { display:flex; align-items:center; gap:1rem; padding:0.75rem 1rem; }
 .check { flex-shrink:0; width:1.5rem; height:1.5rem; border-radius:9999px; background:rgba(34,197,94,0.15); color:#22c55e; display:flex; align-items:center; justify-content:center; font-size:0.7rem; font-weight:700; }
 .text { font-size:var(--fs-body-sm); color:var(--color-muted-foreground); line-height:1.5; }
-.prose-quote :deep(h1), .prose-quote :deep(h2), .prose-quote :deep(h3), .prose-quote :deep(h4), .prose-stats :deep(h1), .prose-stats :deep(h2), .prose-stats :deep(h3), .prose-stats :deep(h4), .prose-list :deep(h1), .prose-list :deep(h2), .prose-list :deep(h3), .prose-list :deep(h4), .prose-timeline :deep(h1), .prose-timeline :deep(h2), .prose-timeline :deep(h3), .prose-timeline :deep(h4), .prose-comparison :deep(h1), .prose-comparison :deep(h2), .prose-comparison :deep(h3), .prose-comparison :deep(h4), .prose-content :deep(h1), .prose-content :deep(h2) { display:none; }
 </style>

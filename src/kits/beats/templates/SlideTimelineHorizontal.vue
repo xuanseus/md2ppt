@@ -54,5 +54,4 @@ const subtitle = computed(() => {
 .dot { width:1rem; height:1rem; border-radius:9999px; background:var(--color-accent); box-shadow:0 0 0 4px color-mix(in srgb,var(--color-accent) 20%,transparent); margin-bottom:0.5rem; }
 .date { font-size:var(--fs-caption); font-weight:700; color:var(--color-accent); }
 .content { font-size:var(--fs-small); color:var(--color-muted-foreground); line-height:1.5; }
-.prose-quote :deep(h1), .prose-quote :deep(h2), .prose-quote :deep(h3), .prose-quote :deep(h4), .prose-stats :deep(h1), .prose-stats :deep(h2), .prose-stats :deep(h3), .prose-stats :deep(h4), .prose-list :deep(h1), .prose-list :deep(h2), .prose-list :deep(h3), .prose-list :deep(h4), .prose-timeline :deep(h1), .prose-timeline :deep(h2), .prose-timeline :deep(h3), .prose-timeline :deep(h4), .prose-comparison :deep(h1), .prose-comparison :deep(h2), .prose-comparison :deep(h3), .prose-comparison :deep(h4), .prose-content :deep(h1), .prose-content :deep(h2) { display:none; }
 </style>

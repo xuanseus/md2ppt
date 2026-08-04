@@ -23,5 +23,4 @@ defineProps<{ slide: Slide }>()
 .deco { font-size:12rem; line-height:1; font-family:serif; color:color-mix(in srgb,var(--color-accent) 6%,transparent); user-select:none; pointer-events:none; }
 .deco.bottom { transform:rotate(180deg); }
 .prose :deep(blockquote), .prose :deep(p) { font-size:var(--fs-quote,2rem); font-weight:300; line-height:1.5; color:var(--color-muted-foreground); font-style:italic; margin:1rem 0; }
-.prose :deep(h3), .prose :deep(h4) { display:none; }
 </style>

@@ -45,7 +45,6 @@ onUnmounted(() => o?.disconnect())
 }
 .num { display:block; font-size:7rem; font-weight:900; line-height:1; background:linear-gradient(135deg,var(--color-accent),var(--color-h1-to,#647EFF)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; opacity:0.2; }
 .title-wrap :deep(h2) { font-size:var(--fs-section-title); font-weight:700; margin-top:-0.5rem; margin-bottom:0.5rem; line-height:1.2; }
-.prose :deep(h2) { display:none; }
 .prose :deep(p) { font-size:var(--fs-body); color:var(--color-muted-foreground); line-height:1.6; }
 .deco { display:flex; align-items:center; justify-content:center; gap:0.5rem; margin-top:2rem; }
 .deco-dot { width:0.5rem; height:0.5rem; border-radius:9999px; background:color-mix(in srgb,var(--color-accent) 40%,transparent); }

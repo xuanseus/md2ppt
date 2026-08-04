@@ -67,11 +67,6 @@ defineProps<{ slide: Slide }>()
   font-size: var(--fs-h4);
 }
 
-/* 隐藏 slide.html 中的重复标题 */
-.prose-code :deep(h4) {
-  display: none;
-}
-
 .prose-code :deep(.code-block-wrapper) {
   margin: 0 auto;
   width: 100%;
