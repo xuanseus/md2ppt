@@ -18,22 +18,22 @@ defineProps<{ slide: Slide }>()
       style="background: radial-gradient(ellipse, var(--color-foreground) 0%, transparent 70%)" />
 
     <!-- 主体内容居中 -->
-    <div class="wrap relative z-10 flex flex-col items-center text-center" style="max-width: 48rem; padding: 3rem;">
+    <div class="relative z-10 max-w-6xl px-10 text-center">
 
       <!-- 印章在上方 -->
-      <div class="sm-seal mb-8 flex items-center justify-center select-none shrink-0"
+      <div class="sm-seal mb-8 flex items-center justify-center select-none shrink-0 mx-auto"
         style="border: 2px solid var(--color-seal); width: 44px; height: 44px; color: var(--color-seal); font-family: 'KaiTi', 'STKaiti', 'SimSun', serif; writing-mode: vertical-rl; font-size: 0.55rem; letter-spacing: 0.12em; transform: rotate(-4deg); opacity: 0.5">
         终章
       </div>
 
-      <!-- 标题 -->
+      <!-- 标题：直接 h1，不走 SplitText（结尾页不需要入场动画） -->
       <h1 v-if="slide.title" class="minimal-title">{{ slide.title }}</h1>
 
       <!-- 描述 -->
       <div v-if="slide.html" v-html="slide.html" class="minimal-prose" />
 
       <!-- 底部横线装饰 -->
-      <div class="mt-10 w-24 pointer-events-none opacity-[0.12]"
+      <div class="mt-10 w-24 mx-auto pointer-events-none opacity-[0.12]"
         style="height: 1px; background: linear-gradient(90deg, transparent, var(--color-foreground), transparent)" />
     </div>
 
@@ -61,15 +61,11 @@ defineProps<{ slide: Slide }>()
   font-family: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', Georgia, serif;
   line-height: 1.3;
   margin-bottom: 1.5rem;
+  text-align: center;
   text-shadow:
     1px 0 0 var(--color-ink-wash),
+    -1px 0 0 var(--color-ink-wash),
     0 1px 0 var(--color-ink-wash);
-}
-
-.minimal-prose :deep(h1),
-.minimal-prose :deep(h2),
-.minimal-prose :deep(h3) {
-  display: none;
 }
 
 .minimal-prose :deep(p) {

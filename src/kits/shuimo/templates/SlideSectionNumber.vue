@@ -92,10 +92,4 @@ const num = (props.slide.rawMd.match(/\{num:\s*(\d+)\}/i) || [])[1] || '壹'
   padding: 0 1.5rem;
   letter-spacing: 0.08em;
 }
-
-.section-num-sub :deep(h1),
-.section-num-sub :deep(h2),
-.section-num-sub :deep(h3) {
-  display: none;
-}
 </style>

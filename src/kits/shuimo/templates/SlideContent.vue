@@ -144,6 +144,7 @@ defineProps<{ slide: Slide }>()
   font-size: var(--fs-h3);
   font-weight: 600;
   margin-bottom: 1.25rem;
+  text-align: center;
   color: var(--color-heading);
   font-family: 'Noto Serif SC', 'STSong', Georgia, serif;
 }

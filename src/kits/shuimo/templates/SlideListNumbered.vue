@@ -63,7 +63,7 @@ const parsed = computed(() => {
   font-size: var(--fs-h3);
   font-weight: 600;
   text-align: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
   color: var(--color-heading);
   font-family: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', Georgia, serif;
   letter-spacing: 0.06em;

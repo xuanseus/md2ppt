@@ -82,10 +82,4 @@ defineProps<{ slide: Slide }>()
   padding: 0 1.5rem;
   letter-spacing: 0.08em;
 }
-
-.sm-section-sub :deep(h1),
-.sm-section-sub :deep(h2),
-.sm-section-sub :deep(h3) {
-  display: none;
-}
 </style>

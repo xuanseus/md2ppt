@@ -122,13 +122,6 @@ defineProps<{ slide: Slide }>()
   text-indent: 0;
 }
 
-.sm-quote-vertical :deep(h1),
-.sm-quote-vertical :deep(h2),
-.sm-quote-vertical :deep(h3),
-.sm-quote-vertical :deep(h4) {
-  display: none;
-}
-
 .sm-quote-vertical :deep(strong) {
   font-weight: 700;
   color: var(--color-heading);

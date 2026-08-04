@@ -79,11 +79,6 @@ defineProps<{ slide: Slide }>()
   letter-spacing: 0.04em;
 }
 
-.quote-prose :deep(h3),
-.quote-prose :deep(h4) {
-  display: none;
-}
-
 .quote-attr {
   margin-top: 2rem;
   font-size: var(--fs-body-sm);

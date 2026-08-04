@@ -84,14 +84,6 @@ defineProps<{ slide: Slide }>()
   max-height: 80%;
 }
 
-/* 隐藏 markdown 自带标题 */
-.sm-list-scatter :deep(h1),
-.sm-list-scatter :deep(h2),
-.sm-list-scatter :deep(h3),
-.sm-list-scatter :deep(h4) {
-  display: none;
-}
-
 .sm-list-scatter :deep(ul) {
   list-style: none;
   padding: 0;

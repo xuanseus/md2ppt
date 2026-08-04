@@ -76,15 +76,6 @@ defineProps<{ slide: Slide }>()
     repeating-linear-gradient(90deg, transparent, transparent 3px, var(--color-paper-texture) 3px, var(--color-paper-texture) 6px);
 }
 
-.sm-stats-prose :deep(h1),
-.sm-stats-prose :deep(h2),
-.sm-stats-prose :deep(h3),
-.sm-stats-prose :deep(h4),
-.sm-stats-prose :deep(h5),
-.sm-stats-prose :deep(h6) {
-  display: none;
-}
-
 /* 大数字 — 核心大字报 */
 .sm-stats-prose :deep(strong) {
   display: block;

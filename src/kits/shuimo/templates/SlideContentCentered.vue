@@ -56,16 +56,7 @@ defineProps<{ slide: Slide }>()
   font-weight: 700;
   margin-bottom: 1.5rem;
   color: var(--color-heading);
-  font-family: 'Noto Serif SC', 'STSong', 'SimSun', Georgia, serif;
-}
-
-.centered-prose :deep(h3),
-.centered-prose :deep(h4) {
-  font-size: var(--fs-h3);
-  font-weight: 500;
-  color: var(--color-muted-foreground);
-  margin-bottom: 1rem;
-  font-family: 'Noto Serif SC', 'STKaiti', Georgia, serif;
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', Georgia, serif;
 }
 
 .centered-prose :deep(p) {

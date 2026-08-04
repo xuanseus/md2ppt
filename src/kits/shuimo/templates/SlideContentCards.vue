@@ -63,13 +63,6 @@ defineProps<{ slide: Slide }>()
     0 4px 24px rgba(0, 0, 0, 0.04);
 }
 
-.cards-prose :deep(h1),
-.cards-prose :deep(h2),
-.cards-prose :deep(h3),
-.cards-prose :deep(h4) {
-  display: none;
-}
-
 .cards-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

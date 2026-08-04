@@ -79,15 +79,6 @@ defineProps<{ slide: Slide }>()
     0 1px 0 var(--color-ink-wash);
 }
 
-.split-prose :deep(h1),
-.split-prose :deep(h2),
-.split-prose :deep(h3),
-.split-prose :deep(h4),
-.split-prose :deep(h5),
-.split-prose :deep(h6) {
-  display: none;
-}
-
 .split-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

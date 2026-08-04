@@ -82,10 +82,4 @@ const icon = (props.slide.rawMd.match(/\{icon:\s*(\S+)\}/i) || [])[1] || '墨'
   padding: 0 1.5rem;
   letter-spacing: 0.08em;
 }
-
-.section-icon-sub :deep(h1),
-.section-icon-sub :deep(h2),
-.section-icon-sub :deep(h3) {
-  display: none;
-}
 </style>
