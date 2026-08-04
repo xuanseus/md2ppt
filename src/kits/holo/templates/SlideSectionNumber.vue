@@ -135,13 +135,6 @@ const num = (props.slide.rawMd.match(/\{num:\s*(\d+)\}/i) || [])[1] || '01'
 }
 
 /* ===== 副标题 ===== */
-.holo-section-sub :deep(h1),
-.holo-section-sub :deep(h2),
-.holo-section-sub :deep(h3),
-.holo-section-sub :deep(h4) {
-  display: none;
-}
-
 .holo-section-sub :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

@@ -145,14 +145,6 @@ defineProps<{ slide: Slide }>()
 }
 
 /* ===== 副标题内容 ===== */
-.holo-split-sub :deep(h1),
-.holo-split-sub :deep(h2),
-.holo-split-sub :deep(h3),
-.holo-split-sub :deep(h4),
-.holo-split-sub :deep(h5),
-.holo-split-sub :deep(h6) {
-  display: none;
-}
 .holo-split-sub :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

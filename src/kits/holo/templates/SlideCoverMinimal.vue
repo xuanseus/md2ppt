@@ -134,14 +134,6 @@ defineProps<{ slide: Slide }>()
 }
 
 /* ===== 副标题内容 ===== */
-.holo-minimal-sub :deep(h1),
-.holo-minimal-sub :deep(h2),
-.holo-minimal-sub :deep(h3),
-.holo-minimal-sub :deep(h4),
-.holo-minimal-sub :deep(h5),
-.holo-minimal-sub :deep(h6) {
-  display: none;
-}
 .holo-minimal-sub :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

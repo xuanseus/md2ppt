@@ -119,14 +119,6 @@ defineProps<{ slide: Slide }>()
 }
 
 /* ===== 副标题内容 ===== */
-.holo-cover-sub :deep(h1),
-.holo-cover-sub :deep(h2),
-.holo-cover-sub :deep(h3),
-.holo-cover-sub :deep(h4),
-.holo-cover-sub :deep(h5),
-.holo-cover-sub :deep(h6) {
-  display: none;
-}
 .holo-cover-sub :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

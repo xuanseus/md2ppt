@@ -118,13 +118,6 @@ defineProps<{ slide: Slide }>()
 }
 
 /* ===== 内容 ===== */
-.holo-cards-prose :deep(h1),
-.holo-cards-prose :deep(h2),
-.holo-cards-prose :deep(h3),
-.holo-cards-prose :deep(h4) {
-  display: none;
-}
-
 .holo-cards-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-foreground);

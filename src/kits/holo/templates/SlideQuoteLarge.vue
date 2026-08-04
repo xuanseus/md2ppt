@@ -165,11 +165,6 @@ defineProps<{ slide: Slide }>()
 .holo-signal-bar.l4 { height: 20px; opacity: 1; box-shadow: var(--holo-glow); }
 
 /* ===== 引用内容 ===== */
-.holo-quote-large-prose :deep(h3),
-.holo-quote-large-prose :deep(h4) {
-  display: none;
-}
-
 .holo-quote-large-prose :deep(blockquote),
 .holo-quote-large-prose :deep(p) {
   font-size: var(--fs-quote);
