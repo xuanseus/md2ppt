@@ -123,13 +123,6 @@ const icon = (props.slide.rawMd.match(/\{icon:\s*(\S+)\}/i) || [])[1] || '✦'
   margin-top: 0.5rem;
 }
 
-.cp-section-sub :deep(h1),
-.cp-section-sub :deep(h2),
-.cp-section-sub :deep(h3),
-.cp-section-sub :deep(h4) {
-  display: none;
-}
-
 .cp-section-sub :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

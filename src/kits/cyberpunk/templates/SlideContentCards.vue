@@ -88,11 +88,6 @@ defineProps<{ slide: Slide }>()
   box-shadow: 0 0 15px var(--color-accent);
 }
 
-.cp-card-prose :deep(h1),
-.cp-card-prose :deep(h2),
-.cp-card-prose :deep(h3),
-.cp-card-prose :deep(h4) { display: none; }
-
 .cp-card-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

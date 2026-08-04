@@ -183,10 +183,6 @@ const codeLang = computed(() => {
   padding: 0 1rem;
 }
 
-.cp-code-prose :deep(h1), .cp-code-prose :deep(h2), .cp-code-prose :deep(h3), .cp-code-prose :deep(h4) {
-  display: none;
-}
-
 .cp-code-prose :deep(pre) {
   margin: 0;
   padding: 0;

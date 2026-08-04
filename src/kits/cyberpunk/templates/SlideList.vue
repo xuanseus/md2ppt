@@ -116,9 +116,6 @@ defineProps<{ slide: Slide }>()
 /* 进程列表 */
 .cp-proc-list { flex: 1; overflow-y: auto; }
 
-/* 隐藏 markdown 标题 */
-.cp-list-prose :deep(h1), .cp-list-prose :deep(h2), .cp-list-prose :deep(h3), .cp-list-prose :deep(h4) { display: none; }
-
 .cp-list-prose :deep(ul) {
   list-style: none;
   padding: 0;

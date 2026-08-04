@@ -112,13 +112,6 @@ defineProps<{ slide: Slide }>()
   text-transform: uppercase;
 }
 
-.cp-section-sub :deep(h1),
-.cp-section-sub :deep(h2),
-.cp-section-sub :deep(h3),
-.cp-section-sub :deep(h4) {
-  display: none;
-}
-
 .cp-section-sub :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

@@ -79,7 +79,7 @@ const parsed = computed(() => {
   font-size: calc(1.6rem * var(--content-scale));
   font-weight: 600;
   text-align: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
   font-family: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', ui-monospace, monospace;
   color: var(--color-heading);
   text-shadow: 0 0 15px var(--color-accent);

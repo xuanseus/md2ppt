@@ -108,9 +108,6 @@ defineProps<{ slide: Slide }>()
   text-align: center;
 }
 
-.cp-quote-content :deep(h3),
-.cp-quote-content :deep(h4) { display: none; }
-
 .cp-quote-content :deep(strong),
 .cp-quote-content :deep(em) {
   color: var(--color-accent);

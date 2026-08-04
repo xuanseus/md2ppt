@@ -220,13 +220,6 @@ function generateHexString(seed: number): string {
   100% { background-position: 0 100px; }
 }
 
-.cp-cover-prose :deep(h1),
-.cp-cover-prose :deep(h2),
-.cp-cover-prose :deep(h3),
-.cp-cover-prose :deep(h4),
-.cp-cover-prose :deep(h5),
-.cp-cover-prose :deep(h6) { display: none; }
-
 .cp-cover-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);

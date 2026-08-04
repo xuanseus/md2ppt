@@ -82,9 +82,6 @@ defineProps<{ slide: Slide }>()
   margin: 0 0.25rem;
 }
 
-.cp-stats-inline :deep(h3),
-.cp-stats-inline :deep(h4) { display: none; }
-
 @keyframes cp-count-pulse {
   0% { transform: scale(0.5); opacity: 0 }
   50% { transform: scale(1.1) }

@@ -96,13 +96,6 @@ defineProps<{ slide: Slide }>()
   40%, 60% { opacity: 0.2; }
 }
 
-.cp-minimal-prose :deep(h1),
-.cp-minimal-prose :deep(h2),
-.cp-minimal-prose :deep(h3),
-.cp-minimal-prose :deep(h4),
-.cp-minimal-prose :deep(h5),
-.cp-minimal-prose :deep(h6) { display: none; }
-
 .cp-minimal-prose :deep(p) {
   font-size: var(--fs-body);
   color: var(--color-muted-foreground);
