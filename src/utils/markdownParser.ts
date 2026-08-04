@@ -253,19 +253,42 @@ export async function splitIntoSlides(rawMd: string): Promise<Slide[]> {
     slides.map(async (s, i) => {
       const rawMd = s.rawMd.trim()
       const layout = s.layout as any
+      const title = extractTitle(rawMd)
+      // 仅当模板会独立渲染 slide.title 时，从 html 中剥离标题行
+      // 避免模板重复渲染；content 等模板从 v-html 渲染标题，不能剥离
+      const shouldStrip = layout && layout !== 'content' && layout !== 'code-full'
+      const bodyRaw = shouldStrip ? stripTitleFromMd(rawMd) : rawMd
 
       return {
         id: i,
         rawMd,
-        html: await parseMarkdown(rawMd),
+        html: await parseMarkdown(bodyRaw),
         type: 'content' as const,
         layout,
-        title: extractTitle(rawMd),
+        title,
         index: i,
         anim: extractAnim(rawMd),
       }
     })
   )).filter((s) => s.rawMd.length > 0)
+}
+
+/**
+ * 从原始 markdown 中移除第一行标题（# / ## / ...），
+ * 保留标题下方的所有内容。
+ * 标题由模板通过 slide.title 单独渲染，不在 html 中重复出现。
+ */
+function stripTitleFromMd(rawMd: string): string {
+  const lines = rawMd.split('\n')
+  let removed = false
+  const result = lines.filter(line => {
+    if (!removed && /^#{1,6}\s/.test(line)) {
+      removed = true
+      return false
+    }
+    return true
+  })
+  return result.join('\n').trim()
 }
 
 function extractTitle(rawMd: string): string {
