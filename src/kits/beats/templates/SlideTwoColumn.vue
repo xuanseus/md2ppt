@@ -86,7 +86,7 @@ const parsed = computed(() => {
     <div class="orb w-[300px] h-[300px] bg-[var(--color-h1-to)]/6 bottom-10 right-10" style="animation-delay: -8s" />
 
     <!-- 内容 -->
-    <div class="relative z-10 w-full max-w-6xl px-10">
+    <div class="relative z-10 w-full px-6" style="max-width: min(calc(60rem * var(--content-scale)), calc(100% - 8rem), 100%)">
       <!-- 居中大标题用 GradientText -->
       <FadeContent :blur="true" :duration="800">
         <GradientText
@@ -134,7 +134,7 @@ const parsed = computed(() => {
 
 <style scoped>
 .slide-twocol {
-  padding: 2.5rem 3rem;  /* 旧 3rem 4rem */
+  padding: 2.5rem 2rem;  /* 横向 padding 缩小，内容占比更大 */
 }
 
 .prose-two-col :deep(p) {

@@ -18,8 +18,8 @@ defineProps<{ slide: Slide }>()
 </template>
 
 <style scoped>
-.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:4rem; }
-.wrap { position:relative; max-width:40rem; text-align:center; }
+.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:3rem 2rem; }
+.wrap { position:relative; max-width:min(calc(var(--content-max-narrow) * var(--content-scale)),100%); text-align:center; }
 .deco { font-size:12rem; line-height:1; font-family:serif; color:color-mix(in srgb,var(--color-accent) 6%,transparent); user-select:none; pointer-events:none; }
 .deco.bottom { transform:rotate(180deg); }
 .prose :deep(blockquote), .prose :deep(p) { font-size:var(--fs-quote,2rem); font-weight:300; line-height:1.5; color:var(--color-muted-foreground); font-style:italic; margin:1rem 0; }

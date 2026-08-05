@@ -8,7 +8,7 @@ defineProps<{ slide: Slide }>()
 <template>
   <div class="slide-cover relative flex items-center justify-center overflow-hidden w-full h-full">
     <!-- 内容区 -->
-    <div class="relative z-10 max-w-6xl px-10 text-center">
+    <div class="relative z-10 px-6 text-center" style="max-width: min(calc(var(--content-max-narrow) * var(--content-scale)), 100%)">
       <!-- 标题上方装饰小标 -->
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-medium tracking-widest uppercase mb-8 slide-animate">
         <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />

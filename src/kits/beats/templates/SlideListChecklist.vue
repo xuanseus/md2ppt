@@ -26,11 +26,11 @@ const items = computed(() => {
 </template>
 
 <style scoped>
-.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 3rem; }
-.wrap { max-width:40rem; width:100%; }
+.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 2rem; }
+.wrap { max-width:min(calc(var(--content-max) * var(--content-scale)),100%); width:fit-content; min-width:min(calc(44rem * var(--content-scale)),100%); }
 .title { font-size:var(--fs-h3); font-weight:600; text-align:center; margin-bottom:1.5rem; }
 .list { display:flex; flex-direction:column; gap:0.75rem; }
-.item { display:flex; align-items:center; gap:1rem; padding:0.75rem 1rem; }
+.item { display:flex; align-items:center; gap:1.25rem; padding:0.75rem 2rem; }
 .check { flex-shrink:0; width:1.5rem; height:1.5rem; border-radius:9999px; background:rgba(34,197,94,0.15); color:#22c55e; display:flex; align-items:center; justify-content:center; font-size:0.7rem; font-weight:700; }
 .text { font-size:var(--fs-body-sm); color:var(--color-muted-foreground); line-height:1.5; }
 </style>

@@ -60,8 +60,8 @@ const parsed = computed(() => {
 </template>
 
 <style scoped>
-.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 3rem; }
-.wrap { width:100%; max-width:56rem; }
+.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 2rem; }
+.wrap { width:100%; max-width:min(calc(60rem * var(--content-scale)),calc(100% - 8rem),100%); }
 .accent-line { height:2px; background:linear-gradient(90deg,transparent,var(--color-accent),transparent); }
 .sub :deep(p) { font-size:var(--fs-body-sm); color:var(--color-muted-foreground); text-align:center; }
 .stack { display:flex; flex-direction:column; gap:1.5rem; }

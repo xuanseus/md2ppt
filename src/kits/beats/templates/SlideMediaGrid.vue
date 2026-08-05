@@ -28,9 +28,9 @@ const images = computed(() => {
 </template>
 
 <style scoped>
-.root { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; padding:3rem; }
+.root { display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 2rem; }
 .title { font-size:var(--fs-h2); font-weight:700; text-align:center; margin-bottom:2rem; }
-.wrap { display:grid; gap:1.5rem; max-width:64rem; width:100%; }
+.wrap { display:grid; gap:1.5rem; max-width:min(calc(100vh * 1.3),72rem,100%); width:100%; }
 .item { border-radius:0.75rem; overflow:hidden; background:color-mix(in srgb,var(--color-muted) 20%,transparent); border:1px solid color-mix(in srgb,var(--color-border) 30%,transparent); display:flex; align-items:center; justify-content:center; aspect-ratio:16/9; animation:card-in 0.5s ease both; }
 .item img { max-width:100%; max-height:100%; object-fit:contain; }
 @keyframes card-in { 0% { opacity:0; transform:translateY(20px) } 100% { opacity:1; transform:translateY(0) } }

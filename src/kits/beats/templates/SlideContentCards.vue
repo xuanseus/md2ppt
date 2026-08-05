@@ -15,10 +15,10 @@ defineProps<{ slide: Slide }>()
 </template>
 
 <style scoped>
-.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:3rem; }
-.wrap { max-width:48rem; width:100%; }
+.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 2rem; }
+.wrap { max-width:min(calc(var(--content-max) * var(--content-scale)),100%); width:fit-content; min-width:min(calc(44rem * var(--content-scale)),100%); }
 .title { font-size:var(--fs-h2); font-weight:700; text-align:center; margin-bottom:2rem; }
-.card { padding:2.5rem 3rem; border-radius:1.25rem; background:color-mix(in srgb,var(--color-muted) 20%,transparent); border:1px solid color-mix(in srgb,var(--color-border) 30%,transparent); backdrop-filter:blur(12px); }
+.card { padding:2.5rem 2rem; border-radius:1.25rem; background:color-mix(in srgb,var(--color-muted) 20%,transparent); border:1px solid color-mix(in srgb,var(--color-border) 30%,transparent); backdrop-filter:blur(12px); }
 .prose :deep(p) { font-size:var(--fs-body); color:var(--color-muted-foreground); line-height:1.8; }
 .prose :deep(ul) { list-style:none; padding:0; }
 .prose :deep(li) { font-size:var(--fs-body-sm); padding:0.4rem 0; color:var(--color-muted-foreground); }

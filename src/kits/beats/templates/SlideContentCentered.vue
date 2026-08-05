@@ -13,8 +13,8 @@ defineProps<{ slide: Slide }>()
 </template>
 
 <style scoped>
-.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:3rem; }
-.wrap { max-width:56rem; width:100%; text-align:center; }
+.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 2rem; }
+.wrap { max-width:min(calc(var(--content-max) * var(--content-scale)),100%); width:100%; text-align:center; }
 .title { font-size:var(--fs-h2); font-weight:700; margin-bottom:2rem; }
 .prose :deep(h1), .prose :deep(h2) { font-size:var(--fs-h2); font-weight:700; margin-bottom:1.5rem; }
 .prose :deep(h3), .prose :deep(h4) { font-size:var(--fs-h3); font-weight:500; color:var(--color-muted-foreground); margin-bottom:1rem; }

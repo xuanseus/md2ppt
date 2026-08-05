@@ -54,13 +54,13 @@ const parsed = computed(() => {
     <!-- 背景已由全局背景层提供 -->
 
     <!-- 内容 -->
-    <div class="relative z-10 flex flex-col items-center justify-center h-full px-12 py-12 w-full">
+    <div class="relative z-10 flex flex-col items-center justify-center h-full px-6 py-10 w-full">
       <h3 v-if="slide.title" class="text-xl md:text-2xl font-semibold mb-6 text-center slide-animate">
         {{ slide.title }}
       </h3>
       <div v-if="parsed.subtitle" class="list-subtitle mb-8 text-center max-w-xl slide-animate" v-html="parsed.subtitle"></div>
 
-      <div v-if="parsed.items.length" class="list-grid w-full max-w-3xl grid grid-cols-1 gap-4">
+      <div v-if="parsed.items.length" class="list-grid mx-auto grid grid-cols-1 gap-4" style="max-width: min(calc(var(--content-max) * var(--content-scale)), 100%); width: fit-content; min-width: min(calc(44rem * var(--content-scale)), 100%)">
         <SpotlightCard
           v-for="(item, i) in parsed.items"
           :key="i"
@@ -68,7 +68,7 @@ const parsed = computed(() => {
           spotlight-color="rgba(66, 211, 146, 0.15)"
           :style="{ animationDelay: `${0.15 + i * 0.1}s` }"
         >
-          <div class="flex items-center gap-5 p-5 rounded-xl">
+          <div class="flex items-center gap-5 px-8 py-6 rounded-xl">
             <span class="text-3xl flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-lg bg-accent/10">{{ item.emoji }}</span>
             <div>
               <div class="text-base font-semibold" v-html="item.titleHtml"></div>
@@ -86,7 +86,7 @@ const parsed = computed(() => {
 
 <style scoped>
 .slide-list-wrapper {
-  padding: 2.5rem 3rem;  /* 旧 3rem 4rem */
+  padding: 2.5rem 2rem;  /* 横向 padding 缩小，内容占比更大 */
 }
 
 /* 标题跟随缩放 */

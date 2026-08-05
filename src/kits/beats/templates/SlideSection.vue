@@ -33,7 +33,7 @@ onUnmounted(() => {
 <template>
   <div class="slide-section relative flex items-center justify-center overflow-hidden w-full h-full">
     <!-- 内容卡片 -->
-    <div class="relative z-10 max-w-5xl px-12 slide-animate">
+    <div class="relative z-10 px-6 slide-animate" style="max-width: min(calc(var(--content-max) * var(--content-scale)), 100%)">
       <StarBorder
         as="div"
         class="section-card px-16 py-16 text-center rounded-2xl"

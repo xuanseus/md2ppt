@@ -32,8 +32,8 @@ defineProps<{ slide: Slide }>()
 </template>
 
 <style scoped>
-.layout-root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:3rem 4rem; }
-.split-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; width:100%; max-width:72rem; }
+.layout-root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 2rem; }
+.split-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; width:100%; max-width:min(calc(var(--content-max-narrow) * var(--content-scale)),100%); }
 .split-left { display:flex; flex-direction:column; gap:1.5rem; }
 .badge { display:inline-flex; align-items:center; gap:0.5rem; padding:0.5rem 1rem; border-radius:9999px; background:color-mix(in srgb,var(--color-accent) 10%,transparent); border:1px solid color-mix(in srgb,var(--color-accent) 20%,transparent); color:var(--color-accent); font-size:0.75rem; font-weight:500; text-transform:uppercase; letter-spacing:0.1em; }
 .badge-dot { width:0.375rem; height:0.375rem; border-radius:9999px; background:var(--color-accent); animation:pulse 2s infinite; }

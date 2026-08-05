@@ -8,7 +8,7 @@ defineProps<{ slide: Slide }>()
   <div class="slide-content-wrapper relative flex flex-col items-center justify-center overflow-hidden">
     <!-- 内容区 -->
     <div class="relative z-10 w-full flex flex-col items-center slide-animate">
-      <div v-html="slide.html" class="w-full max-w-5xl mx-auto px-6 prose-content" />
+      <div v-html="slide.html" class="w-full mx-auto px-6 prose-content" style="max-width: min(calc(var(--content-max) * var(--content-scale)), 100%)" />
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ defineProps<{ slide: Slide }>()
 .slide-content-wrapper {
   width: 100%;
   height: 100%;
-  padding: 2.5rem 3rem;  /* 旧 3rem 4rem */
+  padding: 2.5rem 2rem;  /* 横向 padding 缩小，内容占比更大 */
 }
 
 .prose-content :deep(h2) {
@@ -43,8 +43,9 @@ defineProps<{ slide: Slide }>()
 .prose-content :deep(ul),
 .prose-content :deep(ol) {
   padding-left: 0;
-  margin: 1rem 0;
+  margin: 1rem auto;
   list-style: none;
+  width: fit-content;
 }
 
 .prose-content :deep(li) {

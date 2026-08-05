@@ -51,7 +51,7 @@ onUnmounted(() => {
     <div class="absolute bottom-16 right-16 text-[12rem] leading-none font-serif text-accent/[0.07] select-none pointer-events-none rotate-180">"</div>
 
     <!-- 引用内容 -->
-    <div class="relative z-10 max-w-5xl px-12 slide-animate">
+    <div class="relative z-10 px-6 slide-animate" style="max-width: min(calc(var(--content-max-narrow) * var(--content-scale)), 100%)">
       <div class="text-center mb-8">
         <div class="w-12 h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
       </div>

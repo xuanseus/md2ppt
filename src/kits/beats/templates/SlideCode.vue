@@ -11,12 +11,12 @@ defineProps<{ slide: Slide }>()
 
     <!-- 代码内容 -->
     <div
-        class="relative z-10 slide-code-container h-full flex flex-col items-center justify-center px-12 py-12 slide-animate">
+        class="relative z-10 slide-code-container h-full flex flex-col items-center justify-center px-6 py-10 slide-animate">
       <div v-if="slide.title" class="code-title mb-6">
         <h4 class="text-2xl font-bold">{{ slide.title }}</h4>
       </div>
 
-      <div class="w-full max-w-5xl prose-code" v-html="slide.html"/>
+      <div class="prose-code" style="width: fit-content; max-width: min(calc(var(--content-max) * var(--content-scale)), 100%); min-width: min(calc(40rem * var(--content-scale)), 100%)" v-html="slide.html"/>
     </div>
   </div>
 </template>

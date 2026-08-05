@@ -35,8 +35,8 @@ onUnmounted(() => o?.disconnect())
 </template>
 
 <style scoped>
-.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:3rem; }
-.wrap { max-width:56rem; margin:0 auto; }
+.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 2rem; }
+.wrap { max-width:min(calc(var(--content-max-narrow) * var(--content-scale)),100%); margin:0 auto; }
 .card {
   padding:3rem 4rem; text-align:center; border-radius:1.5rem;
   background:linear-gradient(135deg,color-mix(in srgb,var(--color-muted) 95%,var(--color-accent) 5%),color-mix(in srgb,var(--color-muted) 85%,var(--color-background) 15%));

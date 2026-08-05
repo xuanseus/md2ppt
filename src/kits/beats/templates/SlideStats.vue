@@ -66,7 +66,7 @@ onUnmounted(() => {
     />
 
     <!-- 主要内容 -->
-    <div class="relative z-10 max-w-5xl px-12 flex flex-col items-center justify-center text-center slide-animate">
+    <div class="relative z-10 px-6 flex flex-col items-center justify-center text-center slide-animate" style="max-width: min(calc(var(--content-max) * var(--content-scale)), 100%)">
       <div class="stats-content flex flex-col items-center">
         <div v-html="slide.html" class="prose-stats" />
       </div>

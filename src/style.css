@@ -59,20 +59,24 @@
      ═══════════════════════════════════════════ */
   :root {
     /* 用户可控缩放系数（由 index.html 内联脚本初始化） */
-    --content-scale: 1.25;
+    --content-scale: 1;
 
-    /* 排版刻度 — 新 1x 基准已比旧版放大 */
-    --fs-hero:           calc(4.5rem  * var(--content-scale));  /* 72px  Cover H1 / Stats */
-    --fs-section-title:  calc(3rem    * var(--content-scale));  /* 48px  Section H2 */
-    --fs-h2:             calc(2.5rem  * var(--content-scale));  /* 40px  Content H2 */
-    --fs-h3:             calc(2rem    * var(--content-scale));  /* 32px  Content H3 */
-    --fs-h4:             calc(1.5rem  * var(--content-scale));  /* 24px  Code / 列标题 */
-    --fs-body:           calc(1.375rem * var(--content-scale)); /* 22px  正文（旧 20px） */
-    --fs-body-sm:        calc(1.125rem * var(--content-scale)); /* 18px  次要正文（旧 16-18px） */
-    --fs-caption:        calc(1rem     * var(--content-scale)); /* 16px  说明文字（旧 14px） */
-    --fs-small:          calc(0.875rem * var(--content-scale)); /* 14px  最小文字 */
-    --fs-stat:           calc(6rem    * var(--content-scale));  /* 96px  数据大字 */
-    --fs-quote:          calc(2.25rem * var(--content-scale));  /* 36px  引用 */
+    /* 内容容器基准：系数 1 时占屏比例（1920 基准） */
+    --content-max:           90rem;  /* 主内容：1x = 75% */
+    --content-max-narrow:    72rem;  /* 封面/金句：1x = 60% */
+
+    /* 排版刻度 — 档位 1 / 1.25 / 1.5 联动放大字号与容器 */
+    --fs-hero:           calc(5.5rem   * var(--content-scale));  /* 88px  Cover H1 / Stats */
+    --fs-section-title:  calc(3.5rem   * var(--content-scale));  /* 56px  Section H2 */
+    --fs-h2:             calc(3rem     * var(--content-scale));  /* 48px  Content H2 */
+    --fs-h3:             calc(2.375rem * var(--content-scale));  /* 38px  Content H3 */
+    --fs-h4:             calc(1.75rem  * var(--content-scale));  /* 28px  Code / 列标题 */
+    --fs-body:           calc(1.75rem  * var(--content-scale));  /* 28px  正文 */
+    --fs-body-sm:        calc(1.375rem * var(--content-scale));  /* 22px  次要正文 */
+    --fs-caption:        calc(1.25rem  * var(--content-scale));  /* 20px  说明文字 */
+    --fs-small:          calc(1.0625rem * var(--content-scale)); /* 17px  最小文字 */
+    --fs-stat:           calc(7rem     * var(--content-scale));  /* 112px 数据大字 */
+    --fs-quote:          calc(2.75rem  * var(--content-scale));  /* 44px  引用 */
   }
 }
 

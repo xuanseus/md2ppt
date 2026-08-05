@@ -43,8 +43,8 @@ const subtitle = computed(() => {
 </template>
 
 <style scoped>
-.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 3rem; }
-.wrap { max-width:56rem; width:100%; display:flex; flex-direction:column; align-items:center; }
+.root { display:flex; align-items:center; justify-content:center; width:100%; height:100%; padding:2.5rem 2rem; }
+.wrap { max-width:min(calc(var(--content-max) * var(--content-scale)),100%); width:100%; display:flex; flex-direction:column; align-items:center; }
 .title { font-size:var(--fs-h3); font-weight:600; text-align:center; margin-bottom:1rem; }
 .sub :deep(p) { font-size:var(--fs-body-sm); color:var(--color-muted-foreground); text-align:center; }
 .grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; width:100%; margin-top:1.5rem; }

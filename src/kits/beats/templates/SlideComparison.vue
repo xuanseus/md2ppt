@@ -62,7 +62,7 @@ const parsed = computed(() => {
     <!-- 背景已由全局背景层提供 -->
 
     <!-- 内容 -->
-    <div class="relative z-10 flex flex-col items-center justify-center h-full px-12 py-10 w-full">
+    <div class="relative z-10 flex flex-col items-center justify-center h-full px-6 py-8 w-full">
       <h3 v-if="slide.title" class="text-xl md:text-2xl font-semibold mb-6 text-center slide-animate">
         {{ slide.title }}
       </h3>
@@ -123,15 +123,16 @@ const parsed = computed(() => {
 
 <style scoped>
 .slide-comparison-wrapper {
-  padding: 2.5rem 3rem;  /* 旧 3rem 4rem */
+  padding: 2.5rem 2rem;  /* 横向 padding 缩小，内容占比更大 */
 }
 
 .comparison-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  max-width: 64rem;       /* 旧 max-w-4xl (56rem) — 加宽 */
-  width: 100%;
+  max-width: min(calc(var(--content-max) * var(--content-scale)), 100%);
+  width: fit-content;
+  min-width: min(calc(52rem * var(--content-scale)), 100%);
 }
 
 .comparison-col {
