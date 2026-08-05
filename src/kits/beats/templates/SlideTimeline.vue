@@ -51,7 +51,7 @@ const parsed = computed(() => {
       </h4>
       <div v-if="parsed.subtitle" class="timeline-subtitle mb-8 text-center max-w-xl slide-animate" v-html="parsed.subtitle"></div>
 
-      <div v-if="parsed.entries.length" class="timeline mx-auto flex flex-col" style="max-width: min(calc(var(--content-max) * var(--content-scale)), 100%); width: fit-content; min-width: min(calc(44rem * var(--content-scale)), 100%)">
+      <div v-if="parsed.entries.length" class="timeline mx-auto flex flex-col" style="max-width: min(calc(var(--content-max) * var(--content-scale)), 100%); width: fit-content">
         <FadeContent
           v-for="(entry, i) in parsed.entries"
           :key="i"
@@ -68,8 +68,8 @@ const parsed = computed(() => {
               class="w-0.5 flex-1 mt-2 bg-gradient-to-b from-accent/50 to-accent/10"
             />
           </div>
-          <!-- 条目卡片：按内容收缩并居中 -->
-          <div class="glass px-8 py-3 mb-3" style="margin-inline:auto">
+          <!-- 条目卡片：撑满容器，随最宽项右对齐 -->
+          <div class="glass px-8 py-3 mb-3 flex-1">
             <div class="text-sm font-semibold text-accent mb-1">{{ entry.date }}</div>
             <div class="text-base text-muted-foreground">{{ entry.content }}</div>
           </div>
