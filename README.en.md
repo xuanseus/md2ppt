@@ -189,7 +189,7 @@ Tap to cycle, long-press for popup panel. 6 color themes per kit:
 ## Dock Controls
 
 - Navigation / Fullscreen / Overview / **Auto-play (3s)** / Kit / Theme / Transition / Scale
-- Always visible in windowed mode, auto-hide in fullscreen after 3s
+- Auto-hide after 1s of inactivity; reappears when the mouse enters the Dock area at the bottom (both fullscreen and windowed)
 - Kit/theme/transition/scale: tap to cycle, **long-press for swipe-select popup**
 - 7 transitions: slide / fade / zoom / flip / pixel / reveal / none
 - 3 scale levels: 1x / 1.25x / 1.5x
