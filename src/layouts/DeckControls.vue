@@ -32,9 +32,9 @@ const kitLabel = computed(() => activeKit.label)
 const nextKit = computed(() => getNextKit())
 
 // ── 缩放状态 ──
-const scaleOptions = [1.25, 1.5, 1.75]
+const scaleOptions = [1, 1.25, 1.5]
 const scaleLabels = ['1x', '1.25x', '1.5x']
-const currentScaleIndex = ref(parseInt(localStorage.getItem('content-scale') || '0'))
+const currentScaleIndex = ref(parseInt(localStorage.getItem('content-scale') || '1'))
 
 function cycleScale() {
   currentScaleIndex.value = (currentScaleIndex.value + 1) % scaleOptions.length
@@ -134,26 +134,30 @@ onMounted(() => window.addEventListener('keydown', handleShortcut))
 onUnmounted(() => window.removeEventListener('keydown', handleShortcut))
 
 // ── 自动隐藏 ──
-const visible = ref(true)
+// 鼠标移入 dock 底部热区才显示；1s 无操作自动隐藏（不区分全屏/非全屏）
+const visible = ref(false)
 let hideTimer: ReturnType<typeof setTimeout> | null = null
+const DOCK_ZONE = 100 // 底部热区高度（px）
 
-function resetTimer() {
-  visible.value = true
-  if (hideTimer) clearTimeout(hideTimer)
-  // 只在全屏时自动隐藏
-  if (!document.fullscreenElement) return
-  hideTimer = setTimeout(() => {
-    if (!popupType.value) visible.value = false
-  }, 3000)
+function hideDock() {
+  if (!popupType.value) visible.value = false
+}
+
+function handleMouseMove(e: MouseEvent) {
+  // 仅在底部热区内显示并顺延 1s 隐藏计时
+  if (e.clientY >= window.innerHeight - DOCK_ZONE) {
+    visible.value = true
+    if (hideTimer) clearTimeout(hideTimer)
+    hideTimer = setTimeout(hideDock, 1000)
+  }
 }
 
 onMounted(() => {
-  resetTimer()
-  window.addEventListener('mousemove', resetTimer)
+  window.addEventListener('mousemove', handleMouseMove)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('mousemove', resetTimer)
+  window.removeEventListener('mousemove', handleMouseMove)
   if (hideTimer) clearTimeout(hideTimer)
 })
 
