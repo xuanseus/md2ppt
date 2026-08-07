@@ -189,6 +189,8 @@ defineProps<{ slide: Slide }>()
   margin-bottom: 1rem;
   image-rendering: pixelated;
 }
+.px-code-prose :deep(.code-block-wrapper) { width: 100%; }
+
 .px-code-prose :deep(pre) {
   overflow-x: auto;
   margin: 0.5rem 0;

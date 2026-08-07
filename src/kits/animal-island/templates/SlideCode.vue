@@ -29,6 +29,8 @@ defineProps<{ slide: Slide }>()
   margin-bottom: 1.5rem;
 }
 
+.ai-code-prose :deep(.code-block-wrapper) { width: 100%; }
+
 .ai-code-prose :deep(pre) {
   overflow-x: auto;
   margin: 0.5rem 0;

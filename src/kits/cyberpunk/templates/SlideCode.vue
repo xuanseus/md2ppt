@@ -183,6 +183,8 @@ const codeLang = computed(() => {
   padding: 0 1rem;
 }
 
+.cp-code-prose :deep(.code-block-wrapper) { width: 100%; }
+
 .cp-code-prose :deep(pre) {
   margin: 0;
   padding: 0;

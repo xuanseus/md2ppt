@@ -57,6 +57,7 @@ defineProps<{ slide: Slide }>()
   font-size: var(--fs-h3); font-weight: 700; color: var(--color-heading); font-family: var(--px-font);
   text-align: left; margin-bottom: 1.5rem;
 }
+.px-code-prose :deep(.code-block-wrapper) { width: 100%; }
 .px-code-prose :deep(pre) { overflow-x: auto; margin: 0.5rem 0; }
 .px-code-prose :deep(code) { font-family: var(--px-font); font-size: var(--fs-caption); line-height: 1.6; }
 .px-code-prose :deep(p) { font-size: var(--fs-body-sm); color: var(--color-muted-foreground); text-align: left; font-family: var(--px-font); margin-top: 1rem; }

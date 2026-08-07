@@ -172,6 +172,8 @@ defineProps<{ slide: Slide }>()
   letter-spacing: 0.05em;
 }
 
+.sm-code-prose :deep(.code-block-wrapper) { width: 100%; }
+
 .sm-code-prose :deep(pre) {
   overflow-x: auto;
   margin: 0.5rem 0;

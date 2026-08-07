@@ -80,10 +80,11 @@ marked.use({
         const cacheKey = `${lang}:${normalizeCodeKey(token.text)}`
         const highlighted = codeCache.get(cacheKey) || token.text
         const dots = `
-      <div class="flex gap-1.5 px-4 py-2">
+      <div class="flex gap-1.5 px-4 py-2 items-center">
         <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
         <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
         <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
+        <button type="button" class="code-copy-btn ml-auto p-0.5 rounded text-white/60 hover:text-white hover:bg-white/10 transition-colors" title="复制代码" aria-label="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
       </div>
     `
         const label = lang ? `<div class="text-xs px-4 pb-2 font-mono" style="color: #6272a4">${lang}</div>` : ''

@@ -300,6 +300,8 @@ const rainColsRight = computed(() => Array.from({ length: 8 }, () => generateRai
   text-transform: uppercase;
 }
 
+.holo-code-prose :deep(.code-block-wrapper) { width: 100%; }
+
 .holo-code-prose :deep(pre) {
   overflow-x: auto;
   margin: 0.5rem 0;

@@ -84,6 +84,27 @@ const showGrainient = computed(() => {
   return el !== 'cover' && el !== 'section'
 })
 
+// ── 代码块复制按钮：事件委托处理点击 ──
+let copyTimer: number | null = null
+function handleDocumentClick(e: MouseEvent) {
+  const target = e.target as HTMLElement
+  const btn = target.closest('.code-copy-btn')
+  if (!btn) return
+  const wrapper = btn.closest('.code-block-wrapper')
+  if (!wrapper) return
+  const pre = wrapper.querySelector('pre')
+  if (!pre) return
+  navigator.clipboard.writeText((pre.textContent || '').trim()).then(() => {
+    const svg = btn.querySelector('svg')
+    if (svg) svg.innerHTML = '<path d="M20 6L9 17l-5-5"></path>'
+    if (copyTimer) clearTimeout(copyTimer)
+    copyTimer = window.setTimeout(() => {
+      if (svg) svg.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>'
+      copyTimer = null
+    }, 2000)
+  }).catch(() => {})
+}
+
 // Wheel navigation with debounce
 let wheelLocked = false
 function handleWheel(e: WheelEvent) {
@@ -96,10 +117,12 @@ function handleWheel(e: WheelEvent) {
 
 onMounted(() => {
   window.addEventListener('wheel', handleWheel, { passive: true })
+  document.addEventListener('click', handleDocumentClick)
 })
 
 onUnmounted(() => {
   window.removeEventListener('wheel', handleWheel)
+  document.removeEventListener('click', handleDocumentClick)
 })
 
 useKeyboardNavigation(
