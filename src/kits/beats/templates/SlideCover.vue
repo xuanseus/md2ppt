@@ -40,7 +40,7 @@ defineProps<{ slide: Slide }>()
   font-size: var(--fs-hero);
   font-weight: 800;
   margin-bottom: 2rem;
-  line-height: 1.1;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--color-foreground);
 }

@@ -172,7 +172,9 @@ onBeforeUnmount(() => {
 const styles = computed(() => ({
   textAlign: props.textAlign,
   wordWrap: 'break-word',
-  willChange: 'transform, opacity'
+  willChange: 'transform, opacity',
+  // 容器 overflow-hidden 会裁掉字母下探部分（y/g/p），加底部内边距预留空间
+  paddingBottom: '0.15em'
 }));
 
 const classes = computed(() => `split-parent overflow-hidden inline-block whitespace-normal ${props.className}`);
