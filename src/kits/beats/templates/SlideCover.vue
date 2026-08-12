@@ -1,8 +1,17 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { Slide } from '../../../types/slides'
 import SplitText from '../../../components/text-effects/SplitText.vue'
 
-defineProps<{ slide: Slide }>()
+const props = defineProps<{ slide: Slide }>()
+
+// 标题里 "·" 及末尾序号与前面内容之间的空格用不换行空格替代，
+// 让后缀跟着前面的词走，避免被换行挤到下一行落单
+const coverTitle = computed(() =>
+  props.slide.title
+    .replace(/\s·\s/g, ' · ')
+    .replace(/(\S)\s+(\d+)\s*$/, '$1 $2')
+)
 </script>
 
 <template>
@@ -18,9 +27,9 @@ defineProps<{ slide: Slide }>()
       <!-- 标题用 SplitText 动画 -->
       <div v-if="slide.title" class="cover-title">
         <SplitText
-          :text="slide.title"
+          :text="coverTitle"
           tag="h1"
-          split-type="words"
+          split-type="none"
           :delay="80"
           :duration="1"
         />

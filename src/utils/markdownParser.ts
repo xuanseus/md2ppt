@@ -257,7 +257,7 @@ export async function splitIntoSlides(rawMd: string): Promise<Slide[]> {
       const title = extractTitle(rawMd)
       // 仅当模板会独立渲染 slide.title 时，从 html 中剥离标题行
       // 避免模板重复渲染；content 等模板从 v-html 渲染标题，不能剥离
-      const shouldStrip = layout && layout !== 'content' && layout !== 'code-full'
+      const shouldStrip = layout && layout !== 'content'
       const bodyRaw = shouldStrip ? stripTitleFromMd(rawMd) : rawMd
 
       return {

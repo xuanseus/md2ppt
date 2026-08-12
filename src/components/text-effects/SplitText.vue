@@ -92,6 +92,34 @@ const runAnimation = () => {
 
   const start = `top ${startPct}%${sign}`;
 
+  // 不拆分模式：整段标题作为一个整体动画，DOM 保持原始文本、自然换行
+  if (props.splitType === 'none' || props.splitType === '') {
+    gsap.fromTo(
+      el,
+      { ...props.from },
+      {
+        ...props.to,
+        duration: props.duration,
+        ease: props.ease,
+        scrollTrigger: {
+          trigger: el,
+          start,
+          once: true,
+          fastScrollEnd: true,
+          anticipatePin: 0.4
+        },
+        onComplete() {
+          animationCompleted.value = true;
+          props.onLetterAnimationComplete?.();
+          emit('animation-complete');
+        },
+        willChange: 'transform, opacity',
+        force3D: true
+      }
+    );
+    return;
+  }
+
   let targets: Element[] = [];
 
   const assignTargets = (self: GSAPSplitText) => {
