@@ -188,12 +188,17 @@
     counter-reset: line;
   }
 
+  /* code 用 normal 折叠掉 shiki 在 .line 之间输出的 \n 文本节点，
+     否则 pre 的 white-space: pre 会把每个 \n 渲染成一个空行、行距翻倍 */
   .slide-content .shiki code {
     display: block;
+    white-space: normal;
   }
 
+  /* .line 内部恢复 pre，保住代码缩进 */
   .slide-content .shiki .line {
     display: block;
+    white-space: pre;
   }
 
   /* ═══════════════════════════════════════════
@@ -231,10 +236,12 @@
 
   .shiki code {
     display: block;
+    white-space: normal;
   }
 
   .shiki .line {
     display: block;
+    white-space: pre;
   }
 
   /* 代码块统一滚动条 — 细窄不抢眼 */
